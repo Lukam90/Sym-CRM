@@ -1,0 +1,3 @@
+# Creation
+
+composer create-project symfony/website-skeleton:"^5.4" application
