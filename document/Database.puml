@@ -1,0 +1,67 @@
+@startuml Entities
+
+'Tables
+
+'Utilisateurs
+
+entity User {
+    *id : int
+    *firstName: varchar
+    *lastName: varchar
+    *email : varchar
+    *created_at : datetime
+    *role : varchar
+}
+
+'Equipes
+
+entity Team {
+    *id: int
+    *name: varchar
+}
+
+'Evenements
+
+entity Event {
+    *id: int
+    *title: varchar
+    *type: varchar 
+    *date: datetime
+    *description: text
+    importance: varchar
+}
+
+'Contacts
+
+entity Contact {
+    *id: int
+    *type: varchar
+    *functions: varchar[]
+    *name: varchar
+    company: varchar
+    occupation: varchar
+    vat: varchar
+    address: varchar
+    phone: varchar
+    email: varchar
+    website: varchar
+    _label: varchar
+}
+
+'Relation
+
+'Un utilisateur peut appartenir à une seule équipe (0,1)
+'Une équipe peut regrouper un ensemble d'utilisateurs (0,n)
+
+User |o..o{ Team
+
+'Un utilisateur peut avoir plusieurs événements (0,n)
+'Un événement appartient à un seul utilisateur (1,1)
+
+User }o..|| Event
+
+'Un utilisateur peut avoir plusieurs contacts (0,n)
+'Un contact appartient à un seul utilisateur (1,1)
+
+User }o..|| Contact
+@enduml
