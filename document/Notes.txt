@@ -1,0 +1,11 @@
+
+    • Un utilisateur peut ajouter un contact (Majeur)
+        ◦ Client/Fournisseur/Prestataire checkbox required(1)
+        ◦ Si particulier demande du nom d’entreprise optionnel 
+        ◦ Si particulier demande du poste occupé optionnel 
+        ◦ Si société demande du SIREN optionnel
+        ◦ TVA intracommunautaire optionnel
+        ◦ Adresse (rue, ville, code postal, pays) optionnel
+        ◦ Téléphone optionnel
+        ◦ Mail optionnel
+        ◦ Site web optionnel

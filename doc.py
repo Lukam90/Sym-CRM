@@ -25,8 +25,8 @@ def compile(fList):
 
 # Dossier de synthèse
 
-report = ["Intro", "N1-Normes", "N2-Elements"]
-report += ["parts/N3.1-Accueil", "parts/N3.2-Utilisateurs"]
+report = ["Intro", "N1-Normes", "N2-Composants"]
+report += ["parts/N3.1-Pages", "parts/N3.2-Utilisateurs", "parts/N3.3-Equipes", "parts/N3.4-Evenements", "parts/N3.5-Contacts"]
 report += ["N4-Conception"]
 
 compile(report)

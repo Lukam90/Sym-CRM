@@ -11,6 +11,7 @@ entity User {
     *email : varchar
     *created_at : datetime
     *role : varchar
+    active: boolean
 }
 
 'Equipes
@@ -18,6 +19,8 @@ entity User {
 entity Team {
     *id: int
     *name: varchar
+    *description: text
+    *color: varchar
 }
 
 'Evenements
