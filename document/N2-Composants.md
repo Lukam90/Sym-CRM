@@ -2,9 +2,13 @@
 
 ### Le layout
 
+**Vue** : base.html.twig
+
 Il s'agit du modèle de base pour l'ensemble des pages et du design.
 
 ### Le menu de navigation
+
+**Vue** : partials/navbar.html.twig
 
 Un menu de navigation du site est visible tout en haut de chaque page et contient :
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
@@ -19,11 +23,15 @@ Un menu de navigation du site est visible tout en haut de chaque page et contien
 
 ### Le pied de page
 
+**Vue** : partials/footer.html.twig
+
 Un pied de page est visible tout en bas de chaque page avec la mention **Sym-CRM** &copy; 2022 et des liens vers les pages :
 - des **Mentions Légales**
 - de la **Politique de Confidentialité**
 
 ### Les messages d'alerte
+
+**Vue** : partials/alerts.html.twig
 
 Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier une erreur comme :
 - la confirmation d'une (dé)connexion

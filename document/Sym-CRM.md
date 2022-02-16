@@ -75,9 +75,13 @@ L'application veillera à respecter certains principes de sécurité en incluant
 
 ### Le layout
 
+**Vue** : base.html.twig
+
 Il s'agit du modèle de base pour l'ensemble des pages et du design.
 
 ### Le menu de navigation
+
+**Vue** : partials/navbar.html.twig
 
 Un menu de navigation du site est visible tout en haut de chaque page et contient :
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
@@ -92,11 +96,15 @@ Un menu de navigation du site est visible tout en haut de chaque page et contien
 
 ### Le pied de page
 
+**Vue** : partials/footer.html.twig
+
 Un pied de page est visible tout en bas de chaque page avec la mention **Sym-CRM** &copy; 2022 et des liens vers les pages :
 - des **Mentions Légales**
 - de la **Politique de Confidentialité**
 
 ### Les messages d'alerte
+
+**Vue** : partials/alerts.html.twig
 
 Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier une erreur comme :
 - la confirmation d'une (dé)connexion
@@ -108,17 +116,29 @@ Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier
 
 #### La page d'accueil
 
+**Contrôleur** : HomeController (index)<br>
+**Vue** : index.html.twig<br>
+**Rôle** : visiteur
+
 Il s'agit de la page principale et par défaut, qui sert aussi de page de connexion pour l'ensemble des utilisateurs.
 
 #### Les Mentions Légales
+
+**Vue** : legals/mentions.html.twig
 
 Il s'agit d'une fenêtre modale avec les mentions légales de l'application.
 
 #### La Politique de Confidentialité
 
+**Vue** : legals/policy.html.twig
+
 Il s'agit d'une fenêtre modale avec la politique de confidentialité de l'application.
 
 #### Le tableau de bord
+
+**Contrôleur** : AdminController (stats)<br>
+**Vue** : admin/dashboard.html.twig<br>
+**Rôle** : utilisateur
 
 Il s'agit de la page principale et par défaut d'un utilisateur connecté.
 
@@ -142,6 +162,11 @@ Les utilisateurs sont définis par des rôles avec différents privilèges
 - le simple **utilisateur**, qui peut gérer ses événements et ses contacts.
 
 #### Liste des utilisateurs
+
+**Contrôleur** : UserController (list)<br>
+**Modèle** : User<br>
+**Vue** : users/list_users.html.twig<br>
+**Rôle** : utilisateur
 
 Cette page liste l'ensemble des utilisateurs sous forme de tableau avec :
 - le prénom et le nom de l'utilisateur
@@ -168,6 +193,11 @@ On peut filtrer l'ensemble des utilisateurs avec une barre de recherche.
 
 #### Inscription d'un utilisateur
 
+**Contrôleur** : UsersController (register)<br>
+**Modèle** : User<br>
+**Vue** : users/register.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur doit s'inscrire s'il souhaite accéder aux fonctionnalités du CRM.
 
 Il devra indiquer :
@@ -189,17 +219,32 @@ Le formulaire de connexion s'affiche dans une fenêtre modale.
 
 #### Connexion d'un utilisateur
 
+**Contrôleur** : UsersController (login)<br>
+**Modèle** : User<br>
+**Vue** : users/login.html.twig<br>
+**Rôle** : visiteur
+
 Un utilisateur est invité à se connecter avec son e-mail et son mot de passe.
 
 (+) Le formulaire de connexion se trouve dans une fenêtre modale.
 
 #### Déconnexion d'un utilisateur
 
+**Contrôleur** : UsersController (logout)<br>
+**Modèle** : User<br>
+**Redirection** : / (home)<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut se déconnecter en cliquant sur le lien **Déconnexion** du menu de navigation.
 
 Il est ensuite redirigé vers la page d'accueil avec un message de confirmation.
 
 #### Profil d'un utilisateur
+
+**Contrôleur** : UsersController (profile)<br>
+**Modèle** : User<br>
+**Vue** : users/profile.html.twig<br>
+**Rôle** : utilisateur
 
 Un utilisateur a accès à sa page de profil en cliquant sur son prénom et nom dans la barre de navigation principale.
 
@@ -216,11 +261,21 @@ L'utilisateur peut aussi changer son mot de passe en indiquant :
 
 #### Edition d'un utilisateur
 
+**Contrôleur** : UsersController (edit)<br>
+**Modèle** : User<br>
+**Vue** : users/edit_user.html.twig<br>
+**Rôle** : utilisateur
+
 Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur avec sa page de profil.
 
 (+) Le formulaire d'édition est intégré dans une fenêtre modale.
 
 #### Suppression d'un utilisateur
+
+**Contrôleur** : UsersController (delete)<br>
+**Modèle** : User<br>
+**Vue** : users/delete_user.html.twig<br>
+**Rôle** : utilisateur
 
 Un administrateur est redirigé vers la page de suppression de l'utilisateur concerné.
 
@@ -232,11 +287,21 @@ Ce même utilisateur sera supprimé de son équipe.
 
 #### Mot de passe oublié
 
+**Contrôleur** : UsersController (reset)<br>
+**Modèle** : User<br>
+**Vue** : users/reset.html.twig<br>
+**Rôle** : visiteur
+
 Un utilisateur peut demander un nouveau mot de passe si nécessaire en cliquant sur un lien **Mot de passe oublié**.
 
 Il reçoit ensuite un e-mail avec son nouveau mot de passe.
 
 #### Nouveau mot de passe
+
+**Contrôleur** : UsersController (new_password)<br>
+**Modèle** : User<br>
+**Vue** : users/new_password.html.twig<br>
+**Rôle** : visiteur
 
 L'utilisateur est invité à cliquer sur le lien de confirmation de son e-mail indiquant son nouveau mot de passe.
 
@@ -244,9 +309,19 @@ Il est ensuite redirigé vers une page de confirmation de demande d'un nouveau m
 
 #### Envoyer une invitation
 
+**Contrôleur** : UsersController (send)<br>
+**Modèle** : User<br>
+**Vue** : events/calendar.html.twig<br>
+**Rôle** : visiteur
+
 Un utilisateur envoie une invitation à un autre avec son adresse e-mail pour consulter son calendrier d'événements.
 
-#### Refuser une invitation
+#### Accepter une invitation
+
+**Contrôleur** : UsersController (accept)<br>
+**Modèle** : User<br>
+**Vue** : events/calendar.html.twig<br>
+**Rôle** : visiteur
 
 Un utilisateur reçoit une invitation d'un autre utilisateur par e-mail.
 
@@ -260,14 +335,29 @@ Un utilisateur peut contacter un autre avec son adresse e-mail et un formulaire 
 
 #### (+) Exportation des utilisateurs
 
+**Contrôleur** : UsersController (export)<br>
+**Modèle** : User<br>
+**Vue** : admin/export.html.twig<br>
+**Rôle** : admin
+
 Un administrateur peut exporter l'ensemble des utilisateurs au format CSV ou XLS.
 
 #### (+) Importation des utilisateurs
+
+**Contrôleur** : UsersController (import)<br>
+**Modèle** : User<br>
+**Vue** : admin/import.html.twig<br>
+**Rôle** : admin
 
 Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS.
 ### Les équipes
 
 #### Liste des équipes
+
+**Contrôleur** : TeamsController (index)<br>
+**Modèle** : Team<br>
+**Vue** : teams/list_teams.html.twig<br>
+**Rôle** : manager
 
 Un manager peut voir l'ensemble des équipes avec :
 - le nom
@@ -276,11 +366,21 @@ Un manager peut voir l'ensemble des équipes avec :
 
 #### Ajout d'une équipe
 
+**Contrôleur** : TeamsController (add)<br>
+**Modèle** : Team<br>
+**Vue** : teams/add_team.html.twig<br>
+**Rôle** : manager
+
 Un manager peut ajouter une équipe avec une page dédiée.
 
 (+) L'ajout se fait avec une fenêtre modale.
 
 #### Edition d'une équipe
+
+**Contrôleur** : TeamsController (edit)<br>
+**Modèle** : Team<br>
+**Vue** : teams/edit_team.html.twig<br>
+**Rôle** : manager
 
 Un manager peut éditer une équipe avec une page dédiée.
 
@@ -288,11 +388,21 @@ Un manager peut éditer une équipe avec une page dédiée.
 
 #### Suppression d'une équipe
 
+**Contrôleur** : TeamsController (delete)<br>
+**Modèle** : Team<br>
+**Vue** : teams/delete_team.html.twig<br>
+**Rôle** : manager
+
 Un manager peut supprimer une équipe avec une page dédiée.
 
 (+) La suppression se fait avec une fenêtre modale.
 
 #### Ajout d'un utilisateur dans une équipe
+
+**Contrôleur** : TeamsController (addMember)<br>
+**Modèles** : Team, User<br>
+**Vue** : teams/list_teams.html.twig<br>
+**Rôle** : manager
 
 Un manager peut ajouter un utilisateur dans une équipe.
 
@@ -302,26 +412,56 @@ Il doit sélectionner cet utilisateur à partir d'une liste de choix.
 
 #### Transfert d'une équipe
 
+**Contrôleur** : TeamsController (move)<br>
+**Modèles** : Team, User<br>
+**Vue** : teams/list_teams.html.twig<br>
+**Rôle** : manager
+
 Un manager peut transférer un utilisateur d'une équipe dans une autre.
 
 #### (+) Exportation des équipes
 
+**Contrôleur** : TeamsController (export)<br>
+**Modèle** : Team<br>
+**Vue** : admin/export.html.twig<br>
+**Rôle** : admin
+
 Un administrateur peut exporter l'ensemble des équipes au format CSV ou XLS.
 
 #### (+) Importation des équipes
+
+**Contrôleur** : TeamsController (import)<br>
+**Modèle** : Team<br>
+**Vue** : admin/import.html.twig<br>
+**Rôle** : admin
 
 Un administrateur peut importer l'ensemble des équipes au format CSV ou XLS.
 ### Les événements
 
 #### Liste des événements
 
+**Contrôleur** : EventsController (index)<br>
+**Modèle** : Event<br>
+**Vue** : events/list_events.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut consulter l'ensemble de ses événements avec un calendrier.
 
 #### Consultation d'un événement
 
+**Contrôleur** : EventsController (show)<br>
+**Modèle** : Event<br>
+**Vue** : events/show_event.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut consulter un événement sur une page dédiée à partir du calendrier.
 
 #### Ajout d'un événement
+
+**Contrôleur** : EventsController (add)<br>
+**Modèle** : Event<br>
+**Vue** : events/add_event.html.twig<br>
+**Rôle** : utilisateur
 
 Un utilisateur peut ajouter un événement à partir du calendrier avec :
 - le titre
@@ -334,11 +474,21 @@ Un utilisateur peut ajouter un événement à partir du calendrier avec :
 
 #### Edition d'un événement
 
+**Contrôleur** : EventsController (edit)<br>
+**Modèle** : Event<br>
+**Vue** : events/edit_event.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut éditer un événement à partir du calendrier et sur une page dédiée.
 
 (+) L'édition se fait avec une fenêtre modale.
 
 #### Suppression d'un événement
+
+**Contrôleur** : EventsController (delete)<br>
+**Modèle** : Event<br>
+**Vue** : events/delete_event.html.twig<br>
+**Rôle** : utilisateur
 
 Un utilisateur peut supprimer un événement à partir du calendrier et sur une page dédiée.
 
@@ -346,14 +496,29 @@ Un utilisateur peut supprimer un événement à partir du calendrier et sur une 
 
 #### (+) Exportation des événements
 
+**Contrôleur** : EventsController (export)<br>
+**Modèle** : Event<br>
+**Vue** : admin/export.html.twig<br>
+**Rôle** : admin
+
 Un administrateur peut exporter l'ensemble des événements au format CSV ou XLS.
 
 #### (+) Importation des événements
+
+**Contrôleur** : EventsController (import)<br>
+**Modèle** : Event<br>
+**Vue** : admin/import.html.twig<br>
+**Rôle** : admin
 
 Un administrateur peut importer l'ensemble des événements au format CSV ou XLS.
 ### Les contacts
 
 #### Liste des contacts
+
+**Contrôleur** : ContactsController (index)<br>
+**Modèle** : Contact<br>
+**Vue** : contacts/list_contacts.html.twig<br>
+**Rôle** : utilisateur
 
 Chaque utilisateur pourra voir une liste complète des contacts sous forme de tableau avec :
 - le nom complet
@@ -375,6 +540,11 @@ L'utilisateur pourra à terme :
 
 #### Ajout d'un contact
 
+**Contrôleur** : ContactsController (add)<br>
+**Modèle** : Contact<br>
+**Vue** : contacts/add_contact.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire et les champs suivants :
 - le nom complet (requis, entre 3 et 80 caractères alphanumériques, - inclus)
 - le type (bouton radio, Particulier / Société)
@@ -390,9 +560,19 @@ Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire 
 
 #### Edition d'un contact
 
+**Contrôleur** : ContactsController (edit)<br>
+**Modèle** : Contact<br>
+**Vue** : contacts/edit_contact.html.twig<br>
+**Rôle** : utilisateur
+
 Un utilisateur peut éditer un contact sur une page dédiée et le même formulaire qu'à l'ajout.
 
 #### Suppression d'un contact
+
+**Contrôleur** : ContactsController (delete)<br>
+**Modèle** : Contact<br>
+**Vue** : contacts/delete_contact.html.twig<br>
+**Rôle** : utilisateur
 
 Un utilisateur peut supprimer un contact sur une page dédiée.
 
@@ -400,9 +580,19 @@ Un utilisateur peut supprimer un contact sur une page dédiée.
 
 #### (+) Exportation des contacts
 
+**Contrôleur** : ContactsController (export)<br>
+**Modèle** : Contact<br>
+**Vue** : admin/export.html.twig<br>
+**Rôle** : admin
+
 Un administrateur peut exporter l'ensemble des contacts au format CSV ou XLS.
 
 #### (+) Importation des contacts
+
+**Contrôleur** : ContactsController (import)<br>
+**Modèle** : Contact<br>
+**Vue** : admin/import.html.twig<br>
+**Rôle** : admin
 
 Un administrateur peut importer l'ensemble des contacts au format CSV ou XLS.
 ## La conception
