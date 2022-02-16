@@ -39,7 +39,7 @@ entity Event {
 entity Contact {
     *id: int
     *type: varchar
-    *functions: varchar[]
+    *function: varchar
     *name: varchar
     company: varchar
     occupation: varchar
@@ -48,7 +48,6 @@ entity Contact {
     phone: varchar
     email: varchar
     website: varchar
-    _label: varchar
 }
 
 'Relation

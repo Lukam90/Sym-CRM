@@ -73,33 +73,30 @@ L'application veillera à respecter certains principes de sécurité en incluant
 - une page de redirection en cas d'adresse invalide (erreur 404)
 ## Les composants
 
-**Base** : base.html.twig
+### Le layout
+
+Il s'agit du modèle de base pour l'ensemble des pages et du design.
 
 ### Le menu de navigation
-
-**Vue** : partials/navbar.html.twig
 
 Un menu de navigation du site est visible tout en haut de chaque page et contient :
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
 - les liens des différentes pages à droite dans cet ordre :
     - Inscription (si non connecté)
     - Connexion (si non connecté)
-    - le prénom et nom de l'utilisateur, avec un lien vers sa page de profil
+    - le nom complet (prénom et nom) de l'utilisateur, avec un lien vers sa page de profil
     - Déconnexion (si connecté)
+    - Equipes (si manager)
     - Contacts (liste des contacts, si connecté)
     - Evénements (liste des événements, si connecté)
 
 ### Le pied de page
 
-**Vue** : partials/footer.html.twig
-
-Un pied de page est visible tout en bas de chaque page avec la mention **Sym-CRM** &copy; 2022 et des liens vers les pages : 
-- des **Mentions Légales**.
+Un pied de page est visible tout en bas de chaque page avec la mention **Sym-CRM** &copy; 2022 et des liens vers les pages :
+- des **Mentions Légales**
 - de la **Politique de Confidentialité**
 
 ### Les messages d'alerte
-
-**Vue** : partials/messages.html.twig
 
 Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier une erreur comme :
 - la confirmation d'une (dé)connexion
@@ -111,24 +108,40 @@ Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier
 
 #### La page d'accueil
 
-|||
-|-|-|
-|**Route**|/ (home)|
-|**Vue**|home.html.twig|
-|**Contrôleur**|HomeController (index)|
-|**Rôle**|visiteur|
-
 Il s'agit de la page principale et par défaut, qui sert aussi de page de connexion pour l'ensemble des utilisateurs.
+
+#### Les Mentions Légales
+
+Il s'agit d'une fenêtre modale avec les mentions légales de l'application.
+
+#### La Politique de Confidentialité
+
+Il s'agit d'une fenêtre modale avec la politique de confidentialité de l'application.
+
+#### Le tableau de bord
+
+Il s'agit de la page principale et par défaut d'un utilisateur connecté.
+
+On y retrouve l'ensemble des statistiques avec :
+- le nombre d'utilisateurs
+- le nombre d'équipes
+- le nombre d'événements
+- le nombre de contacts
+
+On y retrouve aussi les listes des 5 derniers :
+- contacts (nom complet, date en JJ/MM/AAAA)
+- événements (titre, date et heure)
 ### Les utilisateurs
 
-#### Liste des utilisateurs
+#### Les rôles des utilisateurs
 
-|||
-|-|-|
-|**Route**|/users|
-|**Vue**|users.html.twig|
-|**Contrôleur**|UsersController (index)|
-|**Rôle**|admin|
+Les utilisateurs sont définis par des rôles avec différents privilèges
+- le **super-admin**, qui peut tout faire.
+- l'**administrateur**, qui peut gérer l'ensemble des utilisateurs, des équipes, des événements et des contacts.
+- le **manager**, qui peut gérer des équipes, des événements et des contacts.
+- le simple **utilisateur**, qui peut gérer ses événements et ses contacts.
+
+#### Liste des utilisateurs
 
 Cette page liste l'ensemble des utilisateurs sous forme de tableau avec :
 - le prénom et le nom de l'utilisateur
@@ -143,7 +156,7 @@ Le pseudo de l'utilisateur sera colorié :
 
 Un message s'affiche en cas d'absence d'utilisateur inscrit.
 
-**Améliorations**
+(+)
 
 On peut choisir l'ordre d'affichage pour chaque colonne.
 
@@ -155,24 +168,18 @@ On peut filtrer l'ensemble des utilisateurs avec une barre de recherche.
 
 #### Inscription d'un utilisateur
 
-|||
-|-|-|
-|**Route**|/users/register|
-|**Vue**|users/register.html.twig|
-|**Contrôleur**|UserController (register)|
-|**Rôle**|visiteur|
-
 Un utilisateur doit s'inscrire s'il souhaite accéder aux fonctionnalités du CRM.
 
 Il devra indiquer :
 - son prénom (requis, alphabétique, de 2 à 32 caractères)
+- son nom (requis, alphabétique, de 2 à 32 caractères)
 - son adresse e-mail (requis, unique, e-mail valide, 100 caractères max)
 - son mot de passe (requis, 8 à 32 caractères alphanumériques, avec au moins une minuscule, une majuscule et un chiffre)
 - sa confirmation du mot de passe
 
 Des messages d'erreur s'afficheront en-dessous de chaque champ mal renseigné.
 
-**Améliorations**
+(+)
 
 La validation du formulaire se fait en temps réel avec des messages indiquant les règles de validation de chaque champ.
 
@@ -182,27 +189,11 @@ Le formulaire de connexion s'affiche dans une fenêtre modale.
 
 #### Connexion d'un utilisateur
 
-|||
-|-|-|
-|**Route**|/users/login|
-|**Vue**|users/login.html.twig|
-|**Contrôleur**|UserController (login)|
-|**Rôle**|invité|
-
 Un utilisateur est invité à se connecter avec son e-mail et son mot de passe.
 
-**Améliorations**
-
-Le formulaire de connexion se trouve dans une fenêtre modale.
+(+) Le formulaire de connexion se trouve dans une fenêtre modale.
 
 #### Déconnexion d'un utilisateur
-
-|||
-|-|-|
-|**Route**|/users/logout|
-|**Redirection**|/ (home)|
-|**Contrôleur**|UserController (logout)|
-|**Rôle**|utilisateur|
 
 Un utilisateur peut se déconnecter en cliquant sur le lien **Déconnexion** du menu de navigation.
 
@@ -210,16 +201,9 @@ Il est ensuite redirigé vers la page d'accueil avec un message de confirmation.
 
 #### Profil d'un utilisateur
 
-|||
-|-|-|
-|**Route**|/users/profile/{id}|
-|**Vue**|users/profile.html.twig|
-|**Contrôleur**|UserController (profile)|
-|**Rôle**|utilisateur|
-
 Un utilisateur a accès à sa page de profil en cliquant sur son prénom et nom dans la barre de navigation principale.
 
-Il peut modifier ses informations et sa photo de profil.
+Il peut modifier ses informations (prénom, nom, e-mail, téléphone) et sa photo de profil.
 
 L'e-mail doit rester unique.
 
@@ -228,53 +212,25 @@ L'utilisateur peut aussi changer son mot de passe en indiquant :
 - son nouveau mot de passe
 - la confirmation de son nouveau mot de passe
 
-**Améliorations**
-
-La validation du formulaire se fait en temps réel.
+(+) La validation du formulaire se fait en temps réel.
 
 #### Edition d'un utilisateur
 
-|||
-|-|-|
-|**Route**|/users/update/{id}|
-|**Vue**|users/edit_user.html.twig|
-|**Redirection**|/users|
-|**Contrôleur**|UserController (update)|
-|**Rôle**|admin|
+Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur avec sa page de profil.
 
-Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur avec :
-- le rôle de l'utilisateur (membre, manager, administrateur, super-admin)
-
-**Améliorations**
-
-Le formulaire d'édition est intégré dans une fenêtre modale.
+(+) Le formulaire d'édition est intégré dans une fenêtre modale.
 
 #### Suppression d'un utilisateur
 
-|||
-|-|-|
-|**Route**|/users/delete/{id}|
-|**Vue**|users/delete_user.html.twig (*)|
-|**Redirection**|/users|
-|**Contrôleur**|UserController (delete)|
-|**Rôle**|admin|
-
 Un administrateur est redirigé vers la page de suppression de l'utilisateur concerné.
 
-La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses événements.
+La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses événements et contacts.
 
-**Améliorations**
+Ce même utilisateur sera supprimé de son équipe.
 
-Un administrateur déclenche une fenêtre modale (*) de confirmation de suppression de l'utilisateur concerné.
+(+) Un administrateur déclenche une fenêtre modale (*) de confirmation de suppression de l'utilisateur concerné.
 
 #### Mot de passe oublié
-
-|||
-|-|-|
-|**Route**|/users/reset|
-|**Vue**|users/reset.html.twig|
-|**Contrôleur**|UserController (reset)|
-|**Rôle**|visiteur|
 
 Un utilisateur peut demander un nouveau mot de passe si nécessaire en cliquant sur un lien **Mot de passe oublié**.
 
@@ -282,178 +238,173 @@ Il reçoit ensuite un e-mail avec son nouveau mot de passe.
 
 #### Nouveau mot de passe
 
-|||
-|-|-|
-|**Route**|/users/confirm|
-|**Vue**|users/confirm.html.twig|
-|**Contrôleur**|UserController (confirm)|
-|**Rôle**|visiteur|
-
 L'utilisateur est invité à cliquer sur le lien de confirmation de son e-mail indiquant son nouveau mot de passe.
 
 Il est ensuite redirigé vers une page de confirmation de demande d'un nouveau mot de passe.
 
 #### Envoyer une invitation
 
-|||
-|-|-|
-|**Route**||
-|**Vue**||
-|**Redirection**||
-|**Contrôleur**||
-|**Rôle**|utilisateur|
+Un utilisateur envoie une invitation à un autre avec son adresse e-mail pour consulter son calendrier d'événements.
 
 #### Refuser une invitation
 
-|||
-|-|-|
-|**Route**||
-|**Vue**||
-|**Redirection**||
-|**Contrôleur**||
-|**Rôle**|utilisateur|
+Un utilisateur reçoit une invitation d'un autre utilisateur par e-mail.
 
+Il est libre de l'accepter ou de la refuser.
+
+S'il l'accepte, il aura accès à son calendrier.
+
+### (+) Envoyer un message
+
+Un utilisateur peut contacter un autre avec son adresse e-mail et un formulaire de contact dédié.
+
+#### (+) Exportation des utilisateurs
+
+Un administrateur peut exporter l'ensemble des utilisateurs au format CSV ou XLS.
+
+#### (+) Importation des utilisateurs
+
+Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS.
 ### Les équipes
 
 #### Liste des équipes
 
-|||
-|-|-|
-|**Route**|/teams|
-|**Vue**|teams/list_teams.html.twig|
-|**Redirection**|/teams|
-|**Contrôleur**|TeamController (index)|
-|**Rôle**|manager|
-
-x
+Un manager peut voir l'ensemble des équipes avec :
+- le nom
+- la description
+- la couleur
 
 #### Ajout d'une équipe
 
-|||
-|-|-|
-|**Route**|/teams/add|
-|**Vue**|teams/add_team.html.twig|
-|**Redirection**|/teams|
-|**Contrôleur**|TeamController (add)|
-|**Rôle**|manager|
+Un manager peut ajouter une équipe avec une page dédiée.
 
-x
+(+) L'ajout se fait avec une fenêtre modale.
 
 #### Edition d'une équipe
 
-|||
-|-|-|
-|**Route**|/teams/edit|
-|**Vue**|teams/edit_team.html.twig|
-|**Redirection**|/teams|
-|**Contrôleur**|TeamController (update)|
-|**Rôle**|manager|
+Un manager peut éditer une équipe avec une page dédiée.
 
-x
+(+) L'édition se fait avec une fenêtre modale.
 
 #### Suppression d'une équipe
 
-|||
-|-|-|
-|**Route**|/teams/delete|
-|**Vue**|teams/delete_team.html.twig|
-|**Redirection**|/teams|
-|**Contrôleur**|TeamController (delete)|
-|**Rôle**|manager|
+Un manager peut supprimer une équipe avec une page dédiée.
 
-x
+(+) La suppression se fait avec une fenêtre modale.
+
+#### Ajout d'un utilisateur dans une équipe
+
+Un manager peut ajouter un utilisateur dans une équipe.
+
+Il doit sélectionner cet utilisateur à partir d'une liste de choix.
+
+(+) La sélection se fait avec une barre de recherche.
+
+#### Transfert d'une équipe
+
+Un manager peut transférer un utilisateur d'une équipe dans une autre.
+
+#### (+) Exportation des équipes
+
+Un administrateur peut exporter l'ensemble des équipes au format CSV ou XLS.
+
+#### (+) Importation des équipes
+
+Un administrateur peut importer l'ensemble des équipes au format CSV ou XLS.
 ### Les événements
 
 #### Liste des événements
 
-|||
-|-|-|
-|**Route**|/events|
-|**Vue**|events/list_events.html.twig|
-|**Redirection**|/events|
-|**Contrôleur**|EventController (index)|
-|**Rôle**|utilisateur|
+Un utilisateur peut consulter l'ensemble de ses événements avec un calendrier.
 
-x
+#### Consultation d'un événement
+
+Un utilisateur peut consulter un événement sur une page dédiée à partir du calendrier.
 
 #### Ajout d'un événement
 
-|||
-|-|-|
-|**Route**|/events/add|
-|**Vue**|events/add_event.html.twig|
-|**Redirection**|/events|
-|**Contrôleur**|EventController (add)|
-|**Rôle**|utilisateur|
+Un utilisateur peut ajouter un événement à partir du calendrier avec :
+- le titre
+- le type (réunion, tâche) : liste de choix
+- la date (jour et heure)
+- la description (champ texte)
+- le niveau d'importance (couleur, optionnel)
 
-x
+(+) L'ajout se fait avec une fenêtre modale.
 
 #### Edition d'un événement
 
-|||
-|-|-|
-|**Route**|/events/edit|
-|**Vue**|events/edit_event.html.twig|
-|**Redirection**|/events|
-|**Contrôleur**|EventController (update)|
-|**Rôle**|utilisateur|
+Un utilisateur peut éditer un événement à partir du calendrier et sur une page dédiée.
+
+(+) L'édition se fait avec une fenêtre modale.
 
 #### Suppression d'un événement
 
-|||
-|-|-|
-|**Route**|/events/delete|
-|**Vue**|events/delete_event.html.twig|
-|**Redirection**|/events|
-|**Contrôleur**|EventController (delete)|
-|**Rôle**|utilisateur|
+Un utilisateur peut supprimer un événement à partir du calendrier et sur une page dédiée.
 
-x
+(+) La suppression se fait avec une fenêtre modale.
+
+#### (+) Exportation des événements
+
+Un administrateur peut exporter l'ensemble des événements au format CSV ou XLS.
+
+#### (+) Importation des événements
+
+Un administrateur peut importer l'ensemble des événements au format CSV ou XLS.
 ### Les contacts
 
 #### Liste des contacts
 
-|||
-|-|-|
-|**Route**|/contacts|
-|**Vue**|contacts/list_contacts.html.twig|
-|**Contrôleur**|ContactController (index)|
-|**Rôle**|utilisateur|
+Chaque utilisateur pourra voir une liste complète des contacts sous forme de tableau avec :
+- le nom complet
+- la fonction
+- le nom de la société
+- le poste occupé
+- le numéro de TVA
+- l'adresse
+- le numéro de téléphone
+- l'adresse e-mail
+- le site web
 
-x
+(+)
+
+L'utilisateur pourra à terme :
+- changer l'ordre d'affichage des contacts par colonne
+- afficher N contacts par page
+- filtrer les contacts avec une barre de recherche
 
 #### Ajout d'un contact
 
-|||
-|-|-|
-|**Route**|/contacts/add|
-|**Vue**|contacts/add_contact.html.twig|
-|**Contrôleur**|ContactController (add)|
-|**Rôle**|utilisateur|
-
-x
+Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire et les champs suivants :
+- le nom complet (requis, entre 3 et 80 caractères alphanumériques, - inclus)
+- le type (bouton radio, Particulier / Société)
+- la fonction (bouton radio, Client / Fournisseur / Prestataire)
+- le nom de la société (si particulier, optionnel, entre 3 et 80 caractères alphanumériques)
+- le poste occupé (si particulier, optionnel, entre 3 et 50 lettres, - inclus)
+- le numéro SIREN (si société, optionnel)
+- le numéro TVA (si société, optionnel)
+- l'adresse (optionnel) : rue ville code postal pays (en une ligne)
+- le numéro de téléphone (optionnel, format téléphone)
+- l'adresse e-mail (optionnel, format e-mail)
+- le site web (optionnel, format URL)
 
 #### Edition d'un contact
 
-|||
-|-|-|
-|**Route**|/contacts/edit|
-|**Vue**|contacts/edit_contact.html.twig|
-|**Contrôleur**|ContactController (update)|
-|**Rôle**|utilisateur|
-
-x
+Un utilisateur peut éditer un contact sur une page dédiée et le même formulaire qu'à l'ajout.
 
 #### Suppression d'un contact
 
-|||
-|-|-|
-|**Route**|/contacts/delete|
-|**Vue**|contacts/delete_contact.html.twig|
-|**Contrôleur**|ContactController (delete)|
-|**Rôle**|utilisateur|
+Un utilisateur peut supprimer un contact sur une page dédiée.
 
-x
+(+) La suppression du contact se fait avec une fenêtre modale.
+
+#### (+) Exportation des contacts
+
+Un administrateur peut exporter l'ensemble des contacts au format CSV ou XLS.
+
+#### (+) Importation des contacts
+
+Un administrateur peut importer l'ensemble des contacts au format CSV ou XLS.
 ## La conception
 
 La base de données de l'application est définie selon le modèle suivant :

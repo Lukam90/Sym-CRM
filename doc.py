@@ -17,7 +17,7 @@ def compile(fList):
 
     # Ecriture
 
-    with open(target, "w") as file:
+    with open(f"document/{target}", "w") as file:
         file.write(res)
         file.close()
 
