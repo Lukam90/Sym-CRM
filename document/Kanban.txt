@@ -1,0 +1,44 @@
+Maquette (Bootstrap)
+MCD (base de données)
+Layout
+Menu de navigation
+Pied de page
+Messages d’alerte
+La page d’accueil
+Les Mentions Légales
+La Politique de Confidentialité
+Le tableau de bord
+Les rôles des utilisateurs
+Liste des utilisateurs
+Inscription d’un utilisateur
+Connexion d’un utilisateur
+Déconnexion d’un utilisateur
+Profil d’un utilisateur
+Edition d’un utilisateur
+Suppression d’un utilisateur
+Mot de passé oublié
+Nouveau mot de passe
+Envoyer une invitation
+Refuser une invitation
+Envoyer un message
+Exportation des utilisateurs
+Importation des utilisateurs
+Liste des équipes
+Ajout d’une équipe
+Edition d’une équipe
+Suppression d’une équipe
+Ajout d’un utilisateur dans une équipe
+Transfert d’une équipe
+Exportation des équipes
+Importation des équipes
+Liste des événements
+Consultation d’un événement
+Ajout d’un événement
+Edition d’un événement
+Suppression d’un événement
+Exportation des événements
+Importation des événements
+Liste des contacts
+Ajout d’un contact
+Edition d’un contact
+Suppression d’un contact
