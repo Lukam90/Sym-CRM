@@ -1,8 +1,46 @@
-task;start;end;completed
-Conception;2022-02-07;2022-02-08;0
-Composants;2022-02-09;2022-02-15;0
-Pages;2022-02-16;2022-02-20;0
-Utilisateurs;2022-02-21;2022-02-23;0
-Equipes;2022-02-24;2022-02-28;0
-Evénements;2022-03-01;2022-03-05;0
-Contacts;2022-03-06;2022-03-15;0
+Maquette (Bootstrap);Conception;todo
+MCD (base de données);Conception;todo
+Layout;Composants;todo
+Menu de navigation;Composants;todo
+Pied de page;Composants;todo
+Messages d’alerte;Composants;todo
+La page d’accueil;Pages;todo
+Les Mentions Légales;Pages;todo
+La Politique de Confidentialité;Pages;todo
+Le tableau de bord;Pages;todo
+Les rôles des utilisateurs;Utilisateurs;todo
+Liste des utilisateurs;Utilisateurs;todo
+Inscription d’un utilisateur;Utilisateurs;todo
+Connexion d’un utilisateur;Utilisateurs;todo
+Déconnexion d’un utilisateur;Utilisateurs;todo
+Profil d’un utilisateur;Utilisateurs;todo
+Edition d’un utilisateur;Utilisateurs;todo
+Suppression d’un utilisateur;Utilisateurs;todo
+Mot de passé oublié;Utilisateurs;todo
+Nouveau mot de passe;Utilisateurs;todo
+Envoyer une invitation;Utilisateurs;todo
+Refuser une invitation;Utilisateurs;todo
+Envoyer un message;Utilisateurs;todo
+Exportation des utilisateurs;Utilisateurs;todo
+Importation des utilisateurs;Utilisateurs;todo
+Liste des équipes;Equipes;todo
+Ajout d’une équipe;Equipes;todo
+Edition d’une équipe;Equipes;todo
+Suppression d’une équipe;Equipes;todo
+Ajout d'un utilisateur dans une équipe;Equipes;todo
+Transfert d’une équipe;Equipes;todo
+Exportation des équipes;Equipes;todo
+Importation des équipes;Equipes;todo
+Liste des événements;Evénements;todo
+Consultation d’un événement;Evénements;todo
+Ajout d’un événement;Evénements;todo
+Edition d’un événement;Evénements;todo
+Suppression d’un événement;Evénements;todo
+Exportation des événements;Evénements;todo
+Importation des événements;Evénements;todo
+Liste des contacts;Contacts;todo
+Ajout d’un contact;Contacts;todo
+Edition d’un contact;Contacts;todo
+Suppression d’un contact;Contacts;todo
+Exportation des événements;Contacts;todo
+Importation des événements;Contacts;todo
