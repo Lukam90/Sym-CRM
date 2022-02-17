@@ -1,34 +1,24 @@
 // Data
 
+const values = [
+    ["Conception", "2022-02-07", "2022-02-08", 0],
+    ["Composants", "2022-02-08", "2022-02-15", 0],
+    ["Pages", "2022-02-15", "2022-02-20", 0],
+    ["Utilisateurs", "2022-02-20", "2022-02-23", 0],
+    ["Equipes", "2022-02-23", "2022-03-01", 0],
+    ["Evénements", "2022-03-01", "2022-03-05", 0],
+    ["Contacts", "2022-03-05", "2022-03-15", 0],
+];
+
 let tasks = [],
     dates = [],
     percentages = [];
 
-getData();
-
-async function getData() {
-    const response = await fetch("Gantt.csv");
-    const data = await response.text();
-
-    const table = data.split("\n").slice(1);
-
-    table.forEach(row => {
-        const columns = row.split(";");
-
-        const task = columns[0];
-        const start = columns[1];
-        const end = columns[2];
-        const completed = columns[3];
-
-        tasks.push(task);
-        dates.push([start, end]);
-        percentages.push(completed);
-    });
+for (let line of values) {
+    tasks.push(line[0]);
+    dates.push([line[1], line[2]]);
+    percentages.push(line[3]);
 }
-
-console.log(tasks);
-console.log(dates);
-console.log(percentages);
 
 // Setup
 
