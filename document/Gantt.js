@@ -1,35 +1,46 @@
+// Data
+
+let tasks = [],
+    dates = [],
+    percentages = [];
+
+getData();
+
+async function getData() {
+    const response = await fetch("Gantt.csv");
+    const data = await response.text();
+
+    const table = data.split("\n").slice(1);
+
+    table.forEach(row => {
+        const columns = row.split(";");
+
+        const task = columns[0];
+        const start = columns[1];
+        const end = columns[2];
+        const completed = columns[3];
+
+        tasks.push(task);
+        dates.push([start, end]);
+        percentages.push(completed);
+    });
+}
+
+console.log(tasks);
+console.log(dates);
+console.log(percentages);
+
 // Setup
 
 const data = {
-    labels: ["Task A", "Task B", "Task C", "Task D", "Task E"],
+    labels: tasks,
     datasets: [
         {
-            label: "Projected Time",
-            data: [
-                ["2021-01-01", "2021-04-01"],
-                ["2021-04-01", "2021-07-01"],
-                ["2021-03-01", "2021-05-31"],
-                ["2021-06-01", "2021-09-30"],
-                ["2021-10-01", "2021-12-31"],
-            ],
-            taskCompleted: [100, 100, 100, 100, 100],
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
-            borderColor: "rgba(0, 0, 0, 1)",
-            borderWidth: 1,
-            borderSkipped: false
-        },
-        {
-            label: "Actual Time",
-            data: [
-                ["2021-01-01", "2021-03-25"],
-                ["2021-04-01", "2021-07-15"],
-                ["2021-03-01", "2021-05-31"],
-                ["2021-06-01", "2021-10-30"],
-                ["2021-10-01", "2021-12-31"],
-            ],
-            taskCompleted: [100, 80, 75, 100, 100],
+            label: "Nombre de jours",
+            data: dates,
+            taskCompleted: percentages,
             backgroundColor: "rgba(255, 26, 104, 0.2)",
-            borderColor: "rgba(255, 26, 104, 1)",
+            borderColor: "rgba(0, 0, 0, 1)",
             borderWidth: 1,
             borderSkipped: false
         },
@@ -44,33 +55,7 @@ const config = {
     options: {
         plugins: {
             tooltip: {
-                filter: (tooltipItem) => {
-                    return tooltipItem.datasetIndex === 1;
-                },
-                yAlign: "bottom",
-                callbacks: {
-                    label: (context) => {
-                        const taskPercentage = context.dataset.taskCompleted[context.dataIndex];
-
-                        const completedData = new Date(context.parsed.x);
-                        const cleanedData = completedData.getFullYear() + "/" + (completedData.getMonth() + 1) + "/" + completedData.getDate();
-
-                        const realTime = new Date(data.datasets[1].data[context.dataIndex][1]);
-                        const projectedTime = new Date(data.datasets[0].data[context.dataIndex][1]);
-
-                        const dateDifference = realTime - projectedTime;
-
-                        let delay = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
-
-                        delay = delay < 0 ? 0 : delay;
-
-                        const response = taskPercentage === 100 ?
-                            `Completed Date: ${cleanedDate}, Total Delay of ${delay} Days` :
-                            `Ongoing Project: ${cleanedDate}`;
-
-                        return response;
-                    }
-                }
+                enabled: false
             },
             datalabels: {
                 formatter: (value, context) => {
@@ -84,11 +69,12 @@ const config = {
         scales: {
             x: {
                 offset: false,
-                min: "2021-01-01",
+                min: "2022-02-07",
+                max: "2022-03-14",
                 position: "top",
                 type: "time",
                 time: {
-                    unit: "quarter"
+                    unit: "day"
                 },
                 ticks: {
                     align: "start"
