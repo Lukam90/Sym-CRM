@@ -1,22 +1,3 @@
-// jQuery-like Selector
-
-const $ = (value) => document.querySelector(value);
-
-// Columns
-
-const colTodo = $("#todo");
-const colInProgress = $("#inprogress");
-const colTesting = $("#testing");
-const colDone = $("#done");
-
-/*
-<div class="task">
-    <span>Task 1</span>
-</div>
-*/
-
-let tasks = [];
-
 getData();
 
 async function getData() {
@@ -32,14 +13,12 @@ async function getData() {
         const type = columns[1];
         const status = columns[2];
 
-        $(`#${status}`).innerHTML += `
+        document.querySelector(`#${status}`).innerHTML += `
             <div class="task">
                 <p>${name}</p>
 
                 <p class="type">${type}</p>
             </div>
         `;
-
-        //tasks.push(name);
     });
 }

@@ -6,12 +6,11 @@
 
 entity User {
     *id : int
-    *firstName: varchar
-    *lastName: varchar
+    *fullName: varchar
     *email : varchar
+    *password: varchar
     *created_at : datetime
     *role : varchar
-    active: boolean
 }
 
 'Equipes
@@ -20,7 +19,6 @@ entity Team {
     *id: int
     *name: varchar
     *description: text
-    *color: varchar
 }
 
 'Evenements
@@ -31,26 +29,23 @@ entity Event {
     *type: varchar 
     *date: datetime
     *description: text
-    importance: varchar
 }
 
 'Contacts
 
 entity Contact {
     *id: int
+    *fullName: varchar
     *type: varchar
-    *function: varchar
-    *name: varchar
+    *role: varchar
     company: varchar
-    occupation: varchar
-    vat: varchar
     address: varchar
     phone: varchar
     email: varchar
     website: varchar
 }
 
-'Relation
+'Relations
 
 'Un utilisateur peut appartenir à une seule équipe (0,1)
 'Une équipe peut regrouper un ensemble d'utilisateurs (0,n)

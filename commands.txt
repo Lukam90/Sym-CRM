@@ -1,3 +1,19 @@
 # Creation
 
 composer create-project symfony/website-skeleton:"^5.4" application
+
+# Controllers
+
+php bin/console make:controller HomeController
+php bin/console make:controller AdminController
+php bin/console make:controller UserController
+php bin/console make:controller EventController
+php bin/console make:controller ContactController
+
+# Users
+
+php bin/console make:user
+
+# Auth
+
+php bin/console make:auth

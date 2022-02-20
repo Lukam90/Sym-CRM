@@ -169,7 +169,7 @@ Les utilisateurs sont définis par des rôles avec différents privilèges
 **Rôle** : utilisateur
 
 Cette page liste l'ensemble des utilisateurs sous forme de tableau avec :
-- le prénom et le nom de l'utilisateur
+- le nom complet de l'utilisateur (société ou prénom et nom)
 - le rôle de l'utilisateur (Super-Admin, Administrateur, Manager, Utilisateur)
 - la date d'inscription, au format JJ/MM/AAAA (ex : 11/02/2022)
 - des boutons d'édition et de suppression (administrateur)
@@ -201,8 +201,7 @@ On peut filtrer l'ensemble des utilisateurs avec une barre de recherche.
 Un utilisateur doit s'inscrire s'il souhaite accéder aux fonctionnalités du CRM.
 
 Il devra indiquer :
-- son prénom (requis, alphabétique, de 2 à 32 caractères)
-- son nom (requis, alphabétique, de 2 à 32 caractères)
+- son nom complet (requis, alphanumérique, de 2 à 100 caractères)
 - son adresse e-mail (requis, unique, e-mail valide, 100 caractères max)
 - son mot de passe (requis, 8 à 32 caractères alphanumériques, avec au moins une minuscule, une majuscule et un chiffre)
 - sa confirmation du mot de passe
@@ -362,7 +361,6 @@ Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS
 Un manager peut voir l'ensemble des équipes avec :
 - le nom
 - la description
-- la couleur
 
 #### Ajout d'une équipe
 
@@ -465,10 +463,9 @@ Un utilisateur peut consulter un événement sur une page dédiée à partir du 
 
 Un utilisateur peut ajouter un événement à partir du calendrier avec :
 - le titre
-- le type (réunion, tâche) : liste de choix
+- le type (réunion, tâche) : bouton radio
 - la date (jour et heure)
 - la description (champ texte)
-- le niveau d'importance (couleur, optionnel)
 
 (+) L'ajout se fait avec une fenêtre modale.
 
@@ -522,10 +519,9 @@ Un administrateur peut importer l'ensemble des événements au format CSV ou XLS
 
 Chaque utilisateur pourra voir une liste complète des contacts sous forme de tableau avec :
 - le nom complet
-- la fonction
+- le type (Particulier / Société)
+- le rôle (Collaborateur, Client, Prestataire, Fournisseur)
 - le nom de la société
-- le poste occupé
-- le numéro de TVA
 - l'adresse
 - le numéro de téléphone
 - l'adresse e-mail
@@ -548,12 +544,9 @@ L'utilisateur pourra à terme :
 Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire et les champs suivants :
 - le nom complet (requis, entre 3 et 80 caractères alphanumériques, - inclus)
 - le type (bouton radio, Particulier / Société)
-- la fonction (bouton radio, Client / Fournisseur / Prestataire)
+- le rôle (bouton radio, Collaborateur, Client, Prestataire, Fournisseur)
 - le nom de la société (si particulier, optionnel, entre 3 et 80 caractères alphanumériques)
-- le poste occupé (si particulier, optionnel, entre 3 et 50 lettres, - inclus)
-- le numéro SIREN (si société, optionnel)
-- le numéro TVA (si société, optionnel)
-- l'adresse (optionnel) : rue ville code postal pays (en une ligne)
+- l'adresse (optionnel) : rue, ville, code postal et pays (en une ligne)
 - le numéro de téléphone (optionnel, format téléphone)
 - l'adresse e-mail (optionnel, format e-mail)
 - le site web (optionnel, format URL)
