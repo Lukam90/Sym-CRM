@@ -592,4 +592,4 @@ Un administrateur peut importer l'ensemble des contacts au format CSV ou XLS.
 
 La base de données de l'application est définie selon le modèle suivant :
 
-![MCD](Database.svg)
+![MCD](Database.png)

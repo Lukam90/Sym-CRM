@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Diagramme de Gantt" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/misc/gantt.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="chartCard">
+    <div class="chartBox">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/misc/chart.js') }}"></script>
+<script src="{{ asset('js/misc/chartjs-adapter-date-fns.bundle.min.js') }}"></script>
+<script src="{{ asset('js/misc/chartjs-plugin-datalabels.min.js') }}"></script>
+
+<script src="{{ asset('js/misc/gantt.js') }}"></script>
+{% endblock %}

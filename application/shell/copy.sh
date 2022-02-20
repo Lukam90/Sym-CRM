@@ -1,3 +1,5 @@
+#!/bin/sh
+
 date=`date +"%H.%M"`
 target="$HOME/Téléchargements/Copies/CP-CRM-$date"
 

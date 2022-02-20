@@ -1,6 +1,6 @@
-### Les utilisateurs
+<h3>Les utilisateurs</h3>
 
-#### Les rôles des utilisateurs
+<h4>Les rôles des utilisateurs
 
 Les utilisateurs sont définis par des rôles avec différents privilèges
 - le **super-admin**, qui peut tout faire.
@@ -8,7 +8,7 @@ Les utilisateurs sont définis par des rôles avec différents privilèges
 - le **manager**, qui peut gérer des équipes, des événements et des contacts.
 - le simple **utilisateur**, qui peut gérer ses événements et ses contacts.
 
-#### Liste des utilisateurs
+<h4>Liste des utilisateurs
 
 **Contrôleur** : UserController (list)<br>
 **Modèle** : User<br>
@@ -38,7 +38,7 @@ On peut choisir d'afficher 10, 20, 50, 100 ou 200 utilisateurs par page.
 
 On peut filtrer l'ensemble des utilisateurs avec une barre de recherche.
 
-#### Inscription d'un utilisateur
+<h4>Inscription d'un utilisateur
 
 **Contrôleur** : UsersController (register)<br>
 **Modèle** : User<br>
@@ -63,7 +63,7 @@ Un mot de passe peut comporter des caractères spéciaux ($, @, !, ?).
 
 Le formulaire de connexion s'affiche dans une fenêtre modale.
 
-#### Connexion d'un utilisateur
+<h4>Connexion d'un utilisateur
 
 **Contrôleur** : UsersController (login)<br>
 **Modèle** : User<br>
@@ -74,7 +74,7 @@ Un utilisateur est invité à se connecter avec son e-mail et son mot de passe.
 
 (+) Le formulaire de connexion se trouve dans une fenêtre modale.
 
-#### Déconnexion d'un utilisateur
+<h4>Déconnexion d'un utilisateur
 
 **Contrôleur** : UsersController (logout)<br>
 **Modèle** : User<br>
@@ -85,7 +85,7 @@ Un utilisateur peut se déconnecter en cliquant sur le lien **Déconnexion** du 
 
 Il est ensuite redirigé vers la page d'accueil avec un message de confirmation.
 
-#### Profil d'un utilisateur
+<h4>Profil d'un utilisateur
 
 **Contrôleur** : UsersController (profile)<br>
 **Modèle** : User<br>
@@ -105,7 +105,7 @@ L'utilisateur peut aussi changer son mot de passe en indiquant :
 
 (+) La validation du formulaire se fait en temps réel.
 
-#### Edition d'un utilisateur
+<h4>Edition d'un utilisateur
 
 **Contrôleur** : UsersController (edit)<br>
 **Modèle** : User<br>
@@ -116,7 +116,7 @@ Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur a
 
 (+) Le formulaire d'édition est intégré dans une fenêtre modale.
 
-#### Suppression d'un utilisateur
+<h4>Suppression d'un utilisateur
 
 **Contrôleur** : UsersController (delete)<br>
 **Modèle** : User<br>
@@ -131,7 +131,7 @@ Ce même utilisateur sera supprimé de son équipe.
 
 (+) Un administrateur déclenche une fenêtre modale (*) de confirmation de suppression de l'utilisateur concerné.
 
-#### Mot de passe oublié
+<h4>Mot de passe oublié
 
 **Contrôleur** : UsersController (reset)<br>
 **Modèle** : User<br>
@@ -142,7 +142,7 @@ Un utilisateur peut demander un nouveau mot de passe si nécessaire en cliquant 
 
 Il reçoit ensuite un e-mail avec son nouveau mot de passe.
 
-#### Nouveau mot de passe
+<h4>Nouveau mot de passe
 
 **Contrôleur** : UsersController (new_password)<br>
 **Modèle** : User<br>
@@ -153,7 +153,7 @@ L'utilisateur est invité à cliquer sur le lien de confirmation de son e-mail i
 
 Il est ensuite redirigé vers une page de confirmation de demande d'un nouveau mot de passe.
 
-#### Envoyer une invitation
+<h4>Envoyer une invitation
 
 **Contrôleur** : UsersController (send)<br>
 **Modèle** : User<br>
@@ -162,7 +162,7 @@ Il est ensuite redirigé vers une page de confirmation de demande d'un nouveau m
 
 Un utilisateur envoie une invitation à un autre avec son adresse e-mail pour consulter son calendrier d'événements.
 
-#### Accepter une invitation
+<h4>Accepter une invitation
 
 **Contrôleur** : UsersController (accept)<br>
 **Modèle** : User<br>
@@ -179,7 +179,7 @@ S'il l'accepte, il aura accès à son calendrier.
 
 Un utilisateur peut contacter un autre avec son adresse e-mail et un formulaire de contact dédié.
 
-#### (+) Exportation des utilisateurs
+<h4>(+) Exportation des utilisateurs
 
 **Contrôleur** : UsersController (export)<br>
 **Modèle** : User<br>
@@ -188,7 +188,7 @@ Un utilisateur peut contacter un autre avec son adresse e-mail et un formulaire 
 
 Un administrateur peut exporter l'ensemble des utilisateurs au format CSV ou XLS.
 
-#### (+) Importation des utilisateurs
+<h4>(+) Importation des utilisateurs
 
 **Contrôleur** : UsersController (import)<br>
 **Modèle** : User<br>
