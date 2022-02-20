@@ -27,6 +27,38 @@ php bin/console make:entity Contact
 
 php bin/console make:user
 
+php bin/console make:entity User
+
 # Auth
 
 php bin/console make:auth
+
+# Forms (?)
+
+php bin/console make:form ContactFormType
+php bin/console make:form EventFormType
+php bin/console make:form TeamFormType
+php bin/console make:form UserFormType
+
+# Tests
+
+## Unit Tests
+
+### Entity Tests
+
+php bin/console make:unit-test
+
+- Entity\ContactTest
+- Entity\EventTest
+- Entity\TeamTest
+- Entity\UserTest
+
+### Functional Tests
+
+php bin/console make:functional-test
+
+- Controller\ContactControllerTest
+- Controller\EventControllerTest
+- Controller\TeamControllerTest
+- Controller\UserControllerTest
+

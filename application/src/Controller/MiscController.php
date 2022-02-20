@@ -23,12 +23,4 @@ class MiscController extends AbstractController
     {
         return $this->render('misc/gantt.html.twig');
     }
-
-    /**
-     * @Route("/doc", name="doc")
-     */
-    public function renderDoc(): Response
-    {
-        return $this->render('misc/doc.html.twig');
-    }
 }

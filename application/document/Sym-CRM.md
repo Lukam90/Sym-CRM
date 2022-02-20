@@ -27,6 +27,7 @@
 <div class="page-break"></div>
 
 # Sym-CRM - Cahier des charges
+
 ## Les normes
 
 ### Le design responsive
@@ -71,6 +72,7 @@ L'application veillera à respecter certains principes de sécurité en incluant
 - un système de hachage des mots de passe
 - un système de vérification d'identité, permettant à un seul utilisateur d'accéder à ses données (consultation de profil, modification et suppression des suggestions et identifiants)
 - une page de redirection en cas d'adresse invalide (erreur 404)
+
 ## Les composants
 
 ### Le layout
@@ -110,7 +112,6 @@ Les messages d'alerte (ou flash) s'affichent pour valider une action ou notifier
 - la confirmation d'une (dé)connexion
 - un champ non valide dans un formulaire
 - l'ajout d'un nouveau contact
-## Les fonctionnalités
 
 ### Les pages
 
@@ -151,6 +152,7 @@ On y retrouve l'ensemble des statistiques avec :
 On y retrouve aussi les listes des 5 derniers :
 - contacts (nom complet, date en JJ/MM/AAAA)
 - événements (titre, date et heure)
+
 ### Les utilisateurs
 
 #### Les rôles des utilisateurs
@@ -349,6 +351,7 @@ Un administrateur peut exporter l'ensemble des utilisateurs au format CSV ou XLS
 **Rôle** : admin
 
 Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS.
+
 ### Les équipes
 
 #### Liste des équipes
@@ -434,7 +437,8 @@ Un administrateur peut exporter l'ensemble des équipes au format CSV ou XLS.
 **Rôle** : admin
 
 Un administrateur peut importer l'ensemble des équipes au format CSV ou XLS.
-### Les événements
+
+### Les événements</h3>
 
 #### Liste des événements
 
@@ -508,6 +512,7 @@ Un administrateur peut exporter l'ensemble des événements au format CSV ou XLS
 **Rôle** : admin
 
 Un administrateur peut importer l'ensemble des événements au format CSV ou XLS.
+
 ### Les contacts
 
 #### Liste des contacts
@@ -588,8 +593,10 @@ Un administrateur peut exporter l'ensemble des contacts au format CSV ou XLS.
 **Rôle** : admin
 
 Un administrateur peut importer l'ensemble des contacts au format CSV ou XLS.
+
 ## La conception
 
 La base de données de l'application est définie selon le modèle suivant :
 
 ![MCD](Database.png)
+
