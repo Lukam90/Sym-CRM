@@ -3,5 +3,48 @@
 {% block title "Liste des utilisateurs" %}
 
 {% block body %}
+<div class="container py-5">
+<div class="row">
+<table class="table table-striped table-hover" style="width: 100%">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Rôle</th>
+            <th scope="col">Date d'inscription</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
 
+    <tbody>
+        {% for index in 0..10 %}
+        <tr>
+            <td>NOM</td>
+            <td>ROLE</td>
+            <td>20/02/2022</td>
+
+            <td>
+                <a href="{# path('profile', { 'id' : user.id }) #}">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+            </td>
+
+            <td>
+                <a href="{# path('edit_user', { 'id' : user.id }) #}">
+                    <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+            
+            <td>
+                <a href="{# path('delete_user', { 'id' : user.id }) #}">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
 {% endblock %}

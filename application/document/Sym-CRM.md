@@ -176,7 +176,7 @@ Cette page liste l'ensemble des utilisateurs sous forme de tableau avec :
 - la date d'inscription, au format JJ/MM/AAAA (ex : 11/02/2022)
 - des boutons d'édition et de suppression (administrateur)
 
-Le pseudo de l'utilisateur sera colorié :
+Le nom complet de l'utilisateur sera colorié :
 - en vert, si c'est un manager
 - en orange, si c'est un administrateur
 - en rouge, si c'est le super-admin
