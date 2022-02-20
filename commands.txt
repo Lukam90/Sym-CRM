@@ -2,13 +2,26 @@
 
 composer create-project symfony/website-skeleton:"^5.4" application
 
+# Environment Files (.env.local, .env.test)
+
+DATABASE_URL="mysql://root@127.0.0.1:3306/symcrm?serverVersion=mariadb-10.4.16&charset=utf8mb4"
+
 # Controllers
 
+php bin/console make:controller MiscController
 php bin/console make:controller HomeController
 php bin/console make:controller AdminController
 php bin/console make:controller UserController
 php bin/console make:controller EventController
 php bin/console make:controller ContactController
+
+# Models
+
+php bin/console make:entity --regenerate "App\Entity"
+
+php bin/console make:entity Team
+php bin/console make:entity Event
+php bin/console make:entity Contact
 
 # Users
 

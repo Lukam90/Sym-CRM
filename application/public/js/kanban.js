@@ -1,7 +1,7 @@
 getData();
 
 async function getData() {
-    const response = await fetch("Kanban.csv");
+    const response = await fetch("/data/kanban.csv");
     const data = await response.text();
 
     const table = data.split("\n");

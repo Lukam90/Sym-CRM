@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Kanban" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/kanban.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="kanban-heading">
+        <strong class="kanban-heading-text">Kanban</strong>
+    </div>
+
+    <div class="kanban-board">
+        <div class="kanban-block" id="todo">
+            <strong>A Faire</strong>
+        </div>
+        
+        <div class="kanban-block" id="inprogress">
+            <strong>En Cours</strong>
+        </div>
+        
+        <div class="kanban-block" id="testing">
+            <strong>A Tester</strong>
+        </div>
+        
+        <div class="kanban-block" id="done">
+            <strong>Terminé</strong>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/kanban.js') }}"></script>
+{% endblock %}
