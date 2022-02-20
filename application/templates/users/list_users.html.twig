@@ -2,49 +2,53 @@
 
 {% block title "Liste des utilisateurs" %}
 
+{% block stylesheets %}
+<style>
+a {
+    margin-left: 30px;
+}
+</style>
+{% endblock %}
+
 {% block body %}
-<div class="container py-5">
-<div class="row">
-<table class="table table-striped table-hover" style="width: 100%">
-    <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Rôle</th>
-            <th scope="col">Date d'inscription</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
+<div class="container">
+    <h3 class="pb-2">Liste des utilisateurs</h3>
 
-    <tbody>
-        {% for index in 0..10 %}
-        <tr>
-            <td>NOM</td>
-            <td>ROLE</td>
-            <td>20/02/2022</td>
+    <div class="table-responsive align-items">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Rôle</th>
+                    <th>Date d'inscription</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-            <td>
-                <a href="{# path('profile', { 'id' : user.id }) #}">
-                    <i class="bi bi-eye-fill"></i>
-                </a>
-            </td>
+            <tbody>
+                {% for index in 0..10 %}
+                <tr>
+                    <td>NOM PRENOM</td>
+                    <td>ROLE</td>
+                    <td>20/02/2022</td>
 
-            <td>
-                <a href="{# path('edit_user', { 'id' : user.id }) #}">
-                    <i class="bi bi-pencil-fill"></i>
-                </a>
-            </td>
-            
-            <td>
-                <a href="{# path('delete_user', { 'id' : user.id }) #}">
-                    <i class="bi bi-trash-fill"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</div>
+                    <td>
+                        <a href="{# path('profile', { 'id' : user.id }) #}">
+                            <i class="bi-eye-fill"></i>
+                        </a>
+                        
+                        <a href="{# path('edit_user', { 'id' : user.id }) #}">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        
+                        <a href="{# path('delete_user', { 'id' : user.id }) #}">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
