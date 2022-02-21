@@ -23,8 +23,8 @@ class TeamController extends AbstractController
      */
     public function add(): Response
     {
-        return $this->render('team/index.html.twig', [
-            'controller_name' => 'TeamController',
+        return $this->render('teams/form_teams.html.twig', [
+            'title' => "Ajout d'une équipe",
         ]);
     }
 
@@ -33,8 +33,8 @@ class TeamController extends AbstractController
      */
     public function edit(): Response
     {
-        return $this->render('team/index.html.twig', [
-            'controller_name' => 'TeamController',
+        return $this->render('teams/form_teams.html.twig', [
+            'title' => "Edition d'une équipe",
         ]);
     }
 

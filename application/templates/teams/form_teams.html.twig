@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="block">
+    <a href="{{ path('teams') }}" class="button">&lt; Liste des équipes</a>
+</div>
+
+<hr />
+
+<h2 class="title is-2">{{ title }}</h2>
+
+<form action="{{ team is defined ? url('edit_team', { "id" : team.id }) : url('add_team') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token('edit_team') }}">
+
+    <div class="field">
+        <label for="name" class="label">Nom</label>
+        
+        <div class="control">
+            <input type="text" name="name" class="input width-25" value="{{ team.name ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="description" class="label">Description</label>
+        
+        <div class="control">
+            <input type="text" name="description" class="input width-30" value="{{ team.description ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="control">
+        <input type="submit" name="submit" value="Envoyer" class="button is-link" />
+    </div>
+</form>
+{% endblock %}

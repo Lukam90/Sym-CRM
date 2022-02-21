@@ -23,8 +23,8 @@ class ContactController extends AbstractController
      */
     public function add(): Response
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+        return $this->render('contacts/form_contacts.html.twig', [
+            'title' => "Ajout d'un contact",
         ]);
     }
 
@@ -33,8 +33,8 @@ class ContactController extends AbstractController
      */
     public function edit(): Response
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+        return $this->render('contacts/form_contacts.html.twig', [
+            'title' => "Edition d'un contact",
         ]);
     }
 

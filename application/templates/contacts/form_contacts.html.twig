@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="block">
+    <a href="{{ path('contacts') }}" class="button">&lt; Liste des contacts</a>
+</div>
+
+<hr />
+
+<h2 class="title is-2">{{ title }}</h2>
+
+<form action="{{ contact is defined ? url('edit_contact', { "id" : contact.id }) : url('add_contact') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token('edit_contact') }}">
+
+    <div class="field">
+        <label for="fullName" class="label">Nom complet (*)</label>
+        
+        <div class="control">
+            <input type="text" name="fullName" class="input width-25" value="{{ contact.fullName ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="type" class="label">Type (*)</label>
+        
+        <div class="control">
+            {% for type in ["Particulier", "Entreprise"] %}
+            <label class="radio">
+                <input type="radio" name="type">
+                {{ type }}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="role" class="label">Rôle (*)</label>
+
+        <div class="control">
+            {% for role in ["Collaborateur", "Client", "Prestataire", "Fournisseur"] %}
+            <label class="radio">
+                <input type="radio" name="role">
+                {{ role }}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="address" class="label">Adresse</label>
+        
+        <div class="control width-70">
+            <textarea name="address" class="textarea" placeholder="(Société) 123 rue lambda 99999 Lambdaville (Pays)">{{ contact.address ?? '' }}</textarea>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="phone" class="label">Téléphone</label>
+        
+        <div class="control">
+            <input type="tel" name="phone" class="input width-25" placeholder="01 23 45 67 89" value="{{ contact.phone ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="email" class="label">Adresse e-mail</label>
+        
+        <div class="control">
+            <input type="email" name="email" class="input width-25" placeholder="jean.dupont@mail.com" value="{{ contact.email ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="website" class="label">Site web</label>
+        
+        <div class="control">
+            <input type="url" name="website" class="input width-25" placeholder="monsite.com" value="{{ contact.url ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="control">
+        <input type="submit" name="submit" value="Envoyer" class="button is-link" />
+    </div>
+</form>
+{% endblock %}
