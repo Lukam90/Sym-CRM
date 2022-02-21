@@ -14,6 +14,7 @@ php bin/console make:controller AdminController
 php bin/console make:controller UserController
 php bin/console make:controller EventController
 php bin/console make:controller ContactController
+php bin/console make:controller TeamController
 
 # Models
 

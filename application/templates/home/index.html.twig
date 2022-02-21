@@ -8,7 +8,7 @@
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                    <form action="" class="box">
+                    <form action="{{ path('login') }}" class="box">
                         <div class="field">
                             <label for="email" class="label">Adresse e-mail</label>
 
@@ -36,10 +36,20 @@
                         <div class="field">
                             <button class="button is-success">Se connecter</button>
                         </div>
+
+                        <hr />
+
+                        <div class="block">
+                            <a href="{{ path('register') }}">S'inscrire</a>
+                        </div>
+
+                        <div class="block">
+                            <a href="{{ path('reset_password') }}">Mot de passe oublié ?</a>
+                        </div>
                     </form>
-                </div> {# /column #}
-            </div> {# /columns #}
-        </div> {# /container #}
-    </div> {# /hero-body #}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}

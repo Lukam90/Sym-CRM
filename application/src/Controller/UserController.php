@@ -23,8 +23,8 @@ class UserController extends AbstractController
      */
     public function register(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+        return $this->render('users/register.html.twig', [
+            'title' => 'Inscription',
         ]);
     }
 
@@ -63,8 +63,8 @@ class UserController extends AbstractController
      */
     public function reset(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+        return $this->render('users/reset.html.twig', [
+            'title' => 'Réinitialisation du mot de passe',
         ]);
     }
 
@@ -73,8 +73,26 @@ class UserController extends AbstractController
      */
     public function new_password(): Response
     {
+        return $this->render('users/new_password.html.twig', [
+            'title' => 'Demande de nouveau mot de passe',
+        ]);
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(): Response
+    {
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout(): Response
+    {
+        return $this->redirectToRoute('home');
     }
 }

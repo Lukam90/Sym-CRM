@@ -3,15 +3,21 @@
 {% block title "Liste des équipes" %}
 
 {% block body %}
-<h2 class="title">Liste des équipes</h2>
+<h2 class="title">{{ title }}</h2>
+
+<div class="block">
+    <a href="{{ path('add_team') }}" class="button is-link">
+        <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
+    </a>
+</div>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Nom</th>
-                <th>Rôle</th>
-                <th>Date d'inscription</th>
+                <th>Description</th>
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
@@ -21,9 +27,9 @@
         <tbody>
             {% for index in 0..10 %}
             <tr>
-                <td>NOM PRENOM</td>
-                <td>ROLE</td>
-                <td>20/02/2022</td>
+                <td>{{ index }}</td>
+                <td>Nom</td>
+                <td>Description</td>
 
                 <td>
                     <a href="{# path('profile', { 'id' : team.id }) #}" class="button is-info">

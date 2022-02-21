@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Liste des contacts" %}
+
+{% block body %}
+<h2 class="title">{{ title }}</h2>
+
+<div class="block">
+    <a href="{{ path('add_contact') }}" class="button is-link">
+        <i class="fa fa-plus"></i> &nbsp; Nouveau contact
+    </a>
+</div>
+
+<div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Rôle</th>
+                <th>Coordonnées</th>
+                <th>Contact</th>
+                <th class="is-narrow"></th>
+                <th class="is-narrow"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for index in 0..10 %}
+            <tr>
+                <td>{{ index }}</td>
+                <td>Jean Dupond</td>
+                <td>Particulier</td>
+                <td>Prestataire</td>
+                <td>Société X<br />123 rue des roses<br />99999 Lambdaville<br />France<br /></td>
+                <td>
+                    <i class="fa fa-phone"></i> &nbsp; 01 23 45 67 89<br />
+                    <i class="fa fa-at"></i> &nbsp; jean.dupond@test.com<br />
+                    <i class="fa fa-globe"></i> &nbsp; http://jeandupond.com
+                </td>
+                    
+                <td>
+                    <a href="{# path('edit_contact', { 'id' : contact.id }) #}" class="button is-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+                    
+                <td>
+                    <a href="#deleteContact" class="button is-danger" onclick="openModal('deleteContact')">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include "contacts/delete_contact.html.twig" %}
+
+{% endblock %}
