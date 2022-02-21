@@ -33,13 +33,6 @@ php bin/console make:entity User
 
 php bin/console make:auth
 
-# Forms (?)
-
-php bin/console make:form ContactFormType
-php bin/console make:form EventFormType
-php bin/console make:form TeamFormType
-php bin/console make:form UserFormType
-
 # Tests
 
 ## Unit Tests

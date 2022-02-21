@@ -2,28 +2,44 @@
 
 {% block title "Accueil" %}
 
-{% block stylesheets %}
-{#<link rel="stylesheet" href="{{ asset('css/pages/login.css') }}">#}
-{% endblock %}
-
 {% block body %}
-<div class="container-fluid">
-<main class="form-signin text-center">
-    <form action="">
-        <h1 class="h3 mb-3 fw-normal">Connectez-vous</h1>
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <form action="" class="box">
+                        <div class="field">
+                            <label for="email" class="label">Adresse e-mail</label>
 
-        <div class="form-floating">
-            <input type="email" name="email" id="email" class="form-control" />
-            <label for="email">Adresse e-mail</label>
-        </div>
+                            <div class="control has-icons-left">
+                                <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
 
-        <div class="form-floating">
-            <input type="password" name="password" id="password" class="form-control" />
-            <label for="password">Mot de passe</label>
-        </div>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
-    </form>
-</main>
-</div>
+                        <div class="field">
+                            <label for="password" class="label">Mot de passe</label>
+
+                            <div class="control has-icons-left">
+                                <input type="password" class="input" placeholder="*******" required />
+
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <button class="button is-success">Se connecter</button>
+                        </div>
+                    </form>
+                </div> {# /column #}
+            </div> {# /columns #}
+        </div> {# /container #}
+    </div> {# /hero-body #}
+</section>
 {% endblock %}
