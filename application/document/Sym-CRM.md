@@ -88,13 +88,12 @@ Il s'agit du modèle de base pour l'ensemble des pages et du design.
 Un menu de navigation du site est visible tout en haut de chaque page et contient :
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
 - les liens des différentes pages à droite dans cet ordre :
-    - Inscription (si non connecté)
-    - Connexion (si non connecté)
-    - le nom complet (prénom et nom) de l'utilisateur, avec un lien vers sa page de profil
     - Déconnexion (si connecté)
+    - le nom complet (prénom et nom) de l'utilisateur, avec un lien vers sa page de profil
+    - Utilisateurs (si administrateur)
     - Equipes (si manager)
-    - Contacts (liste des contacts, si connecté)
-    - Evénements (liste des événements, si connecté)
+    - Contacts (si connecté)
+    - Evénements (si connecté)
 
 ### Le pied de page
 
@@ -247,9 +246,9 @@ Il est ensuite redirigé vers la page d'accueil avec un message de confirmation.
 **Vue** : users/profile.html.twig<br>
 **Rôle** : utilisateur
 
-Un utilisateur a accès à sa page de profil en cliquant sur son prénom et nom dans la barre de navigation principale.
+Un utilisateur a accès à sa page de profil en cliquant sur son nom dans la barre de navigation principale.
 
-Il peut modifier ses informations (prénom, nom, e-mail, téléphone) et sa photo de profil.
+Il peut modifier ses informations (nom complet, e-mail, mot de passe) et sa photo de profil.
 
 L'e-mail doit rester unique.
 
@@ -280,7 +279,7 @@ Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur a
 
 Un administrateur est redirigé vers la page de suppression de l'utilisateur concerné.
 
-La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses événements et contacts.
+La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses données (événements, équipes et contacts).
 
 Ce même utilisateur sera supprimé de son équipe.
 
@@ -361,9 +360,7 @@ Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS
 **Vue** : teams/list_teams.html.twig<br>
 **Rôle** : manager
 
-Un manager peut voir l'ensemble des équipes avec :
-- le nom
-- la description
+Un manager peut voir l'ensemble des équipes avec le nom et la liste des membres.
 
 #### Ajout d'une équipe
 
@@ -453,7 +450,7 @@ Un utilisateur peut consulter l'ensemble de ses événements avec un calendrier.
 
 **Contrôleur** : EventsController (show)<br>
 **Modèle** : Event<br>
-**Vue** : events/show_event.html.twig<br>
+**Vue** : events/calendar.html.twig<br>
 **Rôle** : utilisateur
 
 Un utilisateur peut consulter un événement sur une page dédiée à partir du calendrier.
@@ -526,7 +523,6 @@ Chaque utilisateur pourra voir une liste complète des contacts sous forme de ta
 - le nom complet
 - le type (Particulier / Société)
 - le rôle (Collaborateur, Client, Prestataire, Fournisseur)
-- le nom de la société
 - l'adresse
 - le numéro de téléphone
 - l'adresse e-mail
@@ -551,7 +547,7 @@ Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire 
 - le type (bouton radio, Particulier / Société)
 - le rôle (bouton radio, Collaborateur, Client, Prestataire, Fournisseur)
 - le nom de la société (si particulier, optionnel, entre 3 et 80 caractères alphanumériques)
-- l'adresse (optionnel) : rue, ville, code postal et pays (en une ligne)
+- l'adresse (optionnel) : (societé), rue, ville, code postal (et pays) (en une ligne)
 - le numéro de téléphone (optionnel, format téléphone)
 - l'adresse e-mail (optionnel, format e-mail)
 - le site web (optionnel, format URL)

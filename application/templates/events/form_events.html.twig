@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="block">
+    <a href="{{ path('contacts') }}" class="button">&lt; Liste des contacts</a>
+</div>
+
+<hr />
+
+<h2 class="title is-2">{{ title }}</h2>
+
+<form action="{{ contact is defined ? url('edit_contact', { "id" : contact.id }) : url('add_contact') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token('edit_contact') }}">
+
+    <div class="field">
+        <label for="title" class="label">Titre (*)</label>
+        
+        <div class="control">
+            <input type="text" name="title" class="input width-25" placeholder="Ex: RDV Client avec Jean Dupont" value="{{ contact.title ?? '' }}" />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="type" class="label">Type (*)</label>
+        
+        <div class="control">
+            {% for type in ["Réunion", "Tâche"] %}
+            <label class="radio">
+                <input type="radio" name="type" {% if loop.index == 1 %}checked{% endif %}>
+                {{ type }}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="description" class="label">Description</label>
+        
+        <div class="control">
+            <input type="text" name="description" class="input width-25" value="{{ contact.description ?? '' }}">
+        </div>
+    </div>
+
+    <div class="control">
+        <input type="submit" name="submit" value="Envoyer" class="button is-link" />
+    </div>
+</form>
+{% endblock %}

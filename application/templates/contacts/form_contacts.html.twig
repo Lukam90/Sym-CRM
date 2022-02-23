@@ -18,7 +18,7 @@
         <label for="fullName" class="label">Nom complet (*)</label>
         
         <div class="control">
-            <input type="text" name="fullName" class="input width-25" value="{{ contact.fullName ?? '' }}" />
+            <input type="text" name="fullName" class="input width-25" placeholder="Ex: Jean Dupont" value="{{ contact.fullName ?? '' }}" />
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         <div class="control">
             {% for type in ["Particulier", "Entreprise"] %}
             <label class="radio">
-                <input type="radio" name="type">
+                <input type="radio" name="type" {% if loop.index == 1 %}checked{% endif %}>
                 {{ type }}
             </label>
             {% endfor %}
@@ -41,7 +41,7 @@
         <div class="control">
             {% for role in ["Collaborateur", "Client", "Prestataire", "Fournisseur"] %}
             <label class="radio">
-                <input type="radio" name="role">
+                <input type="radio" name="role" {% if loop.index == 1 %}checked{% endif %}>
                 {{ role }}
             </label>
             {% endfor %}
@@ -51,8 +51,8 @@
     <div class="field">
         <label for="address" class="label">Adresse</label>
         
-        <div class="control width-70">
-            <textarea name="address" class="textarea" placeholder="(Société) 123 rue lambda 99999 Lambdaville (Pays)">{{ contact.address ?? '' }}</textarea>
+        <div class="control">
+            <input type="text" name="address" class="input width-50" placeholder="(Société) 1 rue lambda 75000 Paris (France)" value="{{ contact.address ?? '' }}">
         </div>
     </div>
 

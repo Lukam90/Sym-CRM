@@ -6,6 +6,30 @@ composer create-project symfony/website-skeleton:"^5.4" application
 
 DATABASE_URL="mysql://root@127.0.0.1:3306/symcrm?serverVersion=mariadb-10.4.16&charset=utf8mb4"
 
+# Database
+
+## DB Creation
+
+php bin/console doctrine:database:create
+
+## DB Deletion
+
+php bin/console doctrine:database:drop --force
+
+## DB Schema
+
+php bin/console doctrine:schema:update --force
+
+# Migrations
+
+php bin/console make:migration
+
+php bin/console doctrine:migrations
+
+php bin/console doctrine:migrations:migrate
+
+php bin/console doctrine:migrations:list
+
 # Controllers
 
 php bin/console make:controller MiscController
@@ -23,6 +47,10 @@ php bin/console make:entity --regenerate "App\Entity"
 php bin/console make:entity Team
 php bin/console make:entity Event
 php bin/console make:entity Contact
+
+# Forms
+
+php bin/console make:form
 
 # Users
 

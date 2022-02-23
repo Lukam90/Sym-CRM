@@ -2,49 +2,115 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Team;
+use App\Form\TeamFormType;
+use App\Repository\TeamRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TeamController extends AbstractController
 {
     /**
+     * @var TeamRepository
+     */
+    private $repository;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager) {
+        $this->repository = $repository;
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * @Route("/teams", name="teams")
+     * 
+     * @return Response
      */
     public function index(): Response
     {
+        $teams = $this->repository->findAll();
+
         return $this->render('teams/list_teams.html.twig', [
             'title' => 'Liste des équipes',
+            'teams' => $teams
         ]);
     }
 
     /**
-     * @Route("/teams/add", name="add_team")
+     * @Route("/teams/new", name="teams.new")
      */
-    public function add(): Response
+    public function new(Request $request): Response
     {
+        $team = new Team;
+
+        $form = $this->createForm(TeamFormType::class, $team);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($team);
+            $this->entityManager->flush();
+
+            $this->addFlash("success", "Objet ajouté avec succès");
+
+            return $this->redirectToRoute("teams");
+        }
+
         return $this->render('teams/form_teams.html.twig', [
             'title' => "Ajout d'une équipe",
+            "form" => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/teams/edit/{id}", name="edit_team")
+     * @Route("/teams/edit/{id}", name="teams.edit")
+     * 
+     * @param Team $team
+     * @param Request $request
+     * 
+     * @return Response
      */
-    public function edit(): Response
+    public function edit(Team $team, Request $request): Response
     {
+        $form = $this->createForm(TeamFormType::class, $team);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+
+            $this->addFlash("success", "Equipe éditée avec succès.");
+
+            return $this->redirectToRoute("teams");
+        }
+
         return $this->render('teams/form_teams.html.twig', [
             'title' => "Edition d'une équipe",
+            "team" => $team,
+            "form" => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/teams/delete/{id}", name="delete_team")
+     * @Route("/teams/delete/{id}", name="teams.delete")
+     * 
+     * @param Team $team
+     * 
+     * @return RedirectResponse
      */
-    public function delete(): Response
-    {
-        return $this->render('team/index.html.twig', [
-            'controller_name' => 'TeamController',
-        ]);
+    public function delete(Team $team, Request $request): Response {
+        if ($this->isCsrfTokenValid("delete" . $team->getId(), $request->get("_token"))) {
+            $this->entityManager->remove($team);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', "L'équipe a bien été supprimée !");
+        }
+
+        return $this->redirectToRoute("teams");
     }
 }

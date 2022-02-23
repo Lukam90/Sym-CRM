@@ -33,11 +33,6 @@ class Contact
     private $role;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $company;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
@@ -94,18 +89,6 @@ class Contact
     public function setRole(string $role): self
     {
         $this->role = $role;
-
-        return $this;
-    }
-
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?string $company): self
-    {
-        $this->company = $company;
 
         return $this;
     }

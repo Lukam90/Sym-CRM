@@ -3,10 +3,12 @@
 {% block title "Liste des équipes" %}
 
 {% block body %}
-<h2 class="title">{{ title }}</h2>
+<h2 class="title is-2">{{ title }}</h2>
+
+{% include "partials/messages.html.twig" %}
 
 <div class="block">
-    <a href="{{ path('add_team') }}" class="button is-link">
+    <a href="{{ path('teams.new') }}" class="button is-link">
         <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
     </a>
 </div>
@@ -17,43 +19,38 @@
             <tr>
                 <th>#</th>
                 <th>Nom</th>
-                <th>Description</th>
-                <th class="is-narrow"></th>
+                <th>Membres</th>
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
             </tr>
         </thead>
 
         <tbody>
-            {% for index in 0..10 %}
+            {% for team in teams %}
             <tr>
-                <td>{{ index }}</td>
-                <td>Nom</td>
-                <td>Description</td>
+                <td>{{ team.id }}</td>
+                <td>{{ team.name }}</td>
+                <td>?</td>
 
                 <td>
-                    <a href="{# path('profile', { 'id' : team.id }) #}" class="button is-info">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                </td>
-                    
-                <td>
-                    <a href="{# path('edit_team', { 'id' : team.id }) #}" class="button is-success">
+                    <a href="{{ path('teams.edit', { 'id' : team.id }) }}" class="button is-success">
                         <i class="fa fa-pencil"></i>
                     </a>
                 </td>
-                    
+
                 <td>
-                    <a href="#deleteTeam" class="button is-danger" onclick="openModal('deleteTeam')">
+                    <button class="button is-danger" onclick="openModal('#deleteTeam-{{ team.id }}')">
                         <i class="fa fa-times"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
+
+            <!-- Modals -->
+
+            {% include "teams/delete_team.html.twig" %}
+
             {% endfor %}
         </tbody>
     </table>
 </div>
-
-{% include "teams/delete_team.html.twig" %}
-
 {% endblock %}

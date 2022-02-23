@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     /**
-     * @Route("/calendar", name="events")
+     * @Route("/events", name="events")
      */
     public function index(): Response
     {
@@ -23,7 +23,7 @@ class EventController extends AbstractController
      */
     public function add(): Response
     {
-        return $this->render('event/index.html.twig', [
+        return $this->render('events/form_events.html.twig', [
             'title' => "Ajout d'un événement",
         ]);
     }
