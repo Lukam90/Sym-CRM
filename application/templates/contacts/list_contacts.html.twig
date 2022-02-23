@@ -33,10 +33,19 @@
                 <td>{{ contact.type }}</td>
                 <td>{{ contact.role }}</td>
                 <td>
-                    <i class="fa fa-envelope"></i> &nbsp; {{ contact.address }}<br />
-                    <i class="fa fa-phone"></i> &nbsp; {{ contact.phone }}<br />
+                    <i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
+
+                    <i class="fa fa-map"></i> &nbsp; {{ contact.country }}<br />
+                    
                     <i class="fa fa-at"></i> &nbsp; {{ contact.email }}<br />
+
+                    {% if contact.phone %}
+                    <i class="fa fa-phone"></i> &nbsp; {{ contact.phone }}<br />
+                    {% endif %}
+
+                    {% if contact.website %}
                     <i class="fa fa-globe"></i> &nbsp; {{ contact.website }}
+                    {% endif %}
                 </td>
                     
                 <td>

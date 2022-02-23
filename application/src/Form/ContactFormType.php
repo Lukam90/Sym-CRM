@@ -32,17 +32,13 @@ class ContactFormType extends AbstractType
             ->add('type', ChoiceType::class, [
                 "label" => "Type (*)",
                 "label_attr" => ["class" => "label"],
-                "attr" => [
-                    "class" => "radio",
-                ],
                 "choices" => [
                     "Particulier" => "Particulier",
                     "Entreprise" => "Entreprise"
                 ],
-                "expanded" => true
             ])
             ->add('role', ChoiceType::class, [
-                "label" => "Type (*)",
+                "label" => "Rôle (*)",
                 "label_attr" => ["class" => "label"],
                 "choices" => [
                     "Collaborateur" => "Collaborateur",
@@ -50,18 +46,17 @@ class ContactFormType extends AbstractType
                     "Prestataire" => "Prestataire",
                     "Fournisseur" => "Fournisseur"
                 ],
-                "expanded" => true
             ])
             ->add('address', TextType::class, [
                 "label" => "Adresse (*)",
                 "label_attr" => ["class" => "label"],
                 "attr" => [
                     "class" => "input width-20",
-                    "placeholder" => "Ex : 1 rue lambda 75000 Paris (France)"
+                    "placeholder" => "Ex : 1 rue lambda 75000 Paris"
                 ]
             ])
             ->add('country', CountryType::class, [
-                "label" => "Pays (?)",
+                "label" => "Pays (*)",
                 "label_attr" => ["class" => "label"],
                 "attr" => [
                     "class" => "input width-20",
@@ -69,7 +64,7 @@ class ContactFormType extends AbstractType
                 'preferred_choices' => ['FR'],
             ])
             ->add('phone', TelType::class, [
-                "label" => "Numéro de téléphone (*)",
+                "label" => "Numéro de téléphone",
                 "label_attr" => ["class" => "label"],
                 "attr" => [
                     "class" => "input width-20",
