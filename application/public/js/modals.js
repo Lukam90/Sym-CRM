@@ -1,7 +1,7 @@
 const openModal = (id) => $(id).classList.add("is-active");
 
-const closeModal = (id, event) => { 
+const closeModal = (id, event = null) => { 
     $(id).classList.remove("is-active");
 
-    event.preventDefault();
+    if (event)  event.preventDefault();
 };

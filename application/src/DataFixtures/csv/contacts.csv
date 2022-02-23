@@ -1,2 +1,8 @@
-fullName;type;role;address;country;phone;email;website
-Jean Dupont;Particulier;Collaborateur;1 rue de la lavande 75000 Paris;France;01 23 45 67 78;jean.dupont@test.com;jean-dupont.com
+fullName;type;role;address;phone;email;website
+Jean Dupont;Particulier;Collaborateur;1 rue de la lavande 75000 Paris;01 23 45 67 78;jean.dupont@test.com;jean-dupont.com
+The Mask & Co;Entreprise;Client;2 avenue Jim Carrey 67100 Strasbourg;02 12 34 56 78;themask@masociete.com;themaskandco.com
+Alexagone;Entreprise;Fournisseur;3 boulevard des arbres 44000 Nantes;03 12 34 56 78;alexagone@test.com;
+Jules Doe;Particulier;Prestataire;4 rue de l'ovni 13001 Marseille;04 12 34 56 78;jules13@test.com;
+Didier Dubois;Particulier;Client;5 rue des albatros 35000 Rennes;05 12 34 56 78;didier.dubois@client.com;
+Aurélie Duchemin;Particulier;Client;6 ruelle de l'or 25200 Montbéliard;06 11 22 33 44;aurelie.duchemin@client.com;
+Jeanine Leblanc;Particulier;Client;7 rue du petit Jean 29000 Quimper;07 12 23 34 45;jeanine.leblanc@client.com;

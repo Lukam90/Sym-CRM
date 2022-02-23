@@ -16,7 +16,7 @@
     {{ form_label(form.fullName) }}
     
     <div class="control">
-        {{ form_widget(form.fullName) }}
+    {{ form_widget(form.fullName) }}
     </div>
 </div>
 
@@ -40,23 +40,7 @@
     {{ form_label(form.address) }}
     
     <div class="control">
-        {{ form_widget(form.address) }}
-    </div>
-</div>
-
-<div class="field">
-    {{ form_label(form.country) }}
-    
-    <div class="control">
-        {{ form_widget(form.country) }}
-    </div>
-</div>
-
-<div class="field">
-    {{ form_label(form.email) }}
-    
-    <div class="control">
-        {{ form_widget(form.email) }}
+    {{ form_widget(form.address) }}
     </div>
 </div>
 
@@ -64,7 +48,15 @@
     {{ form_label(form.phone) }}
     
     <div class="control">
-        {{ form_widget(form.phone) }}
+    {{ form_widget(form.phone) }}
+    </div>
+</div>
+
+<div class="field">
+    {{ form_label(form.email) }}
+    
+    <div class="control">
+    {{ form_widget(form.email) }}
     </div>
 </div>
 
@@ -72,7 +64,7 @@
     {{ form_label(form.website) }}
     
     <div class="control">
-        {{ form_widget(form.website) }}
+    {{ form_widget(form.website) }}
     </div>
 </div>
 

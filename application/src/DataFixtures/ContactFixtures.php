@@ -16,6 +16,7 @@ class ContactFixtures extends Fixture
 
         while (! feof($file)) {
             $line = fgets($file);
+            $line = str_replace("\n", "", $line);
 
             $cols = explode(";", $line);
 

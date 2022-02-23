@@ -9,8 +9,11 @@ $fixtures = "$doctrine:fixtures:load";
 
 $query = "$command '$truncate";
 
-exec("$query team'");
-//exec("$query item'");
+$tables = ["team", "contact"];
+
+foreach ($tables as $table) {
+    exec("$query $table'");
+}
 
 echo "Les tables ont bien été vidées.";
 

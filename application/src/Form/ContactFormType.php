@@ -22,7 +22,7 @@ class ContactFormType extends AbstractType
     {
         $builder
             ->add('fullName', TextType::class, [
-                "label" => "Nom complet",
+                "label" => "Nom complet (*)",
                 "label_attr" => ["class" => "label"],
                 "attr" => [
                     "class" => "input width-20",
@@ -55,16 +55,8 @@ class ContactFormType extends AbstractType
                     "placeholder" => "Ex : 1 rue lambda 75000 Paris"
                 ]
             ])
-            ->add('country', CountryType::class, [
-                "label" => "Pays (*)",
-                "label_attr" => ["class" => "label"],
-                "attr" => [
-                    "class" => "input width-20",
-                ],
-                'preferred_choices' => ['FR'],
-            ])
             ->add('phone', TelType::class, [
-                "label" => "Numéro de téléphone",
+                "label" => "Numéro de téléphone (*)",
                 "label_attr" => ["class" => "label"],
                 "attr" => [
                     "class" => "input width-20",
