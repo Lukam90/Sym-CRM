@@ -9,7 +9,7 @@
         <footer class="modal-card-foot">
             <form action="{{ path('teams.delete', { id: team.id }) }}" method="post">
                 <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" id="token" name="_token" value="{{ csrf_token('delete' ~ team.id) }}" />
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ team.id) }}" />
                 
                 <button class="button is-danger">Oui</button>
                 <button class="button is-link" onclick="closeModal('#deleteTeam-{{ team.id }}', event);">Non</button>

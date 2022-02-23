@@ -11,77 +11,84 @@
 
 <h2 class="title is-2">{{ title }}</h2>
 
-<form action="{{ contact is defined ? url('edit_contact', { "id" : contact.id }) : url('add_contact') }}" method="POST">
-    <input type="hidden" name="_token" value="{{ csrf_token('edit_contact') }}">
-
-    <div class="field">
-        <label for="fullName" class="label">Nom complet (*)</label>
-        
-        <div class="control">
-            <input type="text" name="fullName" class="input width-25" placeholder="Ex: Jean Dupont" value="{{ contact.fullName ?? '' }}" />
-        </div>
+{{ form_start(form) }}
+<div class="field">
+    {{ form_label(form.fullName) }}
+    
+    <div class="control">
+        {{ form_widget(form.fullName) }}
     </div>
+</div>
 
-    <div class="field">
-        <label for="type" class="label">Type (*)</label>
-        
-        <div class="control">
-            {% for type in ["Particulier", "Entreprise"] %}
-            <label class="radio">
-                <input type="radio" name="type" {% if loop.index == 1 %}checked{% endif %}>
-                {{ type }}
-            </label>
-            {% endfor %}
-        </div>
+<div class="field">
+    {{ form_label(form.type) }}
+    
+    <div class="control">
+        {% for child in form.type %}
+        <label class="radio">
+            <input type="radio" name="type" value="{{ child.vars.label }}">
+            {{ child.vars.label }}
+        </label>
+        {% endfor %}
     </div>
+</div>
 
-    <div class="field">
-        <label for="role" class="label">Rôle (*)</label>
-
-        <div class="control">
-            {% for role in ["Collaborateur", "Client", "Prestataire", "Fournisseur"] %}
-            <label class="radio">
-                <input type="radio" name="role" {% if loop.index == 1 %}checked{% endif %}>
-                {{ role }}
-            </label>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="address" class="label">Adresse</label>
-        
-        <div class="control">
-            <input type="text" name="address" class="input width-50" placeholder="(Société) 1 rue lambda 75000 Paris (France)" value="{{ contact.address ?? '' }}">
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="phone" class="label">Téléphone</label>
-        
-        <div class="control">
-            <input type="tel" name="phone" class="input width-25" placeholder="01 23 45 67 89" value="{{ contact.phone ?? '' }}" />
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="email" class="label">Adresse e-mail</label>
-        
-        <div class="control">
-            <input type="email" name="email" class="input width-25" placeholder="jean.dupont@mail.com" value="{{ contact.email ?? '' }}" />
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="website" class="label">Site web</label>
-        
-        <div class="control">
-            <input type="url" name="website" class="input width-25" placeholder="monsite.com" value="{{ contact.url ?? '' }}" />
-        </div>
-    </div>
+<div class="field">
+    {{ form_label(form.role) }}
 
     <div class="control">
-        <input type="submit" name="submit" value="Envoyer" class="button is-link" />
+        {% for child in form.role %}
+        <label class="radio">
+            <input type="radio" name="role" value="{{ child.vars.label }}">
+            {{ child.vars.label }}
+        </label>
+        {% endfor %}
     </div>
-</form>
+</div>
+
+<div class="field">
+    {{ form_label(form.address) }}
+    
+    <div class="control">
+        {{ form_widget(form.address) }}
+    </div>
+</div>
+
+<div class="field">
+    {{ form_label(form.country) }}
+    
+    <div class="control">
+        {{ form_widget(form.country) }}
+    </div>
+</div>
+
+<div class="field">
+    {{ form_label(form.phone) }}
+    
+    <div class="control">
+        {{ form_widget(form.phone) }}
+    </div>
+</div>
+
+<div class="field">
+    {{ form_label(form.email) }}
+    
+    <div class="control">
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+
+<div class="field">
+    {{ form_label(form.website) }}
+    
+    <div class="control">
+        {{ form_widget(form.website) }}
+    </div>
+</div>
+
+<div class="control">
+    {{ form_widget(form.submit) }}
+</div>
+{{ form_end(form) }}
+
 {% endblock %}

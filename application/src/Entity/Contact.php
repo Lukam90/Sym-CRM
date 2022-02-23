@@ -38,6 +38,11 @@ class Contact
     private $address;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $country = "France";
+
+    /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $phone;
@@ -137,6 +142,18 @@ class Contact
     public function setWebsite(?string $website): self
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

@@ -50,7 +50,8 @@ php bin/console make:entity Contact
 
 # Forms
 
-php bin/console make:form
+php bin/console make:form TeamFormType
+php bin/console make:form ContactFormType
 
 # Users
 
@@ -84,3 +85,9 @@ php bin/console make:functional-test
 - Controller\TeamControllerTest
 - Controller\UserControllerTest
 
+# Dependencies
+
+composer require --dev orm-fixtures
+composer require --dev dama/doctrine-test-bundle
+
+composer require symfony/twig-pack
