@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TeamController extends AbstractController
 {
@@ -59,9 +60,7 @@ class TeamController extends AbstractController
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Objet ajouté avec succès");
-        } else {
-            $this->addFlash("danger", "Erreur lors de l'ajout.");
+            $this->addFlash("success", "L'équipe a bien été ajoutée.");
         }
 
         return $this->redirectToRoute("teams");
@@ -70,45 +69,49 @@ class TeamController extends AbstractController
     /**
      * @Route("/teams/edit/{id}", name="teams.edit")
      * 
-     * @param Team $team
+     * @param int $id
      * @param Request $request
      * 
      * @return Response
      */
-    public function edit(Team $team, Request $request): Response
-    {
-        $form = $this->createForm(TeamFormType::class, $team);
-        $form->handleRequest($request);
+    public function edit($id, Request $request): Response {
+        $team = $this->repository->find((int) $id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
-
-            $this->addFlash("success", "Equipe éditée avec succès.");
-
-            return $this->redirectToRoute("teams");
+        if (! $team) {
+            $this->addFlash("danger", "L'équipe #$id n'a pas été trouvée.");
         }
 
-        return $this->render('teams/form_teams.html.twig', [
-            'title' => "Edition d'une équipe",
-            "team" => $team,
-            "form" => $form->createView()
-        ]);
+        if ($request->get("submit") && $this->isCsrfTokenValid("edit", $request->get("_token"))) {
+            $team->setName($request->get("name"));
+
+            $this->entityManager->flush();
+
+            $this->addFlash("success", "L'équipe a bien été éditée.");
+        }
+
+        return $this->redirectToRoute("teams");
     }
 
     /**
      * @Route("/teams/delete/{id}", name="teams.delete")
      * 
-     * @param Team $team
+     * @param int $id
      * @param Request $request
      * 
-     * @return RedirectResponse
+     * @return Response
      */
-    public function delete(Team $team, Request $request): Response {
-        if ($this->isCsrfTokenValid("delete" . $team->getId(), $request->get("_token"))) {
+    public function delete($id, Request $request): Response {
+        $team = $this->repository->find((int) $id);
+
+        if (! $team) {
+            $this->addFlash("danger", "L'équipe #$id n'a pas été trouvée.");
+        }
+
+        if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
             $this->entityManager->remove($team);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'équipe a bien été supprimée !");
+            $this->addFlash('success', "L'équipe a bien été supprimée.");
         }
 
         return $this->redirectToRoute("teams");

@@ -15,4 +15,4 @@ const deleteModal = (button) => {
     $("#deleteToken").value = dataSet.token;
 
     openModal("#deleteModal");
-}
+};

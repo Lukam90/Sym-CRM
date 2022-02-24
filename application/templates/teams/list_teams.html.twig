@@ -3,13 +3,7 @@
 {% block title "Liste des équipes" %}
 
 {% block scripts %}
-<script>
-const addTeam = (button) => {
-    $("#addToken").value = button.dataset.token;
-
-    openModal("#addModal");
-}
-</script>
+<script src="{{ asset('js/forms/teams.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -46,9 +40,14 @@ const addTeam = (button) => {
                 <td>?</td>
 
                 <td>
-                    <a href="{{ path('teams.edit', { 'id' : team.id }) }}" class="button is-success">
+                    <button
+                        class="button is-success"
+                        data-id="{{ team.id }}"
+                        data-name="{{ team.name }}"
+                        data-token="{{ csrf_token('edit') }}"
+                        onclick="editTeam(this)">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </button>
                 </td>
 
                 <td>
@@ -58,7 +57,7 @@ const addTeam = (button) => {
                         data-type="teams"
                         data-id="{{ team.id }}"
                         data-title="{{ team.name }}"
-                        data-token="{{ csrf_token('delete' ~ team.id) }}"
+                        data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
@@ -77,6 +76,6 @@ const addTeam = (button) => {
 
 {% include "partials/delete.html.twig" %}
 
-{% include "teams/add_team.html.twig" %}
+{% include "teams/form_team.html.twig" %}
 
 {% endblock %}
