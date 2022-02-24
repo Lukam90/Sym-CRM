@@ -2,17 +2,20 @@
     <div class="modal-background"></div>
 
     <div class="modal-card">
-        <section class="modal-card-body">
-        {% include "teams/form_teams.html.twig" %}
-        </section>
+        <form action="/teams/new" method="post" id="addForm">
+            <input type="hidden" name="_token" id="addToken" value="#" />
 
-        <footer class="modal-card-foot">
-            {#<form action="#" method="post" id="deleteForm">
-                <input type="hidden" name="_token" id="deleteToken" value="#" />
+            <section class="modal-card-body">
+                <div class="field">
+                    <label for="name" class="label">Nom (*)</label>
 
-                <button class="button is-danger">Oui</button>
-                <button class="button is-link" onclick="closeModal('#deleteModal', event)">Non</button>
-            </form>#}
-        </footer>
+                    <input type="text" name="name" id="name" class="input" placeholder="Ex : Equipe Jaune" required />
+                </div>
+            </section>
+
+            <footer class="modal-card-foot">
+                <input type="submit" name="submit" value="Valider" class="button is-link" />
+            </footer>
+        </form>
     </div>
 </div>

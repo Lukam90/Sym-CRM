@@ -2,16 +2,26 @@
 
 {% block title "Liste des équipes" %}
 
+{% block scripts %}
+<script>
+const addTeam = (button) => {
+    $("#addToken").value = button.dataset.token;
+
+    openModal("#addModal");
+}
+</script>
+{% endblock %}
+
 {% block body %}
 <h2 class="title is-2">{{ title }}</h2>
 
 {% include "partials/messages.html.twig" %}
 
 <div class="block">
-    {#<a href="{{ path('teams.new') }}" class="button is-link">
-        <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
-    </a>#}
-    <button class="button is-link" onclick="openModal('#addModal')">
+    <button
+        class="button is-link"
+        data-token="{{ csrf_token('new') }}"
+        onclick="addTeam(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
     </button>
 </div>
@@ -67,6 +77,6 @@
 
 {% include "partials/delete.html.twig" %}
 
-{# include "teams/add_team.html.twig" #}
+{% include "teams/add_team.html.twig" %}
 
 {% endblock %}

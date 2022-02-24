@@ -19,7 +19,9 @@
         {% include "partials/navbar.html.twig" %}
 
         <div class="container">
-        {% block body %}{% endblock %}
+            {% include "partials/noscript.html.twig" %}
+
+            {% block body %}{% endblock %}
         </div>
 
         {% include "partials/footer.html.twig" %}

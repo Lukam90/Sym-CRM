@@ -52,51 +52,20 @@ class TeamController extends AbstractController
      */
     public function new(Request $request): Response 
     {
-        /*$this->entityManager->remove($team);
-        $this->entityManager->flush();
+        if ($request->get("submit") && $this->isCsrfTokenValid("new", $request->get("_token"))) {
+            $team = new Team;
+            $team->setName($request->get("name"));
 
-        $this->addFlash('success', "L'équipe a bien été supprimée !");*/
-
-        $team = new Team;
-
-        $form = $this->createForm(TeamFormType::class, $team);
-        $form->handleRequest($request);
-
-        if (
-            $form->isSubmitted()
-            && $form->isValid()
-            && $this->isCsrfTokenValid("new" . $team->getId(), $request->get("_token"))
-        ) {
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
             $this->addFlash("success", "Objet ajouté avec succès");
+        } else {
+            $this->addFlash("danger", "Erreur lors de l'ajout.");
         }
 
         return $this->redirectToRoute("teams");
     }
-
-        /*
-        $team = new Team;
-
-        $form = $this->createForm(TeamFormType::class, $team);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($team);
-            $this->entityManager->flush();
-
-            $this->addFlash("success", "Objet ajouté avec succès");
-
-            return $this->redirectToRoute("teams");
-        }
-
-        return $this->render('teams/form_teams.html.twig', [
-            'title' => "Ajout d'une équipe",
-            "form" => $form->createView()
-        ]);
-        */
-    
 
     /**
      * @Route("/teams/edit/{id}", name="teams.edit")
