@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Liste des événements" %}
+
+{% block body %}
+<h2 class="title">{{ title }}</h2>
+
+{% include "partials/messages.html.twig" %}
+
+<div class="block">
+    <a href="{{ path('events.new') }}" class="button is-link">
+        <i class="fa fa-plus"></i> &nbsp; Nouvel événement
+    </a>
+</div>
+
+<div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Date & Heure</th>
+                <th>Description</th>
+                <th class="is-narrow"></th>
+                <th class="is-narrow"></th>
+                <th class="is-narrow"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.title }}</td>
+                <td>{{ event.type }}</td>
+                <td>{{ event.date | date("d/m/Y") ~ " " ~ event.time | date("H:i") }}</td>
+                <td>{{ event.description }}</td>
+
+                <td>
+                    <a href="{{ path('events.show', {'id': event.id}) }}" class="button is-info">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{{ path('events.edit', {'id': event.id}) }}" class="button is-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+
+                <td>
+                    <button class="button is-danger" onclick="openModal('#deleteEvent-{{ event.id }}')">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Modals -->
+
+            {% include "events/delete_event.html.twig" %}
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun événement n'a été ajouté.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

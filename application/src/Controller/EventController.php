@@ -30,14 +30,31 @@ class EventController extends AbstractController
 
     /**
      * @Route("/events", name="events")
+     * 
+     * @return Response
      */
     public function index(): Response
     {
         $events = $this->repository->findAll();
 
-        return $this->render('events/calendar.html.twig', [
+        return $this->render('events/list_events.html.twig', [
             'title' => 'Calendrier',
             'events' => $events
+        ]);
+    }
+
+    /**
+     * @Route("/events/show/{id}", name="events.show")
+     * 
+     * @return Response
+     */
+    public function show($id): Response
+    {
+        $event = $this->repository->find($id);
+
+        return $this->render('events/calendar.html.twig', [
+            'title' => 'Calendrier',
+            'event' => $event
         ]);
     }
 
@@ -59,7 +76,7 @@ class EventController extends AbstractController
             $this->entityManager->persist($event);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Objet ajouté avec succès");
+            $this->addFlash("success", "Evénement ajouté avec succès");
 
             return $this->redirectToRoute("events");
         }
@@ -86,7 +103,7 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Equipe éditée avec succès.");
+            $this->addFlash("success", "Evénement édité avec succès.");
 
             return $this->redirectToRoute("events");
         }
@@ -112,7 +129,7 @@ class EventController extends AbstractController
             $this->entityManager->remove($event);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'équipe a bien été supprimée !");
+            $this->addFlash('success', "L'événement a bien été supprimé !");
         }
 
         return $this->redirectToRoute("events");

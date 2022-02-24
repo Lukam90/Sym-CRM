@@ -49,6 +49,11 @@
 
             {% include "teams/delete_team.html.twig" %}
 
+            {% else %}
+            <tr>
+                <td colspan="5">Aucune équipe n'a été ajoutée.</td>
+            </tr>
+
             {% endfor %}
         </tbody>
     </table>

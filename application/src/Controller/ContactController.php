@@ -112,18 +112,4 @@ class ContactController extends AbstractController
 
         return $this->redirectToRoute("contacts");
     }
-
-    /**
-     * @Route("/contacts/import", name="contacts.import")
-     */
-    public function import(): Response {
-
-    }
-
-    /**
-     * @Route("/contacts/export", name="contacts.export")
-     */
-    public function export(): Response {
-
-    }
 }
