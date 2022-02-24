@@ -1,21 +1,18 @@
-<div class="modal" id="deleteEvent">
+<div class="modal" id="deleteModal">
     <div class="modal-background"></div>
 
     <div class="modal-card">
         <section class="modal-card-body">
-            <p>Vous êtes sûr(e) de supprimer l'événement <strong id="eventTitle"></strong> ?</p>
+            <p>Vous êtes sûr(e) de supprimer <span id="deleteName"></span> <strong id="deleteTitle"></strong> ?</p>
         </section>
 
         <footer class="modal-card-foot">
-            {#<form action="{{ path('events.delete', { id: event.id }) }}" method="post">#}
             <form action="#" method="post" id="deleteForm">
                 <input type="hidden" name="_method" value="DELETE" />
-                {#<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ event.id) }}" />#}
-                <input type="hidden" name="_token" id="deleteToken" value="" />
+                <input type="hidden" name="_token" id="deleteToken" value="#" />
 
                 <button class="button is-danger">Oui</button>
-                {#<button class="button is-link" onclick="closeModal('#deleteEvent-{{ event.id }}', event)">Non</button>#}
-                <button class="button is-link" onclick="closeModal('#deleteEvent', event)">Non</button>
+                <button class="button is-link" onclick="closeModal('#deleteModal', event)">Non</button>
             </form>
         </footer>
     </div>

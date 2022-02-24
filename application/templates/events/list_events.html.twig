@@ -50,7 +50,14 @@
                 </td>
 
                 <td>
-                    <button class="button is-danger" data-id="{{ event.id }}" data-title="{{ event.title }}" data-token="{{ csrf_token('delete' ~ event.id) }}" onclick="deleteEvent(this)">
+                    <button
+                        class="button is-danger"
+                        data-name="l'événement"
+                        data-type="events"
+                        data-id="{{ event.id }}"
+                        data-title="{{ event.title }}"
+                        data-token="{{ csrf_token('delete' ~ event.id) }}"
+                        onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
@@ -68,20 +75,4 @@
 
 {% include "events/delete_event.html.twig" %}
 
-{% endblock %}
-
-{% block scripts %}
-<script>
-const deleteEvent = (button) => {
-    openModal("#deleteEvent");
-
-    const eventId = button.dataset.id;
-    const eventTitle = button.dataset.title;
-    const eventToken = button.dataset.token;
-
-    $("#eventTitle").innerHTML = eventTitle;
-    $("#deleteForm").action = `/events/delete/${eventId}`;
-    $("#deleteToken").value = eventToken;
-}
-</script>
 {% endblock %}
