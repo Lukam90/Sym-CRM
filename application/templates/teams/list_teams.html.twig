@@ -8,9 +8,12 @@
 {% include "partials/messages.html.twig" %}
 
 <div class="block">
-    <a href="{{ path('teams.new') }}" class="button is-link">
+    {#<a href="{{ path('teams.new') }}" class="button is-link">
         <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
-    </a>
+    </a>#}
+    <button class="button is-link" onclick="openModal('#addModal')">
+        <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
+    </button>
 </div>
 
 <div class="table-container">
@@ -39,23 +42,31 @@
                 </td>
 
                 <td>
-                    <button class="button is-danger" onclick="openModal('#deleteTeam-{{ team.id }}')">
+                    <button
+                        class="button is-danger"
+                        data-name="l'équipe"
+                        data-type="teams"
+                        data-id="{{ team.id }}"
+                        data-title="{{ team.name }}"
+                        data-token="{{ csrf_token('delete' ~ team.id) }}"
+                        onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
             </tr>
-
-            <!-- Modals -->
-
-            {% include "teams/delete_team.html.twig" %}
-
             {% else %}
             <tr>
                 <td colspan="5">Aucune équipe n'a été ajoutée.</td>
             </tr>
-
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+{# Modals #}
+
+{% include "partials/delete.html.twig" %}
+
+{# include "teams/add_team.html.twig" #}
+
 {% endblock %}

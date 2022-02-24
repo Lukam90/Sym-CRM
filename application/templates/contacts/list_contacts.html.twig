@@ -51,16 +51,18 @@
                 </td>
                     
                 <td>
-                    <button class="button is-danger" onclick="openModal('#deleteContact-{{ contact.id }}')">
+                    <button
+                        class="button is-danger"
+                        data-name="le contact"
+                        data-type="contacts"
+                        data-id="{{ contact.id }}"
+                        data-title="{{ contact.fullName }}"
+                        data-token="{{ csrf_token('delete' ~ contact.id) }}"
+                        onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
             </tr>
-
-            <!-- Modals -->
-
-            {% include "contacts/delete_contact.html.twig" %}
-
             {% else %}
             <tr>
                 <td colspan="7">Aucun contact n'a été ajouté.</td>
@@ -69,4 +71,9 @@
         </tbody>
     </table>
 </div>
+
+{# Modals #}
+
+{% include "partials/delete.html.twig" %}
+
 {% endblock %}

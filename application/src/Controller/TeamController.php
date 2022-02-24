@@ -50,8 +50,33 @@ class TeamController extends AbstractController
      * 
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request): Response 
     {
+        /*$this->entityManager->remove($team);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', "L'équipe a bien été supprimée !");*/
+
+        $team = new Team;
+
+        $form = $this->createForm(TeamFormType::class, $team);
+        $form->handleRequest($request);
+
+        if (
+            $form->isSubmitted()
+            && $form->isValid()
+            && $this->isCsrfTokenValid("new" . $team->getId(), $request->get("_token"))
+        ) {
+            $this->entityManager->persist($team);
+            $this->entityManager->flush();
+
+            $this->addFlash("success", "Objet ajouté avec succès");
+        }
+
+        return $this->redirectToRoute("teams");
+    }
+
+        /*
         $team = new Team;
 
         $form = $this->createForm(TeamFormType::class, $team);
@@ -70,7 +95,8 @@ class TeamController extends AbstractController
             'title' => "Ajout d'une équipe",
             "form" => $form->createView()
         ]);
-    }
+        */
+    
 
     /**
      * @Route("/teams/edit/{id}", name="teams.edit")
@@ -104,6 +130,7 @@ class TeamController extends AbstractController
      * @Route("/teams/delete/{id}", name="teams.delete")
      * 
      * @param Team $team
+     * @param Request $request
      * 
      * @return RedirectResponse
      */
