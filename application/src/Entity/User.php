@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -44,6 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    public function __construct() {
+        $this->created_at = new DateTime();
+    }
 
     public function getId(): ?int
     {

@@ -37,9 +37,9 @@ entity Contact {
     *fullName: varchar
     *type: varchar
     *role: varchar
-    address: varchar
-    phone: varchar
-    email: varchar
+    *address: varchar
+    *phone: varchar
+    *email: varchar
     website: varchar
 }
 

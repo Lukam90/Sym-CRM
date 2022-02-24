@@ -9,7 +9,7 @@ $fixtures = "$doctrine:fixtures:load";
 
 $query = "$command '$truncate";
 
-$tables = ["team", "contact"];
+$tables = ["team", "contact", "event", "user"];
 
 foreach ($tables as $table) {
     exec("$query $table'");
