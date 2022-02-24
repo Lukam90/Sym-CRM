@@ -28,9 +28,14 @@ class Event
     private $type;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $time;
 
     /**
      * @ORM\Column(type="text")
@@ -86,6 +91,18 @@ class Event
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(\DateTimeInterface $time): self
+    {
+        $this->time = $time;
 
         return $this;
     }

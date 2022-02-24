@@ -26,7 +26,8 @@ class EventFixtures extends Fixture
             $event->setTitle($cols[0]);
             $event->setType($cols[1]);
             $event->setDate(new DateTime($cols[2]));
-            $event->setDescription($cols[3]);
+            $event->setTime(new DateTime($cols[3]));
+            $event->setDescription($cols[4]);
 
             $manager->persist($event);
             $manager->flush();

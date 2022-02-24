@@ -26,8 +26,9 @@ entity Event {
     *id: int
     *title: varchar
     *type: varchar 
-    *date: datetime
-    *description: text
+    *date: date
+    *hour: time
+    description: text
 }
 
 'Contacts

@@ -45,6 +45,10 @@ class TeamController extends AbstractController
 
     /**
      * @Route("/teams/new", name="teams.new")
+     * 
+     * @param Request $request
+     * 
+     * @return Response
      */
     public function new(Request $request): Response
     {
