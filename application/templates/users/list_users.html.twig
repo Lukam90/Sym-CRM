@@ -5,10 +5,13 @@
 {% block body %}
 <h2 class="title">Liste des utilisateurs</h2>
 
+{% include "partials/messages.html.twig" %}
+
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Nom</th>
                 <th>Rôle</th>
                 <th>Date d'inscription</th>
@@ -19,35 +22,43 @@
         </thead>
 
         <tbody>
-            {% for index in 0..10 %}
+        {% for user in users %}
             <tr>
-                <td>NOM PRENOM</td>
-                <td>ROLE</td>
-                <td>20/02/2022</td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.roles[0] }}</td>
+                <td>{{ user.createdAt | date("d/m/Y") }}</td>
 
                 <td>
-                    <a href="{# path('profile', { 'id' : user.id }) #}" class="button is-info">
+                    <a href="{# path('users.profile', { 'id' : user.id }) #}" class="button is-info">
                         <i class="fa fa-eye"></i>
                     </a>
                 </td>
                     
                 <td>
-                    <a href="{# path('edit_user', { 'id' : user.id }) #}" class="button is-success">
+                    <a href="{{ path('users.edit', { 'id' : user.id }) }}" class="button is-success">
                         <i class="fa fa-pencil"></i>
                     </a>
                 </td>
                     
                 <td>
-                    <a href="#deleteUser" class="button is-danger" onclick="openModal('deleteUser')">
+                    <button
+                        class="button is-danger"
+                        data-name="l'utilisateur"
+                        data-type="users"
+                        data-id="{{ user.id }}"
+                        data-title="{{ user.fullName }}"
+                        data-token="{{ csrf_token('delete' ~ user.id) }}"
+                        onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </div>
 
-{% include "users/delete_user.html.twig" %}
+{% include "modals/delete_modal.html.twig" %}
 
 {% endblock %}

@@ -9,16 +9,10 @@ const closeModal = (id, event = null) => {
 const deleteModal = (button) => {
     const dataSet = button.dataset;
 
-    const id = dataSet.id;
-    const name = dataSet.name;
-    const type = dataSet.type;
-    const title = dataSet.title;
-    const token = dataSet.token;
-
-    $("#deleteName").innerHTML = name;
-    $("#deleteTitle").innerHTML = title;
-    $("#deleteForm").action = `/${type}/delete/${id}`;
-    $("#deleteToken").value = token;
+    $("#deleteName").innerHTML = dataSet.name;
+    $("#deleteTitle").innerHTML = dataSet.title;
+    $("#deleteForm").action = `/${dataSet.type}/delete/${dataSet.id}`;
+    $("#deleteToken").value = dataSet.token;
 
     openModal("#deleteModal");
 }

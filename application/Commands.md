@@ -53,6 +53,7 @@ php bin/console make:entity Contact
 php bin/console make:form TeamFormType
 php bin/console make:form ContactFormType
 php bin/console make:form EventFormType
+php bin/console make:form UserFormType
 
 # Users
 
