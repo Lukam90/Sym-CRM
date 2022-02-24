@@ -50,15 +50,11 @@
                 </td>
 
                 <td>
-                    <button class="button is-danger" onclick="openModal('#deleteEvent-{{ event.id }}')">
+                    <button class="button is-danger" data-id="{{ event.id }}" data-title="{{ event.title }}" data-token="{{ csrf_token('delete' ~ event.id) }}" onclick="deleteEvent(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
             </tr>
-
-            <!-- Modals -->
-
-            {% include "events/delete_event.html.twig" %}
         {% else %}
             <tr>
                 <td colspan="8">Aucun événement n'a été ajouté.</td>
@@ -67,4 +63,25 @@
         </tbody>
     </table>
 </div>
+
+<!-- Only one modal challenge ! -->
+
+{% include "events/delete_event.html.twig" %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const deleteEvent = (button) => {
+    openModal("#deleteEvent");
+
+    const eventId = button.dataset.id;
+    const eventTitle = button.dataset.title;
+    const eventToken = button.dataset.token;
+
+    $("#eventTitle").innerHTML = eventTitle;
+    $("#deleteForm").action = `/events/delete/${eventId}`;
+    $("#deleteToken").value = eventToken;
+}
+</script>
 {% endblock %}
