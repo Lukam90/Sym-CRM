@@ -1,0 +1,13 @@
+{# templates/bundles/TwigBundle/Exception/error403.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title "Accès interdit" %}
+
+{% block body %}
+<div class="notification is-danger">
+    <p class="block title">Vous n'êtes pas autorisé(e) à effectuer cette action.</p>
+
+    <p class="block is-size-3">Veuillez revenir à l'<a href="{{ url('home') }}" class="has-text-weight-bold">accueil</a>.</p>
+</div>
+{% endblock %}
