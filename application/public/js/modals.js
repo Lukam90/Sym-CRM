@@ -16,3 +16,13 @@ const deleteModal = (button) => {
 
     openModal("#deleteModal");
 };
+
+const addModal = (button) => {
+    const dataSet = button.dataset;
+
+    $("#modalTitle").textContent = dataSet.title;
+    $("#modalForm").action = dataSet.action;
+    $("#formToken").value = dataSet.token;
+
+    openModal("#formModal");
+};

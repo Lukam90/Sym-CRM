@@ -2,6 +2,12 @@
     <div class="modal-background"></div>
 
     <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Confirmation de suppression</p>
+
+            <button class="delete" aria-label="close" onclick="closeModal('#deleteModal')"></button>
+        </header>
+
         <section class="modal-card-body">
             <p>Vous êtes sûr(e) de supprimer <span id="deleteName"></span> <strong id="deleteTitle"></strong> ?</p>
         </section>

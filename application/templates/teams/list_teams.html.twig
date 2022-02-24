@@ -14,8 +14,10 @@
 <div class="block">
     <button
         class="button is-link"
+        data-title="Ajout d'une équipe"
+        data-action="/teams/new"
         data-token="{{ csrf_token('new') }}"
-        onclick="addTeam(this);">
+        onclick="addModal(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
     </button>
 </div>
@@ -42,7 +44,8 @@
                 <td>
                     <button
                         class="button is-success"
-                        data-id="{{ team.id }}"
+                        data-title="Edition d'une équipe"
+                        data-action="/teams/edit/{{ team.id }}"
                         data-name="{{ team.name }}"
                         data-token="{{ csrf_token('edit') }}"
                         onclick="editTeam(this)">
