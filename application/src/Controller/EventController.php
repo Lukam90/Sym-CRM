@@ -5,20 +5,15 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Event;
 use App\Form\EventFormType;
-use App\Controller\DataController;
+use App\Controller\AppController;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EventController extends DataController
+class EventController extends AppController
 {
-    /**
-     * @var EventRepository
-     */
-    private $repository;
-
     public function __construct(EventRepository $repository, EntityManagerInterface $entityManager) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;

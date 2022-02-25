@@ -3,26 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Team;
-use App\Form\TeamFormType;
-use App\Controller\DataController;
+use App\Controller\AppController;
 use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RequestStack;
 
-class TeamController extends DataController
+class TeamController extends AppController
 {
-    /**
-     * @var TeamRepository
-     */
-    private $repository;
+    /* Constructor */
 
-    public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager) {
+    public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->requestStack = $requestStack;
     }
+
+    /* Utilities */
 
     /**
      * Displays an error if an team is not found
@@ -32,14 +31,14 @@ class TeamController extends DataController
      */
     public function isNotFound(Team $team) {
         if (! $team) {
-            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+            $this->addError("L'événement #$id n'a pas été trouvé.");
         }
     }
 
     /**
-     * @param $id
-     * 
      * Get an team with an ID
+     * 
+     * @param $id
      * 
      * @return Team
      */
@@ -51,17 +50,9 @@ class TeamController extends DataController
      * Set form value
      * 
      * @param Team $team
-     * @param Request $request
      */
-    public function setFormValue(Team $team, Request $request) {
-        $team->setName($request->get("name"));
-    }
-
-    /**
-     * @return Response
-     */
-    public function redirect() {
-        return $this->redirectToRoute("teams");
+    public function setFormValue(Team $team) {
+        $team->setName($this->getRequest()->get("name"));
     }
 
     /* CRUD */
@@ -84,59 +75,55 @@ class TeamController extends DataController
     /**
      * @Route("/teams/new", name="teams.new")
      * 
-     * @param Request $request
-     * 
      * @return Response
      */
-    public function new(Request $request): Response 
+    public function new(): Response 
     {
         if ($this->isFormValid("new")) {
             $team = new Team;
             
-            $this->setFormValue($team, $request);
+            $this->setFormValue($team);
 
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "L'équipe a bien été ajoutée.");
+            $this->addSuccess("L'équipe a bien été ajoutée.");
         }
 
-        $this->redirect();
+        return $this->redirectToRoute("teams");
     }
 
     /**
      * @Route("/teams/edit/{id}", name="teams.edit")
      * 
-     * @param int $id
-     * @param Request $request
+     * @param $id
      * 
      * @return Response
      */
-    public function edit($id, Request $request): Response {
+    public function edit($id): Response {
         $team = $this->getTeam($id);
 
         $this->isNotFound($team);
 
         if ($this->isFormValid("edit")) {
-            $this->setFormValue($team, $request);
+            $this->setFormValue($team);
 
             $this->entityManager->flush();
 
-            $this->addFlash("success", "L'équipe a bien été éditée.");
+            $this->addSuccess("L'équipe a bien été éditée.");
         }
 
-        $this->redirect();
+        return $this->redirectToRoute("teams");
     }
 
     /**
      * @Route("/teams/delete/{id}", name="teams.delete")
      * 
      * @param int $id
-     * @param Request $request
      * 
      * @return Response
      */
-    public function delete($id, Request $request): Response {
+    public function delete($id): Response {
         $team = $this->getTeam($id);
 
         $this->isNotFound($team);
@@ -146,9 +133,9 @@ class TeamController extends DataController
             $this->entityManager->remove($team);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'équipe a bien été supprimée.");
+            $this->addSuccess("L'équipe a bien été supprimée.");
         }
 
-        $this->redirect();
+        return $this->redirectToRoute("teams");
     }
 }

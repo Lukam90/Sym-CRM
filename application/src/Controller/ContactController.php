@@ -4,20 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
-use App\Controller\DataController;
+use App\Controller\AppController;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ContactController extends DataController
+class ContactController extends AppController
 {
-    /**
-     * @var ContactRepository
-     */
-    private $repository;
-
     public function __construct(ContactRepository $repository, EntityManagerInterface $entityManager) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
