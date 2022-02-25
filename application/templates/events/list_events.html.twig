@@ -57,10 +57,10 @@
                         class="button is-success"
                         data-modal-title="Edition d'un événement"
                         data-form-action="/events/edit/{{ event.id }}"
-                        data-event-title="{{ event.title }}"
-                        data-event-type="{{ event.type }}"
-                        data-event-date="{{ event.date | date("Y-m-d H:m") }}"
-                        data-event-description="{{ event.description }}"
+                        data-title="{{ event.title }}"
+                        data-type="{{ event.type }}"
+                        data-date="{{ event.date | date("Y-m-d H:m") }}"
+                        data-description="{{ event.description }}"
                         data-token="{{ csrf_token('edit') }}"
                         onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>
@@ -72,7 +72,7 @@
                         class="button is-danger"
                         data-modal-title="Suppression d'un événement"
                         data-form-action="/events/delete/{{ event.id }}"
-                        data-event-title="{{ event.title }}"
+                        data-title="{{ event.title }}"
                         data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>

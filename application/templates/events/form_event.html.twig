@@ -13,10 +13,10 @@
     <label for="type" class="label">Type (*)</label>
 
     <div class="control">
-    {% for choice in types %}
+    {% for type in types %}
         <label class="radio">
-            <input type="radio" name="type" id="{{ choice.id }}" value="{{ choice.value }}" required />
-            {{ choice.value }}
+            <input type="radio" name="type" id="{{ type.id }}" value="{{ type.value }}" required />
+            {{ type.value }}
         </label>
     {% endfor %}
     </div>

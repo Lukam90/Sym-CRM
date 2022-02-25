@@ -7,13 +7,15 @@ const deleteModal = (button) => {
 const editModal = (button) => {
     addModal(button);
 
-    $("#title").value = button.dataset.eventTitle;
-    $("#date").value = formatDate(button.dataset.eventDate);
-    $("#description").value = button.dataset.eventDescription;
+    let dataset = button.dataset;
+
+    $("#title").value = dataset.title;
+    $("#date").value = formatDate(dataset.date);
+    $("#description").value = dataset.description;
 
     let types = all("input[name='type']");
 
-    let selectedType = button.dataset.eventType;
+    let selectedType = dataset.type;
 
     for (let type of types) {
         if (type.value == selectedType) {

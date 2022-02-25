@@ -1,86 +1,69 @@
-<div class="modal" id="modal">
-    <div class="modal-background"></div>
+{% extends "modals/form_modal.html.twig" %}
 
-    <div class="modal-card">
-        {% include "modals/form_header.html.twig" %}
-
-        <form action="#" method="post" id="modalForm">
-            <input type="hidden" name="_token" id="modalToken" value="#" />
-
-            <section class="modal-card-body">
-
-{#}
-{{ form_start(form) }}
+{% block modal %}
 <div class="field">
-    {{ form_label(form.fullName) }}
+    <label for="name" class="label">Nom complet (*)</label>
     
     <div class="control">
-    {{ form_widget(form.fullName) }}
+        <input type="text" class="input" name="name" id="name" placeholder="Ex : Jean Dupont / Ma Société" required>
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.type) }}
+    <label for="type" class="label">Type (*)</label>
 
-    <div class="select">
-    {{ form_widget(form.type) }}
+    <div class="control">
+    {% for type in types %}
+        <label class="radio">
+            <input type="radio" name="type" id="{{ type.id }}" value="{{ type.value }}" required />
+            {{ type.value }}
+        </label>
+    {% endfor %}
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.role) }}
+    <label for="role" class="label">Rôle (*)</label>
 
-    <div class="select">
-    {{ form_widget(form.role) }}
+    <div class="control">
+    {% for role in roles %}
+        <label class="radio">
+            <input type="radio" name="role" id="{{ role.id }}" value="{{ role.value }}" required />
+            {{ role.value }}
+        </label>
+    {% endfor %}
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.address) }}
+    <label for="address" class="label">Adresse (*)</label>
     
     <div class="control">
-    {{ form_widget(form.address) }}
+        <input type="text" class="input" name="address" id="address" placeholder="Ex : 1 rue lambda 75000 Paris" required>
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.phone) }}
+    <label for="phone" class="label">Numéro de téléphone (*)</label>
     
     <div class="control">
-    {{ form_widget(form.phone) }}
+        <input type="tel" class="input" name="phone" id="phone" placeholder="Ex : 01 23 45 67 89" pattern="^0[1-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" required>
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.email) }}
+    <label for="email" class="label">Adresse e-mail (*)</label>
     
     <div class="control">
-    {{ form_widget(form.email) }}
+        <input type="email" class="input" name="email" id="email" placeholder="Ex : jean.dupont@site.com" required>
     </div>
 </div>
 
 <div class="field">
-    {{ form_label(form.website) }}
+    <label for="website" class="label">Site web</label>
     
     <div class="control">
-    {{ form_widget(form.website) }}
+        <input type="text" class="input" name="website" id="website" placeholder="Ex : jean-dupont.com">
     </div>
 </div>
-
-<div class="control">
-    {{ form_widget(form.submit) }}
-</div>
-{{ form_end(form) }}
-
 {% endblock %}
-
-
-
-#}
-
-</section>
-
-            {% include "modals/form_footer.html.twig" %}
-        </form>
-    </div>
-</div>

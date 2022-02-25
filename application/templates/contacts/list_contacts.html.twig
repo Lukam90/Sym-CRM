@@ -2,15 +2,24 @@
 
 {% block title "Liste des contacts" %}
 
+{% block scripts %}
+<script src="{{ asset('js/forms/contacts.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <h2 class="title">{{ title }}</h2>
 
 {% include "partials/messages.html.twig" %}
 
 <div class="block">
-    <a href="{{ path('contacts.new') }}" class="button is-link">
-        <i class="fa fa-plus"></i> &nbsp; Nouveau contact
-    </a>
+    <button
+        class="button is-link"
+        data-modal-title="Ajout d'un contact"
+        data-form-action="/contacts/new"
+        data-token="{{ csrf_token('new') }}"
+        onclick="addModal(this);">
+        <i class="fa fa-plus"></i> &nbsp; Nouvel contact
+    </button>
 </div>
 
 <div class="table-container">
@@ -45,19 +54,30 @@
                 </td>
                     
                 <td>
-                    <a href="{{ path('contacts.edit', { 'id' : contact.id }) }}" class="button is-success">
+                    <button
+                        class="button is-success"
+                        data-modal-title="Edition d'un contact"
+                        data-form-action="/contacts/edit/{{ contact.id }}"
+                        data-name="{{ contact.fullName }}"
+                        data-type="{{ contact.type }}"
+                        data-role="{{ contact.role }}"
+                        data-address="{{ contact.address }}"
+                        data-phone="{{ contact.phone }}"
+                        data-email="{{ contact.email }}"
+                        data-website="{{ contact.website }}"
+                        data-token="{{ csrf_token('edit') }}"
+                        onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </button>
                 </td>
                     
                 <td>
                     <button
                         class="button is-danger"
-                        data-name="le contact"
-                        data-type="contacts"
-                        data-id="{{ contact.id }}"
-                        data-title="{{ contact.fullName }}"
-                        data-token="{{ csrf_token('delete' ~ contact.id) }}"
+                        data-modal-title="Suppression d'un contact"
+                        data-form-action="/contacts/delete/{{ contact.id }}"
+                        data-name="{{ contact.fullName }}"
+                        data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>

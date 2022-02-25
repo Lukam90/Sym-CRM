@@ -51,7 +51,13 @@ class ContactController extends AppController
      * @param Contact $contact
      */
     public function setFormValues(Contact $contact) {
-        $contact->setName($this->getRequest()->get("name"));
+        $contact->setFullName($this->getRequest()->get("name"));
+        $contact->setType($this->getRequest()->get("type"));
+        $contact->setRole($this->getRequest()->get("role"));
+        $contact->setAddress($this->getRequest()->get("address"));
+        $contact->setPhone($this->getRequest()->get("phone"));
+        $contact->setEmail($this->getRequest()->get("email"));
+        $contact->setWebsite($this->getRequest()->get("website"));
     }
 
     /* CRUD */
@@ -64,9 +70,23 @@ class ContactController extends AppController
     public function index(): Response {
         $contacts = $this->getAll();
 
+        $types = [
+            ["id" => "particulier", "value" => "Particulier"],
+            ["id" => "entreprise", "value" => "Entreprise"],
+        ];
+
+        $roles = [
+            ["id" => "collaborateur", "value" => "Collaborateur"],
+            ["id" => "client", "value" => "Client"],
+            ["id" => "prestataire", "value" => "Prestataire"],
+            ["id" => "fournisseur", "value" => "Fournisseur"],
+        ];
+
         return $this->render('contacts/list_contacts.html.twig', [
             'title' => 'Liste des contacts',
-            "contacts" => $contacts
+            "contacts" => $contacts,
+            "types" => $types,
+            "roles" => $roles
         ]);
     }
 

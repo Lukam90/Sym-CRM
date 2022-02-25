@@ -32,7 +32,7 @@ class UserController extends AppController
      */
     public function isNotFound(User $user) {
         if (! $user) {
-            $this->addError("L'événement #$id n'a pas été trouvé.");
+            $this->addError("L'utilisateur #$id n'a pas été trouvé.");
         }
     }
 
