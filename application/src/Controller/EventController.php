@@ -5,30 +5,61 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Event;
 use App\Form\EventFormType;
+use App\Controller\DataController;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class EventController extends AbstractController
+class EventController extends DataController
 {
     /**
      * @var EventRepository
      */
     private $repository;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
     public function __construct(EventRepository $repository, EntityManagerInterface $entityManager) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * Displays an error if an event is not found
+     * 
+     * @param Event $event
+     * 
+     */
+    public function isNotFound(Event $event) {
+        if (! $event) {
+            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+        }
+    }
+
+    /**
+     * @param $id
+     * 
+     * Get an event with an ID
+     * 
+     * @return Event
+     */
+    public function getEvent($id) {
+        return $this->repository->find((int) $id);
+    }
+
+    /**
+     * Set form values
+     * 
+     * @param Event $event
+     * @param Request $request
+     */
+    public function setValues(Event $event, Request $request) {
+        $event->setTitle($request->get("title"));
+        $event->setType($request->get("type"));
+        $event->setDate(new DateTime($request->get("date")));
+        $event->setDescription($request->get("description"));
+    }
+    
     /**
      * @Route("/events", name="events")
      * 
@@ -51,11 +82,9 @@ class EventController extends AbstractController
      */
     public function show($id): Response
     {
-        $event = $this->repository->find($id);
+        $event = $this->getEvent($id);
 
-        if (! $event) {
-            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
-        }
+        $this->isNotFound($event);
 
         return $this->render('events/calendar.html.twig', [
             'title' => 'Calendrier',
@@ -72,12 +101,10 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        if ($request->get("submit") && $this->isCsrfTokenValid("new", $request->get("_token"))) {
+        if ($this->isFormValid("new")) {
             $event = new Event;
-            $event->setTitle($request->get("title"));
-            $event->setType($request->get("type"));
-            $event->setDate(new DateTime($request->get("date")));
-            $event->setDescription($request->get("description"));
+
+            $this->setValues();
 
             $this->entityManager->persist($event);
             $this->entityManager->flush();
@@ -98,14 +125,12 @@ class EventController extends AbstractController
      */
     public function edit($id, Request $request): Response
     {
-        $event = $this->repository->find((int) $id);
+        $event = $this->getEvent($id);
 
-        if (! $event) {
-            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
-        }
+        $this->isNotFound($event);
 
-        if ($request->get("submit") && $this->isCsrfTokenValid("edit", $request->get("_token"))) {
-            $event->setName($request->get("name"));
+        if ($this->isFormValid("edit")) {
+            $this->setValues();
 
             $this->entityManager->flush();
 
@@ -125,13 +150,11 @@ class EventController extends AbstractController
      */
     public function delete($id, Request $request): Response
     {
-        $event = $this->repository->find((int) $id);
+        $event = $this->getEvent($id);
 
-        if (! $event) {
-            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
-        }
+        $this->isNotFound($event);
 
-        if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
+        if ($this->isFormValid("delete")) {
             $this->entityManager->remove($event);
             $this->entityManager->flush();
 
@@ -146,7 +169,7 @@ class EventController extends AbstractController
      */
     public function send(): Response
     {
-        return $this->render('event/calendar.twig');
+        return $this->render('events/calendar.twig');
     }
 
     /**
@@ -154,7 +177,7 @@ class EventController extends AbstractController
      */
     public function accept(): Response
     {
-        return $this->render('event/calendar.twig');
+        return $this->render('events/calendar.twig');
     }
 
     /**
@@ -162,6 +185,6 @@ class EventController extends AbstractController
      */
     public function decline(): Response
     {
-        return $this->render('event/calendar.twig');
+        return $this->render('events/calendar.twig');
     }
 }

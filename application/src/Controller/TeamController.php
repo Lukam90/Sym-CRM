@@ -4,30 +4,67 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamFormType;
+use App\Controller\DataController;
 use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class TeamController extends AbstractController
+class TeamController extends DataController
 {
     /**
      * @var TeamRepository
      */
     private $repository;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
     public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
     }
+
+    /**
+     * Displays an error if an team is not found
+     * 
+     * @param Team $team
+     * 
+     */
+    public function isNotFound(Team $team) {
+        if (! $team) {
+            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+        }
+    }
+
+    /**
+     * @param $id
+     * 
+     * Get an team with an ID
+     * 
+     * @return Team
+     */
+    public function getTeam($id) {
+        return $this->repository->find((int) $id);
+    }
+
+    /**
+     * Set form value
+     * 
+     * @param Team $team
+     * @param Request $request
+     */
+    public function setFormValue(Team $team, Request $request) {
+        $team->setName($request->get("name"));
+    }
+
+    /**
+     * @return Response
+     */
+    public function redirect() {
+        return $this->redirectToRoute("teams");
+    }
+
+    /* CRUD */
 
     /**
      * @Route("/teams", name="teams")
@@ -53,9 +90,10 @@ class TeamController extends AbstractController
      */
     public function new(Request $request): Response 
     {
-        if ($request->get("submit") && $this->isCsrfTokenValid("new", $request->get("_token"))) {
+        if ($this->isFormValid("new")) {
             $team = new Team;
-            $team->setName($request->get("name"));
+            
+            $this->setFormValue($team, $request);
 
             $this->entityManager->persist($team);
             $this->entityManager->flush();
@@ -63,7 +101,7 @@ class TeamController extends AbstractController
             $this->addFlash("success", "L'équipe a bien été ajoutée.");
         }
 
-        return $this->redirectToRoute("teams");
+        $this->redirect();
     }
 
     /**
@@ -75,21 +113,19 @@ class TeamController extends AbstractController
      * @return Response
      */
     public function edit($id, Request $request): Response {
-        $team = $this->repository->find((int) $id);
+        $team = $this->getTeam($id);
 
-        if (! $team) {
-            $this->addFlash("danger", "L'équipe #$id n'a pas été trouvée.");
-        }
+        $this->isNotFound($team);
 
-        if ($request->get("submit") && $this->isCsrfTokenValid("edit", $request->get("_token"))) {
-            $team->setName($request->get("name"));
+        if ($this->isFormValid("edit")) {
+            $this->setFormValue($team, $request);
 
             $this->entityManager->flush();
 
             $this->addFlash("success", "L'équipe a bien été éditée.");
         }
 
-        return $this->redirectToRoute("teams");
+        $this->redirect();
     }
 
     /**
@@ -101,19 +137,18 @@ class TeamController extends AbstractController
      * @return Response
      */
     public function delete($id, Request $request): Response {
-        $team = $this->repository->find((int) $id);
+        $team = $this->getTeam($id);
 
-        if (! $team) {
-            $this->addFlash("danger", "L'équipe #$id n'a pas été trouvée.");
-        }
+        $this->isNotFound($team);
 
-        if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
+        //if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
+        if ($this->isFormValid("delete")) {
             $this->entityManager->remove($team);
             $this->entityManager->flush();
 
             $this->addFlash('success', "L'équipe a bien été supprimée.");
         }
 
-        return $this->redirectToRoute("teams");
+        $this->redirect();
     }
 }

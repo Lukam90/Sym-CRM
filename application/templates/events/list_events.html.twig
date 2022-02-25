@@ -57,7 +57,7 @@
                         class="button is-success"
                         data-title="Edition d'un événement"
                         data-action="/events/edit/{{ event.id }}"
-                        data-title="{{ event.title }}"
+                        data-event-title="{{ event.title }}"
                         data-token="{{ csrf_token('edit') }}"
                         onclick="editTeam(this)">
                         <i class="fa fa-pencil"></i>
