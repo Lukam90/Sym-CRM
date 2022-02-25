@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Event;
 use App\Form\EventFormType;
 use App\Repository\EventRepository;
@@ -52,6 +53,10 @@ class EventController extends AbstractController
     {
         $event = $this->repository->find($id);
 
+        if (! $event) {
+            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+        }
+
         return $this->render('events/calendar.html.twig', [
             'title' => 'Calendrier',
             'event' => $event
@@ -67,24 +72,20 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $event = new Event;
+        if ($request->get("submit") && $this->isCsrfTokenValid("new", $request->get("_token"))) {
+            $event = new Event;
+            $event->setTitle($request->get("title"));
+            $event->setType($request->get("type"));
+            $event->setDate(new DateTime($request->get("date")));
+            $event->setDescription($request->get("description"));
 
-        $form = $this->createForm(EventFormType::class, $event);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($event);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Evénement ajouté avec succès");
-
-            return $this->redirectToRoute("events");
+            $this->addFlash("success", "L'événement a bien été ajouté.");
         }
 
-        return $this->render('events/form_events.html.twig', [
-            'title' => "Ajout d'un événement",
-            "form" => $form->createView()
-        ]);
+        return $this->redirectToRoute("events");
     }
 
     /**
@@ -95,24 +96,23 @@ class EventController extends AbstractController
      * 
      * @return Response
      */
-    public function edit(Event $event, Request $request): Response
+    public function edit($id, Request $request): Response
     {
-        $form = $this->createForm(EventFormType::class, $event);
-        $form->handleRequest($request);
+        $event = $this->repository->find((int) $id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
-
-            $this->addFlash("success", "Evénement édité avec succès.");
-
-            return $this->redirectToRoute("events");
+        if (! $event) {
+            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
         }
 
-        return $this->render('events/form_events.html.twig', [
-            'title' => "Edition d'un événement",
-            "event" => $event,
-            "form" => $form->createView()
-        ]);
+        if ($request->get("submit") && $this->isCsrfTokenValid("edit", $request->get("_token"))) {
+            $event->setName($request->get("name"));
+
+            $this->entityManager->flush();
+
+            $this->addFlash("success", "L'événement a bien été édité.");
+        }
+
+        return $this->redirectToRoute("events");
     }
 
     /**
@@ -123,13 +123,19 @@ class EventController extends AbstractController
      * 
      * @return Response
      */
-    public function delete(Event $event, Request $request): Response
+    public function delete($id, Request $request): Response
     {
-        if ($this->isCsrfTokenValid("delete" . $event->getId(), $request->get("_token"))) {
+        $event = $this->repository->find((int) $id);
+
+        if (! $event) {
+            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+        }
+
+        if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
             $this->entityManager->remove($event);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'événement a bien été supprimé !");
+            $this->addFlash('success', "L'événement a bien été supprimé.");
         }
 
         return $this->redirectToRoute("events");

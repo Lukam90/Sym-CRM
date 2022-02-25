@@ -16,7 +16,7 @@ class ErrorController extends AbstractController
      */
     public function forbidden(): Response
     {
-        return $this->render('bundles/TwigBundle/Exception/error403.html.twig', []);
+        return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
     }
 
     /**
@@ -24,6 +24,6 @@ class ErrorController extends AbstractController
      */
     public function notFound(): Response
     {
-        return $this->render('bundles/TwigBundle/Exception/error404.html.twig', []);
+        return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
     }
 }

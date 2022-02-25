@@ -2,15 +2,24 @@
 
 {% block title "Liste des événements" %}
 
+{% block scripts %}
+<script src="{{ asset('js/forms/events.js') }}"></script>
+{% endblock %}
+
 {% block body %}
-<h2 class="title">{{ title }}</h2>
+<h2 class="title is-2">{{ title }}</h2>
 
 {% include "partials/messages.html.twig" %}
 
 <div class="block">
-    <a href="{{ path('events.new') }}" class="button is-link">
+    <button
+        class="button is-link"
+        data-title="Ajout d'un événement"
+        data-action="/events/new"
+        data-token="{{ csrf_token('new') }}"
+        onclick="addModal(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvel événement
-    </a>
+    </button>
 </div>
 
 <div class="table-container">
@@ -34,7 +43,7 @@
                 <td>{{ event.id }}</td>
                 <td>{{ event.title }}</td>
                 <td>{{ event.type }}</td>
-                <td>{{ event.date | date("d/m/Y") ~ " " ~ event.time | date("H:i") }}</td>
+                <td>{{ event.date | date("d/m/Y H:i") }}</td>
                 <td>{{ event.description }}</td>
 
                 <td>
@@ -44,9 +53,15 @@
                 </td>
 
                 <td>
-                    <a href="{{ path('events.edit', {'id': event.id}) }}" class="button is-success">
+                    <button
+                        class="button is-success"
+                        data-title="Edition d'un événement"
+                        data-action="/events/edit/{{ event.id }}"
+                        data-title="{{ event.title }}"
+                        data-token="{{ csrf_token('edit') }}"
+                        onclick="editTeam(this)">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </button>
                 </td>
 
                 <td>
@@ -56,7 +71,7 @@
                         data-type="events"
                         data-id="{{ event.id }}"
                         data-title="{{ event.title }}"
-                        data-token="{{ csrf_token('delete' ~ event.id) }}"
+                        data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
@@ -71,6 +86,10 @@
     </table>
 </div>
 
-{% include "partials/delete.html.twig" %}
+{# Modals #}
+
+{% include "modals/delete.html.twig" %}
+
+{% include "events/form_event.html.twig" %}
 
 {% endblock %}

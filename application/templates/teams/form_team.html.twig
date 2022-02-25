@@ -2,11 +2,7 @@
     <div class="modal-background"></div>
 
     <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title" id="modalTitle"></p>
-
-            <button class="delete" aria-label="close" onclick="closeModal('#formModal')"></button>
-        </header>
+        {% include "modals/header.html.twig" %}
 
         <form action="#" method="post" id="modalForm">
             <input type="hidden" name="_token" id="formToken" value="#" />
@@ -15,7 +11,9 @@
                 <div class="field">
                     <label for="name" class="label">Nom (*)</label>
 
-                    <input type="text" name="name" id="name" class="input" placeholder="Ex : Equipe Jaune" required />
+                    <div class="control">
+                        <input type="text" name="name" id="name" class="input" placeholder="Ex : Equipe Jaune" required />
+                    </div>
                 </div>
             </section>
 

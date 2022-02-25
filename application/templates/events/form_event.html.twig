@@ -1,0 +1,54 @@
+<div class="modal" id="formModal">
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+        {% include "modals/header.html.twig" %}
+
+        <form action="#" method="post" id="modalForm">
+            <input type="hidden" name="_token" id="formToken" value="#" />
+
+            <section class="modal-card-body">
+                <div class="field">
+                    <label for="title" class="label">Titre (*)</label>
+
+                    <div class="control">
+                        <input type="text" name="title" id="title" class="input" placeholder="Ex: RDV Client avec Jean Dupont" required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="type" class="label">Type (*)</label>
+
+                    <div class="control">
+                    {% for choice in ["Réunion", "Tâche"] %}
+                        <label class="radio">
+                            <input type="radio" name="type" id="type" value="{{ choice }}" required />
+                            {{ choice }}
+                        </label>
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="date" class="label">Date & Heure (*)</label>
+
+                    <div class="control">
+                        <input type="datetime-local" name="date" id="date" class="input" required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="description" class="label">Description</label>
+
+                    <div class="control">
+                        <textarea class="textarea" name="description" id="description" rows="5"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="modal-card-foot">
+                <input type="submit" name="submit" value="Valider" class="button is-link" />
+            </footer>
+        </form>
+    </div>
+</div>
