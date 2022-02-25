@@ -9,20 +9,18 @@ const deleteTeam = (button) => {
     openModal("#deleteModal");
 };
 
-/*
 const addTeam = (button) => {
     const dataSet = button.dataset;
 
-    $("#modalTitle").textContent = dataSet.title;
-    $("#modalForm").action = dataSet.action;
+    $("#modalTitle").textContent = dataSet.modalTitle;
+    $("#modalForm").action = dataSet.formAction;
     $("#formToken").value = dataSet.token;
 
     openModal("#formModal");
 };
 
 const editTeam = (button) => {
-    addModal(button);
+    addTeam(button);
 
-    $("#name").value = button.dataset.name;
+    $("#name").value = button.dataset.teamName;
 };
-*/
