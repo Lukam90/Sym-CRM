@@ -64,7 +64,7 @@ class TeamController extends AppController
      */
     public function index(): Response
     {
-        $teams = $this->repository->findAll();
+        $teams = $this->getAll();
 
         return $this->render('teams/list_teams.html.twig', [
             'title' => 'Liste des équipes',
@@ -128,8 +128,7 @@ class TeamController extends AppController
 
         $this->isNotFound($team);
 
-        //if ($this->isCsrfTokenValid("delete", $request->get("_token"))) {
-        if ($this->isFormValid("delete")) {
+        if ($this->isTokenValid("delete")) {
             $this->entityManager->remove($team);
             $this->entityManager->flush();
 

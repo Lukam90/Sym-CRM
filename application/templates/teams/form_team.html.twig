@@ -2,7 +2,7 @@
     <div class="modal-background"></div>
 
     <div class="modal-card">
-        {% include "modals/header.html.twig" %}
+        {% include "modals/form_header.html.twig" %}
 
         <form action="#" method="post" id="modalForm">
             <input type="hidden" name="_token" id="formToken" value="#" />
@@ -17,9 +17,7 @@
                 </div>
             </section>
 
-            <footer class="modal-card-foot">
-                <input type="submit" name="submit" value="Valider" class="button is-link" />
-            </footer>
+            {% include "modals/form_header.html.twig" %}
         </form>
     </div>
 </div>

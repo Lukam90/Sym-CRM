@@ -61,7 +61,6 @@ abstract class AppController extends AbstractController
     /**
      * Check if a form is valid
      * 
-     * @param Request $request
      * @param string $tokenName
      * 
      * @return bool
@@ -80,7 +79,7 @@ abstract class AppController extends AbstractController
     }
 
     /**
-     * Display a error message
+     * Display an error message
      * 
      * @param string $message
      */

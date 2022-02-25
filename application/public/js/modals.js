@@ -5,24 +5,3 @@ const closeModal = (id, event = null) => {
 
     if (event)  event.preventDefault();
 };
-
-const deleteModal = (button) => {
-    const dataSet = button.dataset;
-
-    $("#deleteName").innerHTML = dataSet.name;
-    $("#deleteTitle").innerHTML = dataSet.title;
-    $("#deleteForm").action = `/${dataSet.type}/delete/${dataSet.id}`;
-    $("#deleteToken").value = dataSet.token;
-
-    openModal("#deleteModal");
-};
-
-const addModal = (button) => {
-    const dataSet = button.dataset;
-
-    $("#modalTitle").textContent = dataSet.title;
-    $("#modalForm").action = dataSet.action;
-    $("#formToken").value = dataSet.token;
-
-    openModal("#formModal");
-};
