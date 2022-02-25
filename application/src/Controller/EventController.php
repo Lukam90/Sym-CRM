@@ -57,6 +57,8 @@ class EventController extends AppController
         $event->setDate(new DateTime($this->getRequest()->get("date")));
         $event->setDescription($this->getRequest()->get("description"));
     }
+
+    /* CRUD */
     
     /**
      * @Route("/events", name="events")
@@ -67,9 +69,15 @@ class EventController extends AppController
     {
         $events = $this->getAll();
 
+        $types = [
+            ["id" => "reunion", "value" => "Réunion"],
+            ["id" => "tache", "value" => "Tâche"],
+        ];
+
         return $this->render('events/list_events.html.twig', [
             'title' => 'Liste des événements',
-            'events' => $events
+            'events' => $events,
+            'types' => $types
         ]);
     }
 
@@ -127,7 +135,7 @@ class EventController extends AppController
         $this->isNotFound($event);
 
         if ($this->isFormValid("edit")) {
-            $this->setValues($event);
+            $this->setFormValues($event);
 
             $this->entityManager->flush();
 

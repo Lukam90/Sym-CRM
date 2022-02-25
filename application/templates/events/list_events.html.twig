@@ -17,7 +17,7 @@
         data-modal-title="Ajout d'un événement"
         data-form-action="/events/new"
         data-token="{{ csrf_token('new') }}"
-        onclick="addEvent(this);">
+        onclick="addModal(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvel événement
     </button>
 </div>
@@ -59,7 +59,7 @@
                         data-form-action="/events/edit/{{ event.id }}"
                         data-event-title="{{ event.title }}"
                         data-event-type="{{ event.type }}"
-                        data-event-date="{{ event.date | date("d/m/Y H:i") }}"
+                        data-event-date="{{ event.date | date("Y-m-d H:m") }}"
                         data-event-description="{{ event.description }}"
                         data-token="{{ csrf_token('edit') }}"
                         onclick="editModal(this)">

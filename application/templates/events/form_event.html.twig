@@ -20,10 +20,10 @@
                     <label for="type" class="label">Type (*)</label>
 
                     <div class="control">
-                    {% for choice in ["Réunion", "Tâche"] %}
+                    {% for choice in types %}
                         <label class="radio">
-                            <input type="radio" name="type" id="type" value="{{ choice }}" required />
-                            {{ choice }}
+                            <input type="radio" name="type" id="{{ choice.id }}" value="{{ choice.value }}" required />
+                            {{ choice.value }}
                         </label>
                     {% endfor %}
                     </div>
@@ -46,9 +46,7 @@
                 </div>
             </section>
 
-            <footer class="modal-card-foot">
-                <input type="submit" name="submit" value="Valider" class="button is-link" />
-            </footer>
+            {% include "modals/form_footer.html.twig" %}
         </form>
     </div>
 </div>
