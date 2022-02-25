@@ -1,20 +1,16 @@
 const deleteTeam = (button) => {
-    const dataSet = button.dataset;
-
-    $("#deleteTitle").innerHTML = dataSet.modalTitle;
-    $("#deleteForm").action = `/teams/delete/${dataSet.teamId}`;
-    $("#deleteName").innerHTML = dataSet.teamName;
-    $("#deleteToken").value = dataSet.token;
+    $("#deleteTitle").innerHTML = button.dataset.modalTitle;
+    $("#deleteForm").action = button.dataset.formAction;
+    $("#deleteName").innerHTML = button.dataset.teamName;
+    $("#deleteToken").value = button.dataset.token;
 
     openModal("#deleteModal");
 };
 
 const addTeam = (button) => {
-    const dataSet = button.dataset;
-
-    $("#modalTitle").textContent = dataSet.modalTitle;
-    $("#modalForm").action = dataSet.formAction;
-    $("#formToken").value = dataSet.token;
+    $("#modalTitle").textContent = button.dataset.modalTitle;
+    $("#modalForm").action = button.dataset.formAction;
+    $("#formToken").value = button.dataset.token;
 
     openModal("#formModal");
 };

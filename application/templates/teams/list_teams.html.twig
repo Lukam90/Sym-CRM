@@ -45,7 +45,6 @@
                     <button
                         class="button is-success"
                         data-modal-title="Edition d'une équipe"
-                        data-team-id="{{ team.id }}"
                         data-form-action="/teams/edit/{{ team.id }}"
                         data-team-name="{{ team.name }}"
                         data-token="{{ csrf_token('edit') }}"
@@ -58,7 +57,7 @@
                     <button
                         class="button is-danger"
                         data-modal-title="Suppression d'une équipe"
-                        data-team-id="{{ team.id }}"
+                        data-form-action="/teams/delete/{{ team.id }}"
                         data-team-name="{{ team.name }}"
                         data-token="{{ csrf_token('delete') }}"
                         onclick="deleteTeam(this)">
