@@ -10,13 +10,51 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContactController extends AppController
 {
-    public function __construct(ContactRepository $repository, EntityManagerInterface $entityManager) {
+    public function __construct(ContactRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->requestStack = $requestStack;
     }
+
+    /* Utilities */
+
+    /**
+     * Displays an error if an contact is not found
+     * 
+     * @param Contact $contact
+     * 
+     */
+    public function isNotFound(Contact $contact) {
+        if (! $contact) {
+            $this->addError("L'événement #$id n'a pas été trouvé.");
+        }
+    }
+
+    /**
+     * Get an contact with an ID
+     * 
+     * @param $id
+     * 
+     * @return Contact
+     */
+    public function getContact($id) {
+        return $this->repository->find((int) $id);
+    }
+
+    /**
+     * Set form value
+     * 
+     * @param Contact $contact
+     */
+    public function setFormValues(Contact $contact) {
+        $contact->setName($this->getRequest()->get("name"));
+    }
+
+    /* CRUD */
 
     /**
      * @Route("/contacts", name="contacts")
@@ -24,7 +62,7 @@ class ContactController extends AppController
      * @return Response
      */
     public function index(): Response {
-        $contacts = $this->repository->findAll();
+        $contacts = $this->getAll();
 
         return $this->render('contacts/list_contacts.html.twig', [
             'title' => 'Liste des contacts',
@@ -34,70 +72,66 @@ class ContactController extends AppController
 
     /**
      * @Route("/contacts/new", name="contacts.new")
+     * 
+     * @return Response
      */
-    public function new(Request $request): Response
+    public function new(): Response
     {
-        $contact = new Contact;
+        if ($this->isFormValid("new")) {
+            $contact = new Contact;
+            
+            $this->setFormValues($contact);
 
-        $form = $this->createForm(ContactFormType::class, $contact);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($contact);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Contact ajouté avec succès.");
-
-            return $this->redirectToRoute("contacts");
+            $this->addSuccess("Le contact a bien été ajouté.");
         }
 
-        return $this->render('contacts/form_contacts.html.twig', [
-            'title' => "Ajout d'un contact",
-            "form" => $form->createView()
-        ]);
+        return $this->redirectToRoute("contacts");
     }
 
     /**
      * @Route("/contacts/edit/{id}", name="contacts.edit")
      * 
-     * @param Contact $contact
-     * @param Request $request
+     * @param $id
      * 
      * @return Response
      */
-    public function edit(Contact $contact, Request $request): Response {
-        $form = $this->createForm(ContactFormType::class, $contact);
-        $form->handleRequest($request);
+    public function edit($id): Response {
+        $contact = $this->getContact($id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $this->isNotFound($contact);
+
+        if ($this->isFormValid("edit")) {
+            $this->setFormValues($contact);
+
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Contact édité avec succès.");
-
-            return $this->redirectToRoute("contacts");
+            $this->addSuccess("Le contact a bien été édité.");
         }
 
-        return $this->render('contacts/form_contacts.html.twig', [
-            'title' => "Edition d'un contact",
-            "contact" => $contact,
-            "form" => $form->createView()
-        ]);
+        return $this->redirectToRoute("contacts");
     }
 
     /**
      * @Route("/contacts/delete/{id}", name="contacts.delete")
      * 
-     * @param Contact $contact
+     * @param $id
      * 
-     * @return RedirectResponse
+     * @return Response
      */
-    public function delete(Contact $contact, Request $request): Response
+    public function delete($id): Response
     {
-        if ($this->isCsrfTokenValid("delete" . $contact->getId(), $request->get("_token"))) {
+        $contact = $this->getContact($id);
+
+        $this->isNotFound($contact);
+
+        if ($this->isTokenValid("delete")) {
             $this->entityManager->remove($contact);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "Le contact a bien été supprimé !");
+            $this->addSuccess("Le contact a bien été supprimé.");
         }
 
         return $this->redirectToRoute("contacts");

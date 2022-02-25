@@ -17,7 +17,7 @@
         data-modal-title="Ajout d'une équipe"
         data-form-action="/teams/new"
         data-token="{{ csrf_token('new') }}"
-        onclick="addTeam(this);">
+        onclick="addModal(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
     </button>
 </div>
@@ -48,7 +48,7 @@
                         data-form-action="/teams/edit/{{ team.id }}"
                         data-team-name="{{ team.name }}"
                         data-token="{{ csrf_token('edit') }}"
-                        onclick="editTeam(this)">
+                        onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>
                     </button>
                 </td>
@@ -60,7 +60,7 @@
                         data-form-action="/teams/delete/{{ team.id }}"
                         data-team-name="{{ team.name }}"
                         data-token="{{ csrf_token('delete') }}"
-                        onclick="deleteTeam(this)">
+                        onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
                 </td>
@@ -76,7 +76,7 @@
 
 {# Modals #}
 
-{% include "teams/delete_form.html.twig" %}
+{% include "teams/delete_team.html.twig" %}
 {% include "teams/form_team.html.twig" %}
 
 {% endblock %}

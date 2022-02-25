@@ -11,12 +11,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class EventController extends AppController
 {
-    public function __construct(EventRepository $repository, EntityManagerInterface $entityManager) {
+    /* Constructor */
+
+    public function __construct(EventRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -27,14 +31,14 @@ class EventController extends AppController
      */
     public function isNotFound(Event $event) {
         if (! $event) {
-            $this->addFlash("danger", "L'événement #$id n'a pas été trouvé.");
+            $this->addError("L'événement #$id n'a pas été trouvé.");
         }
     }
 
     /**
-     * @param $id
-     * 
      * Get an event with an ID
+     * 
+     * @param $id
      * 
      * @return Event
      */
@@ -46,13 +50,12 @@ class EventController extends AppController
      * Set form values
      * 
      * @param Event $event
-     * @param Request $request
      */
-    public function setValues(Event $event, Request $request) {
-        $event->setTitle($request->get("title"));
-        $event->setType($request->get("type"));
-        $event->setDate(new DateTime($request->get("date")));
-        $event->setDescription($request->get("description"));
+    public function setFormValues(Event $event) {
+        $event->setTitle($this->getRequest()->get("title"));
+        $event->setType($this->getRequest()->get("type"));
+        $event->setDate(new DateTime($this->getRequest()->get("date")));
+        $event->setDescription($this->getRequest()->get("description"));
     }
     
     /**
@@ -62,7 +65,7 @@ class EventController extends AppController
      */
     public function index(): Response
     {
-        $events = $this->repository->findAll();
+        $events = $this->getAll();
 
         return $this->render('events/list_events.html.twig', [
             'title' => 'Liste des événements',
@@ -72,6 +75,8 @@ class EventController extends AppController
 
     /**
      * @Route("/events/show/{id}", name="events.show")
+     * 
+     * @param $id
      * 
      * @return Response
      */
@@ -90,21 +95,19 @@ class EventController extends AppController
     /**
      * @Route("/events/new", name="events.new")
      * 
-     * @param Request $request
-     * 
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(): Response
     {
         if ($this->isFormValid("new")) {
             $event = new Event;
 
-            $this->setValues();
+            $this->setFormValues($event);
 
             $this->entityManager->persist($event);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "L'événement a bien été ajouté.");
+            $this->addSuccess("L'événement a bien été ajouté.");
         }
 
         return $this->redirectToRoute("events");
@@ -113,23 +116,22 @@ class EventController extends AppController
     /**
      * @Route("/events/edit/{id}", name="events.edit")
      * 
-     * @param Event $event
-     * @param Request $request
+     * @param $id
      * 
      * @return Response
      */
-    public function edit($id, Request $request): Response
+    public function edit($id): Response
     {
         $event = $this->getEvent($id);
 
         $this->isNotFound($event);
 
         if ($this->isFormValid("edit")) {
-            $this->setValues();
+            $this->setValues($event);
 
             $this->entityManager->flush();
 
-            $this->addFlash("success", "L'événement a bien été édité.");
+            $this->addSuccess("L'événement a bien été édité.");
         }
 
         return $this->redirectToRoute("events");
@@ -138,22 +140,21 @@ class EventController extends AppController
     /**
      * @Route("/events/delete/{id}", name="events.delete")
      * 
-     * @param Event $event
-     * @param Request $request
+     * @param $id
      * 
      * @return Response
      */
-    public function delete($id, Request $request): Response
+    public function delete($id): Response
     {
         $event = $this->getEvent($id);
 
         $this->isNotFound($event);
 
-        if ($this->isFormValid("delete")) {
+        if ($this->isTokenValid("delete")) {
             $this->entityManager->remove($event);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'événement a bien été supprimé.");
+            $this->addSuccess("L'événement a bien été supprimé.");
         }
 
         return $this->redirectToRoute("events");

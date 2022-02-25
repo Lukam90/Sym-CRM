@@ -119,7 +119,7 @@ class TeamController extends AppController
     /**
      * @Route("/teams/delete/{id}", name="teams.delete")
      * 
-     * @param int $id
+     * @param $id
      * 
      * @return Response
      */

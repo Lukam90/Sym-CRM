@@ -1,5 +1,8 @@
-const editTeam = (button) => {
+const editModal = (button) => {
     addModal(button);
 
-    $("#name").value = button.dataset.name;
+    $("#title").value = button.dataset.eventTitle;
+    $("#type").value = button.dataset.eventType;
+    $("#date").value = button.dataset.eventDate;
+    $("#description").value = button.dataset.eventDescription;
 };

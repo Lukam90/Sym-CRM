@@ -14,10 +14,10 @@
 <div class="block">
     <button
         class="button is-link"
-        data-title="Ajout d'un événement"
-        data-action="/events/new"
+        data-modal-title="Ajout d'un événement"
+        data-form-action="/events/new"
         data-token="{{ csrf_token('new') }}"
-        onclick="addModal(this);">
+        onclick="addEvent(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvel événement
     </button>
 </div>
@@ -55,11 +55,14 @@
                 <td>
                     <button
                         class="button is-success"
-                        data-title="Edition d'un événement"
-                        data-action="/events/edit/{{ event.id }}"
+                        data-modal-title="Edition d'un événement"
+                        data-form-action="/events/edit/{{ event.id }}"
                         data-event-title="{{ event.title }}"
+                        data-event-type="{{ event.type }}"
+                        data-event-date="{{ event.date | date("d/m/Y H:i") }}"
+                        data-event-description="{{ event.description }}"
                         data-token="{{ csrf_token('edit') }}"
-                        onclick="editTeam(this)">
+                        onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>
                     </button>
                 </td>
@@ -67,10 +70,9 @@
                 <td>
                     <button
                         class="button is-danger"
-                        data-name="l'événement"
-                        data-type="events"
-                        data-id="{{ event.id }}"
-                        data-title="{{ event.title }}"
+                        data-modal-title="Suppression d'un événement"
+                        data-form-action="/events/delete/{{ event.id }}"
+                        data-event-title="{{ event.title }}"
                         data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
@@ -86,9 +88,9 @@
     </table>
 </div>
 
-{# Modals #}
+{# Events #}
 
-{% include "modals/delete.html.twig" %}
+{% include "events/delete_event.html.twig" %}
 
 {% include "events/form_event.html.twig" %}
 
