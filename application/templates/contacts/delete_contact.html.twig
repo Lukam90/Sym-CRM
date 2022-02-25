@@ -1,5 +1,4 @@
-
-{#}
+{#
 <div class="modal" id="delete">
     <div class="modal-background"></div>
 
@@ -7,7 +6,7 @@
         {% include "modals/delete_header.html.twig" %}
 
         <section class="modal-card-body">
-            <p>Vous êtes sûr(e) de supprimer l'événement <strong id="deleteName"></strong> ?</p>
+            <p>Vous êtes sûr(e) de supprimer le contact <strong id="deleteName"></strong> ?</p>
         </section>
 
         {% include "modals/delete_footer.html.twig" %}
@@ -15,6 +14,6 @@
 </div>
 #}
 
-{% extends "modals/delete_modal.html.twig" %}
-
-<p>Vous êtes sûr(e) de supprimer l'événement <strong id="deleteName"></strong> ?</p>
+<section class="modal-card-body">
+    <p>Vous êtes sûr(e) de supprimer le contact <strong id="deleteName"></strong> ?</p>
+</section>

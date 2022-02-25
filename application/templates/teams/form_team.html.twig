@@ -1,23 +1,11 @@
-<div class="modal" id="modal">
-    <div class="modal-background"></div>
+{% extends "modals/form_modal.html.twig" %}
 
-    <div class="modal-card">
-        {% include "modals/form_header.html.twig" %}
+{% block modal %}
+<div class="field">
+    <label for="name" class="label">Nom (*)</label>
 
-        <form action="#" method="post" id="modalForm">
-            <input type="hidden" name="_token" id="modalToken" value="#" />
-
-            <section class="modal-card-body">
-                <div class="field">
-                    <label for="name" class="label">Nom (*)</label>
-
-                    <div class="control">
-                        <input type="text" name="name" id="name" class="input" placeholder="Ex : Equipe Jaune" required />
-                    </div>
-                </div>
-            </section>
-
-            {% include "modals/form_footer.html.twig" %}
-        </form>
+    <div class="control">
+        <input type="text" name="name" id="name" class="input" placeholder="Ex : Equipe Jaune" required />
     </div>
 </div>
+{% endblock %}
