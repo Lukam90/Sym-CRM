@@ -65,3 +65,29 @@
 .black {
     color: black;
 }
+
+/* Backgrounds */
+
+.has-background-info {
+    background: hsla(204, 86%, 53%, 75%);
+}
+
+.has-background-success {
+    background: hsla(141, 71%, 48%, 75%);
+}
+
+.has-background-danger {
+    background: hsla(348, 100%, 61%, 75%);
+}
+
+.has-background-warning {
+    background: hsla(48, 100%, 67%, 75%);
+}
+
+.has-background-light {
+    background: hsla(0, 0%, 96%, 75%);
+}
+
+.has-background-grey-light {
+    background: hsla(0, 0%, 71%, 75%);
+}

@@ -1,0 +1,17 @@
+<div class="column">
+    <div class="card has-background-light">
+        <header class="card-header">
+            <p class="card-header-title">Derniers contacts</p>
+        </header>
+
+        <div class="card-content">
+            <div class="content">
+                <ul>
+                    {% for contact in contacts %}
+                    <li>{{ contact.fullName }} ({{ contact.createdAt | date("d/m/Y") }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

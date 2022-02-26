@@ -7,13 +7,13 @@ use DateTime;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordHasherInterface $encoder)
     {
         $this->encoder = $encoder;
     }
@@ -34,7 +34,7 @@ class UserFixtures extends Fixture
             $user->setFullName($cols[0]);
             $user->setEmail($cols[1]);
 
-            $password = $this->encoder->encodePassword($user, $cols[2]);
+            $password = $this->encoder->hashPassword($user, $cols[2]);
 
             $user->setPassword($password);
 
