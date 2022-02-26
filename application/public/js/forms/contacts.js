@@ -15,11 +15,6 @@ const editModal = (button) => {
     $("#email").value = dataset.email;
     $("#website").value = dataset.website;
 
-    // Types
-
-    //
-
-    // Roles
-
-    //
+    setOptions(button, "type");
+    setOptions(button, "role");
 };

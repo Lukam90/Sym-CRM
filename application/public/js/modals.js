@@ -17,3 +17,15 @@ const setModalData = (button, type) => {
 };
 
 const addModal = (button) => setModalData(button, "modal");
+
+const setOptions = (button, name) => {
+    let radios = all(`input[name='${name}']`);
+
+    let selectedRadio = button.dataset[name];
+
+    for (let radio of radios) {
+        if (radio.value == selectedRadio) {
+            radio.checked = true;
+        }
+    }
+};

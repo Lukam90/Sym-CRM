@@ -1,19 +1,19 @@
 fullName;email;password;role
-Alexandre Legrand;super@admin.com;Super$007;SUPER_ADMIN
-Jules César;jules@admin.com;Admin$007;ADMIN
-Matthieu Cicéron;matt@manager.com;Matt$007;MANAGER
-Lucas Desparte;lucas@manager.com;Lucas$007;MANAGER
-Aurélie Ducas;aurelie@user.com;Aurel$007;USER
-Françoise Boulanger;francoise@user.com;Francoise$123;USER
-Marc Forgeron;marc@user.com;Marc$222;USER
-Regis Robert;regis@user.com;Regis$234;USER
-Achille Parmentier;achille@user.com;Ash$456;USER
-James Bond;james@user.com;Agent$007;USER
-Bruce Wayne;bruce@user.com;Batman$789;USER
-Jamel Jibril;jamel@user.com;Jamel$123;USER
-Lao Tseu;mao@user.com;Lao$456;USER
-Paulo Coelho;paulo@user.com;Paulo$789;USER
-Pablo Sanchez;pedro@user.com;Pedro$123;USER
-Luigi Benitto;luigi@user.com;Luigi$456;USER
-Anja Fritz;anja@user.com;Anja$123;USER
-Julia Grimaux;julia@user.com;Julia$456;USER
+Alexandre Legrand;super@admin.com;Super$007;Super Admin
+Jules César;jules@admin.com;Admin$007;Administrateur
+Matthieu Cicéron;matt@manager.com;Matt$007;Manager
+Lucas Desparte;lucas@manager.com;Lucas$007;Manager
+Aurélie Ducas;aurelie@user.com;Aurel$007;Membre
+Françoise Boulanger;francoise@user.com;Francoise$123;Membre
+Marc Forgeron;marc@user.com;Marc$222;Membre
+Regis Robert;regis@user.com;Regis$234;Membre
+Achille Parmentier;achille@user.com;Ash$456;Membre
+James Bond;james@user.com;Agent$007;Membre
+Bruce Wayne;bruce@user.com;Batman$789;Membre
+Jamel Jibril;jamel@user.com;Jamel$123;Membre
+Lao Tseu;mao@user.com;Lao$456;Membre
+Paulo Coelho;paulo@user.com;Paulo$789;Membre
+Pablo Sanchez;pedro@user.com;Pedro$123;Membre
+Luigi Benitto;luigi@user.com;Luigi$456;Membre
+Anja Fritz;anja@user.com;Anja$123;Membre
+Julia Grimaux;julia@user.com;Julia$456;Membre
