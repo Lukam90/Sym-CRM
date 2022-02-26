@@ -2,6 +2,10 @@
 
 {% block title "Liste des utilisateurs" %}
 
+{% block scripts %}
+<script src="{{ asset('js/forms/users.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <h2 class="title">Liste des utilisateurs</h2>
 
@@ -23,32 +27,34 @@
 
         <tbody>
         {% for user in users %}
+            {% set role = user.role %}
+            {% set color = colors[role] %}
+
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.fullName }}</td>
-                <td>{{ user.roles[0] }}</td>
+                <td class="{{ color }}">{{ role }}</td>
                 <td>{{ user.createdAt | date("d/m/Y") }}</td>
-
-                <td>
-                    <a href="{# path('users.profile', { 'id' : user.id }) #}" class="button is-info">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                </td>
                     
                 <td>
-                    <a href="{{ path('users.edit', { 'id' : user.id }) }}" class="button is-success">
+                    <button
+                        class="button is-success"
+                        data-modal-title="Edition d'un utilisateur"
+                        data-form-action="/users/edit/{{ user.id }}"
+                        data-role="{{ role }}"
+                        data-token="{{ csrf_token('edit') }}"
+                        onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </button>
                 </td>
                     
                 <td>
                     <button
                         class="button is-danger"
-                        data-name="l'utilisateur"
-                        data-type="users"
-                        data-id="{{ user.id }}"
-                        data-title="{{ user.fullName }}"
-                        data-token="{{ csrf_token('delete' ~ user.id) }}"
+                        data-modal-title="Suppression d'un utilisateur"
+                        data-form-action="/users/delete/{{ user.id }}"
+                        data-name="{{ user.fullName }}"
+                        data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
                         <i class="fa fa-times"></i>
                     </button>
@@ -62,5 +68,7 @@
 {# Modals #}
 
 {% include "users/delete_user.html.twig" %}
+
+{% include "users/edit_user.html.twig" %}
 
 {% endblock %}

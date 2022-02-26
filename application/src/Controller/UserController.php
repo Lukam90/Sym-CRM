@@ -48,12 +48,12 @@ class UserController extends AppController
     }
 
     /**
-     * Set form value
+     * Set user's role
      * 
      * @param User $user
      */
-    public function setFormValue(User $user) {
-        $user->setName($this->getRequest()->get("name"));
+    public function setRole(User $user) {
+        $user->setRole($this->getRequest()->get("role"));
     }
 
     /* CRUD */
@@ -67,9 +67,20 @@ class UserController extends AppController
     {
         $users = $this->getAll();
 
+        $roles = ["Administrateur", "Manager", "Membre"];
+
+        $colors = [
+            "Super Admin" => "red",
+            $roles[0] => "orange",
+            $roles[1] => "green",
+            $roles[2] => "black",
+        ];
+
         return $this->render('users/list_users.html.twig', [
             'title' => 'Liste des utilisateurs',
-            'users' => $users
+            'users' => $users,
+            'roles' => $roles,
+            'colors' => $colors
         ]);
     }
 
@@ -114,7 +125,7 @@ class UserController extends AppController
         $this->isNotFound($user);
 
         if ($this->isFormValid("edit")) {
-            $this->setFormValue($user);
+            $this->setRole($user);
 
             $this->entityManager->flush();
 

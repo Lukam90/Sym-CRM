@@ -38,9 +38,7 @@ class UserFixtures extends Fixture
 
             $user->setPassword($password);
 
-            $role = $cols[3];
-
-            $user->setRoles(["$role"]);
+            $user->setRole($cols[3]);
 
             $manager->persist($user);
             $manager->flush();

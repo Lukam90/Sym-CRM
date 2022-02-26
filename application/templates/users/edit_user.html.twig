@@ -1,5 +1,15 @@
-{% extends "modals/form_modal.html" %}
+{% extends "modals/form_modal.html.twig" %}
 
 {% block modal %}
+<div class="field">
+    <label for="role" class="label">Rôle (*)</label>
 
+    <div class="select">
+        <select name="role" id="role">
+            {% for role in roles %}
+            <option value="{{ role }}">{{ role }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
 {% endblock %}
