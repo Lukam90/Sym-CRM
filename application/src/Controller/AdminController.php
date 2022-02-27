@@ -3,12 +3,50 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Repository\TeamRepository;
+use App\Repository\UserRepository;
+use App\Repository\EventRepository;
+use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
+    /**
+     * @var 
+     */
+    private UserRepository $userRepository;
+
+    /**
+     * @var 
+     */
+    private TeamRepository $teamRepository;
+
+    /**
+     * @var 
+     */
+    private ContactRepository $contactRepository;
+
+    /**
+     * @var 
+     */
+    private EventRepository $eventRepository;
+
+    // Constructor
+
+    public function __construct(
+        UserRepository $userRepository,
+        TeamRepository $teamRepository,
+        ContactRepository $contactRepository,
+        EventRepository $eventRepository
+    ) {
+        $this->userRepository = $userRepository;
+        $this->teamRepository = $teamRepository;
+        $this->contactRepository = $contactRepository;
+        $this->eventRepository = $eventRepository;
+    }
+
     /**
      * Pluralize the stats
      */
@@ -33,22 +71,22 @@ class AdminController extends AbstractController
     {
         $stats = [
             [
-                "number" => 25,
+                "number" => $this->userRepository->countAll(),
                 "type" => "utilisateur",
                 "color" => "info"
             ],
             [
-                "number" => 32,
+                "number" => $this->teamRepository->countAll(),
                 "type" => "équipe",
                 "color" => "success"
             ],
             [
-                "number" => 14,
+                "number" => $this->eventRepository->countAll(),
                 "type" => "événement",
                 "color" => "danger"
             ],
             [
-                "number" => 20,
+                "number" => $this->contactRepository->countAll(),
                 "type" => "contact",
                 "color" => "warning"
             ]
@@ -56,21 +94,9 @@ class AdminController extends AbstractController
 
         $stats = $this->pluralize($stats);
 
-        $lastContacts = [
-            ["fullName" => "Jean Dupont", "createdAt" => new DateTime()],
-            ["fullName" => "Martin Laval", "createdAt" => new DateTime()],
-            ["fullName" => "René Durand", "createdAt" => new DateTime()],
-            ["fullName" => "Michel Boulanger", "createdAt" => new DateTime()],
-            ["fullName" => "Victor Legrand", "createdAt" => new DateTime()],
-        ];
+        $lastContacts = $this->contactRepository->findLast();
 
-        $lastEvents = [
-            ["title" => "RDV avec Jean Dupont", "date" => new DateTime()],
-            ["title" => "RDV avec Martin Laval", "date" => new DateTime()],
-            ["title" => "RDV avec René Durand", "date" => new DateTime()],
-            ["title" => "RDV avec Michel Boulanger", "date" => new DateTime()],
-            ["title" => "RDV avec Victor Legrand", "date" => new DateTime()],
-        ];
+        $lastEvents = $this->eventRepository->findLast();
 
         return $this->render('admin/dashboard.html.twig', [
             'title' => 'Tableau de bord',
