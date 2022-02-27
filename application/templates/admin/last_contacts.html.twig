@@ -6,11 +6,27 @@
 
         <div class="card-content">
             <div class="content">
-                <ul>
-                    {% for contact in contacts %}
-                    <li>{{ contact.fullName }} ({{ contact.type}}, {{ contact.role}})</li>
-                    {% endfor %}
-                </ul>
+                <div class="table-container">
+                    <table class="table is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th class="is-narrow">Nom</th>
+                                <th class="is-narrow">Type</th>
+                                <th class="is-narrow">Rôle</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for contact in contacts %}
+                            <tr>
+                                <td class="is-narrow">{{ contact.fullName }}</td>
+                                <td class="is-narrow">{{ contact.type}}</td>
+                                <td class="is-narrow">{{ contact.role}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

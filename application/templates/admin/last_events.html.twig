@@ -6,13 +6,27 @@
 
         <div class="card-content">
             <div class="content">
-                <ul>
-                    {% for event in events %}
-                        {% set date = event.date %}
+                <div class="table-container">
+                    <table class="table is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th class="is-narrow">Nom</th>
+                                <th class="is-narrow">Date</th>
+                                <th class="is-narrow">Heure</th>
+                            </tr>
+                        </thead>
 
-                        <li>{{ event.title }} ({{ date | date("d/m/Y") }} à {{ date | date("H:i") }})</li>
-                    {% endfor %}
-                </ul>
+                        <tbody>
+                            {% for event in events %}
+                            <tr>
+                                <td class="is-narrow">{{ event.title }}</td>
+                                <td class="is-narrow">{{ event.date | date("d/m/Y") }}</td>
+                                <td class="is-narrow">{{ event.date | date("H:i") }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
