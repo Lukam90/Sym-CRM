@@ -15,6 +15,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class EventController extends AppController
 {
+    /* Constants */
+
+    const TYPES = [
+        ["id" => "reunion", "value" => "Réunion"],
+        ["id" => "tache", "value" => "Tâche"],
+    ];
+
     /* Constructor */
 
     public function __construct(EventRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
@@ -58,10 +65,27 @@ class EventController extends AppController
         $event->setDescription($this->getRequest()->get("description"));
     }
 
+    /**
+     * Render the list of events
+     * 
+     * @param Event[] $events
+     * 
+     * @return Response
+     */
+    public function renderList($events) {
+        return $this->render('events/list_events.html.twig', [
+            'title' => 'Liste des événements',
+            'events' => $events,
+            'types' => self::TYPES
+        ]);
+    }
+
     /* CRUD */
     
     /**
      * @Route("/events", name="events")
+     * 
+     * @param array $sort
      * 
      * @return Response
      */
@@ -69,16 +93,22 @@ class EventController extends AppController
     {
         $events = $this->getAll();
 
-        $types = [
-            ["id" => "reunion", "value" => "Réunion"],
-            ["id" => "tache", "value" => "Tâche"],
-        ];
+        return $this->renderList($events);
+    }
 
-        return $this->render('events/list_events.html.twig', [
-            'title' => 'Liste des événements',
-            'events' => $events,
-            'types' => $types
-        ]);
+    /**
+     * @Route("/events/sort/{field}/{order}", name="events.sort")
+     * 
+     * @param string $field
+     * @param string $order
+     * 
+     * @return Response
+     */
+    public function sort($field, $order): Response
+    {
+        $events = $this->repository->sort($field, $order);
+
+        return $this->renderList($events);
     }
 
     /**

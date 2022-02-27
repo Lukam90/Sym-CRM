@@ -44,4 +44,16 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult()
         ;
     }
+
+    /**
+     * @return Event[] Returns an array of Event objects
+     */
+    public function sort($field, $order = 'ASC')
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy("e.$field", $order)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

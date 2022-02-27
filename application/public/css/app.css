@@ -14,3 +14,7 @@ footer {
     width: 80%;
     margin: auto;
 }
+
+.sortable {
+    cursor: pointer;
+}

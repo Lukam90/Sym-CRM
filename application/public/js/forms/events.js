@@ -15,3 +15,22 @@ const editModal = (button) => {
 
     setOptions(button, "type");
 };
+
+const sort = (field, order) => {
+    let xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.onreadystatechange = function () {
+        //console.log(this.readyState)
+
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Ajax Events OK");
+
+            console.log(this.responseText);
+        } else {
+            console.log("Ajax Events Errors");
+        }
+    };
+
+    xmlHttp.open("GET", `/events?field=${field}&order=${order}`, true); // true
+    xmlHttp.send();
+};

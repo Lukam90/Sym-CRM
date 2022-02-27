@@ -26,11 +26,26 @@
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>Date & Heure</th>
-                <th>Description</th>
+                <th class="sortable">
+                    <a href="{{ url('events.sort', { field: 'id', order: 'desc' }) }}">#</a>
+                </th>
+
+                <th class="sortable">
+                    <a href="{{ url('events.sort', { field: 'title', order: 'desc' }) }}">Titre</a>
+                </th>
+                
+                <th class="sortable">
+                    <a href="{{ url('events.sort', { field: 'type', order: 'desc' }) }}">Type</a>
+                </th>
+                
+                <th class="sortable">
+                    <a href="{{ url('events.sort', { field: 'date', order: 'desc' }) }}">Date & Heure</a>
+                </th>
+                
+                <th class="sortable">
+                    <a href="{{ url('events.sort', { field: 'description', order: 'desc' }) }}">Description</a>
+                </th>
+                
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
