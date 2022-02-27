@@ -1,15 +1,17 @@
 {% for card in stats %}
 <div class="column">
     <div class="card has-background-{{ card.color }}">
-        <div class="card-content">
-            <div class="content">
-                <p class="title">{{ card.number }}</p>
+        <a href="{{ card.link }}">
+            <div class="card-content">
+                <div class="content">
+                    <p class="title">{{ card.count }}</p>
 
-                <p class="subtitle">
-                {{ card.type }}
-                </p>
+                    <p class="subtitle">
+                    {{ card.type }}
+                    </p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 {% endfor %}

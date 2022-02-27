@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\EventRepository;
 use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,12 +50,14 @@ class AdminController extends AbstractController
 
     /**
      * Pluralize the stats
+     * 
+     * @return array
      */
     public function pluralize($stats) {
         $newStats = [];
 
         foreach ($stats as $stat) {
-            if ($stat["number"] > 1) {
+            if ($stat["count"] > 1) {
                 $stat["type"] .= "s";
             }
 
@@ -65,31 +68,34 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Set card's content
+     * 
+     * @param EntityRepository $repository
+     * @param string $type
+     * @param string $link
+     * @param string $color
+     * 
+     * @return array
+     */
+    public function setCard(EntityRepository $repository, string $type, string $link, string $color) {
+        return [
+            "count" => $repository->countAll(),
+            "type" => $type,
+            "link" => $link,
+            "color" => $color
+        ];
+    }
+
+    /**
      * @Route("/dashboard", name="dashboard")
      */
     public function index(): Response
     {
         $stats = [
-            [
-                "number" => $this->userRepository->countAll(),
-                "type" => "utilisateur",
-                "color" => "info"
-            ],
-            [
-                "number" => $this->teamRepository->countAll(),
-                "type" => "équipe",
-                "color" => "success"
-            ],
-            [
-                "number" => $this->eventRepository->countAll(),
-                "type" => "événement",
-                "color" => "danger"
-            ],
-            [
-                "number" => $this->contactRepository->countAll(),
-                "type" => "contact",
-                "color" => "warning"
-            ]
+            $this->setCard($this->userRepository, "utilisateur", "/users", "info"),
+            $this->setCard($this->teamRepository, "équipe", "/teams", "success"),
+            $this->setCard($this->eventRepository, "événement", "/events", "danger"),
+            $this->setCard($this->contactRepository, "contact", "/contacts", "warning")
         ];
 
         $stats = $this->pluralize($stats);
