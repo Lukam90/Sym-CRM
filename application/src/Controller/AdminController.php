@@ -10,6 +10,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     /**
+     * Pluralize the stats
+     */
+    public function pluralize($stats) {
+        $newStats = [];
+
+        foreach ($stats as $stat) {
+            if ($stat["number"] > 1) {
+                $stat["type"] .= "s";
+            }
+
+            $newStats[] = $stat;
+        }
+
+        return $newStats;
+    }
+
+    /**
      * @Route("/dashboard", name="dashboard")
      */
     public function index(): Response
@@ -17,25 +34,27 @@ class AdminController extends AbstractController
         $stats = [
             [
                 "number" => 25,
-                "type" => "utilisateur(s)",
+                "type" => "utilisateur",
                 "color" => "info"
             ],
             [
                 "number" => 32,
-                "type" => "équipe(s)",
+                "type" => "équipe",
                 "color" => "success"
             ],
             [
                 "number" => 14,
-                "type" => "événement(s)",
+                "type" => "événement",
                 "color" => "danger"
             ],
             [
-                "number" => 40,
-                "type" => "contact(s)",
+                "number" => 20,
+                "type" => "contact",
                 "color" => "warning"
             ]
         ];
+
+        $stats = $this->pluralize($stats);
 
         $lastContacts = [
             ["fullName" => "Jean Dupont", "createdAt" => new DateTime()],
@@ -45,10 +64,19 @@ class AdminController extends AbstractController
             ["fullName" => "Victor Legrand", "createdAt" => new DateTime()],
         ];
 
+        $lastEvents = [
+            ["title" => "RDV avec Jean Dupont", "date" => new DateTime()],
+            ["title" => "RDV avec Martin Laval", "date" => new DateTime()],
+            ["title" => "RDV avec René Durand", "date" => new DateTime()],
+            ["title" => "RDV avec Michel Boulanger", "date" => new DateTime()],
+            ["title" => "RDV avec Victor Legrand", "date" => new DateTime()],
+        ];
+
         return $this->render('admin/dashboard.html.twig', [
             'title' => 'Tableau de bord',
             "stats" => $stats,
-            "contacts" => $lastContacts
+            "contacts" => $lastContacts,
+            "events" => $lastEvents
         ]);
     }
 }

@@ -7,11 +7,9 @@
         <div class="card-content">
             <div class="content">
                 <ul>
-                    <li>RDV avec Jean Dupont (26/02/2022 à 10 h 30)</li>
-                    <li>RDV avec Martin Duval (26/02/2022 à 10 h 30)</li>
-                    <li>RDV avec René Durand (26/02/2022 à 10 h 30)</li>
-                    <li>RDV avec Michel Boulanger (26/02/2022 à 10 h 30)</li>
-                    <li>RDV avec Victor Legrand (26/02/2022 à 10 h 30)</li>
+                    {% for event in events %}
+                    <li>{{ event.title }} ({{ event.date | date("d/m/Y H:i") }})</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
