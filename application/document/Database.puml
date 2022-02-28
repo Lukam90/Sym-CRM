@@ -26,8 +26,7 @@ entity Event {
     *id: int
     *title: varchar
     *type: varchar 
-    *date: date
-    *hour: time
+    *date: datetime
     description: text
 }
 
@@ -49,15 +48,15 @@ entity Contact {
 'Un utilisateur peut appartenir à une seule équipe (0,1)
 'Une équipe peut regrouper un ensemble d'utilisateurs (0,n)
 
-User |o..o{ Team
+User "0,1" -- "0,n" Team
 
 'Un utilisateur peut avoir plusieurs événements (0,n)
 'Un événement appartient à un seul utilisateur (1,1)
 
-User }o..|| Event
+User "0,n" -- "1,1" Event
 
 'Un utilisateur peut avoir plusieurs contacts (0,n)
 'Un contact appartient à un seul utilisateur (1,1)
 
-User }o..|| Contact
+User "0,n" -- "1,1" Contact
 @enduml

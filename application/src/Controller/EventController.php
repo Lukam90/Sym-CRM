@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class EventController extends AppController
@@ -65,27 +66,10 @@ class EventController extends AppController
         $event->setDescription($this->getRequest()->get("description"));
     }
 
-    /**
-     * Render the list of events
-     * 
-     * @param Event[] $events
-     * 
-     * @return Response
-     */
-    public function renderList($events) {
-        return $this->render('events/list_events.html.twig', [
-            'title' => 'Liste des événements',
-            'events' => $events,
-            'types' => self::TYPES
-        ]);
-    }
-
     /* CRUD */
     
     /**
      * @Route("/events", name="events")
-     * 
-     * @param array $sort
      * 
      * @return Response
      */
@@ -93,22 +77,39 @@ class EventController extends AppController
     {
         $events = $this->getAll();
 
-        return $this->renderList($events);
+        return $this->render('events/list_events.html.twig', [
+            'title' => 'Liste des événements',
+            'events' => $events,
+            'types' => self::TYPES
+        ]);
     }
 
     /**
-     * @Route("/events/sort/{field}/{order}", name="events.sort")
+     * @Route("/events/sort/{column}/{order}", name="events.sort")
      * 
-     * @param string $field
+     * @param string $column
      * @param string $order
      * 
-     * @return Response
+     * @return JsonResponse
      */
-    public function sort($field, $order): Response
-    {
-        $events = $this->repository->sort($field, $order);
+    public function sort(string $column, string $order) {
+        $events = $this->repository->findSorted($column, $order);
 
-        return $this->renderList($events);
+        //dd(new JsonResponse($events));
+
+        $jsonData = [];
+
+        foreach ($events as $key => $event) {
+            $jsonData[$key]["id"] = $event->getId();
+            $jsonData[$key]["title"] = $event->getTitle();
+            $jsonData[$key]["type"] = $event->getType();
+            $jsonData[$key]["date"] = $event->getDate()->format("d/m/Y H:i");
+            $jsonData[$key]["description"] = $event->getDescription();
+        }
+
+        return new JsonResponse($jsonData);
+
+        //return $events;
     }
 
     /**

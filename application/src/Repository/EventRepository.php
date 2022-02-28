@@ -48,10 +48,10 @@ class EventRepository extends ServiceEntityRepository
     /**
      * @return Event[] Returns an array of Event objects
      */
-    public function sort($field, $order = 'ASC')
+    public function findSorted($column, $order = 'ASC')
     {
         return $this->createQueryBuilder('e')
-            ->orderBy("e.$field", $order)
+            ->orderBy("e.$column", $order)
             ->getQuery()
             ->getResult()
         ;
