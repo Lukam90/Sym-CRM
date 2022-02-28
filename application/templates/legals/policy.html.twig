@@ -1,3 +1,5 @@
+{% set path = "legals/policy/" %}
+
 <div class="modal" id="policy">
     <div class="modal-background"></div>
 
@@ -9,11 +11,45 @@
         </header>
 
         <section class="modal-card-body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio placeat velit alias veritatis voluptatem libero ea dolor, natus eius. Cum, eligendi? Architecto possimus quasi, dignissimos odit eius harum consequuntur voluptas velit dolorem laudantium, facere aliquam, perspiciatis saepe neque obcaecati aspernatur nobis impedit? Nisi minus iure, ipsam dicta quae sit itaque.</p>
+            <h3 class="subtitle">Définitions</h3>
 
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam fugiat rerum sequi a, optio libero sed quasi totam autem accusamus fuga ullam! Ex quod at consequatur, similique eligendi, temporibus veritatis, quis ipsa expedita illo quaerat nobis ut officia laudantium officiis magni asperiores? Architecto, molestiae! Aperiam nulla asperiores maxime dignissimos sunt!</p>
+            {% include path ~ "definitions.html" %}
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim in, id dignissimos sed porro reprehenderit. Esse culpa iure officiis, ut, atque laboriosam porro sapiente nobis ea fugiat, veritatis vitae. Reiciendis, minima, eos illo cumque laudantium amet alias nobis veniam nostrum maxime facere nesciunt id rerum, optio totam repudiandae magni at.</p>
+            <h3 class="subtitle">Nature des données collectées</h3>
+            
+            {% include path ~ "nature_donnees.html" %}
+            
+            <h3 class="subtitle">Conservation des données techniques et personnelles</h3>
+            
+            {% include path ~ "conservation_donnees.html" %}
+            
+            <h3 class="subtitle">Suppression des données après suppression du compte</h3>
+            
+            {% include path ~ "suppression_donnees_compte.html" %}
+            
+            <h3 class="subtitle">Suppression des données après 3 ans d’inactivité</h3>
+
+            {% include path ~ "suppression_donnees_inactivite.html" %}
+            
+            <h3 class="subtitle">Formulaires de contact</h3>
+            
+            {% include path ~ "donnees_contact.html" %}
+            
+            <h3 class="subtitle">Cookies</h3>
+            
+            {% include path ~ "cookies.html" %}
+            
+            <h3 class="subtitle">Informations supplémentaires</h3>
+            
+            {% include path ~ "infos_diverses.html" %}
+            
+            <h3 class="subtitle">Retrait du Consentement concernant vos données personnelles</h3>
+            
+            {% include path ~ "retrait_consentement.html" %}
+            
+            <h3 class="subtitle">Modification des CGU et de la politique de confidentialité</h3>
+            
+            {% include path ~ "maj_cgu.html" %}
         </section>
 
         <footer class="modal-card-foot">
