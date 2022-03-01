@@ -22,26 +22,28 @@
     </button>
 </div>
 
-<div class="table-container">
+{% include "partials/search.html.twig" %}
+
+<div class="table-container mt-20">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
-                <th class="sortable" data-column="id" data-order="desc" onclick="sortColumn(this);">
-                # &#9650
+                <th>
+                    <a href="{{ path('events.sort', { column: 'id' }) }}">#</a>
                 </th>
 
-                <th class="sortable" data-column="title" data-order="desc" onclick="sortColumn(this);">
-                Titre &#9650
+                <th>
+                    <a href="{{ path('events.sort', { column: 'title' }) }}">Titre</a>
                 </th>
                 
-                <th class="sortable" data-column="type" data-order="desc" onclick="sortColumn(this);">
-                Type &#9650
+                <th>
+                    <a href="{{ path('events.sort', { column: 'type' }) }}">Type</a>
                 </th>
-                
-                <th class="sortable" data-column="date" data-order="desc" onclick="sortColumn(this);">
-                Date & Heure &#9650
+
+                <th>
+                    <a href="{{ path('events.sort', { column: 'date' }) }}">Date &amp; Heure</a>
                 </th>
-                
+
                 <th>Description</th>
                 
                 <th class="is-narrow"></th>

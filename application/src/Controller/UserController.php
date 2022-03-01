@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EventFormType;
+use App\Form\UserFormType;
 use App\Controller\AppController;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +14,17 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class UserController extends AppController
 {
+    /* Constants */
+
+    const ROLES = ["Administrateur", "Manager", "Membre"];
+
+    const COLORS = [
+        "Super Admin" => "red",
+        self::ROLES[0] => "orange",
+        self::ROLES[1] => "green",
+        self::ROLES[2] => "black",
+    ];
+
     /* Constructor */
 
     public function __construct(UserRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
@@ -56,6 +67,23 @@ class UserController extends AppController
         $user->setRole($this->getRequest()->get("role"));
     }
 
+    /**
+     * Render the list of users
+     * 
+     * @param User[] $users
+     * 
+     * @return Response
+     */
+    public function renderList($users) : Response
+    {
+        return $this->render('users/list_users.html.twig', [
+            'title' => 'Liste des utilisateurs',
+            'users' => $users,
+            'roles' => self::ROLES,
+            'colors' => self::COLORS
+        ]);
+    }
+
     /* CRUD */
 
     /**
@@ -67,21 +95,20 @@ class UserController extends AppController
     {
         $users = $this->getAll();
 
-        $roles = ["Administrateur", "Manager", "Membre"];
+        return $this->renderList($users);
+    }
 
-        $colors = [
-            "Super Admin" => "red",
-            $roles[0] => "orange",
-            $roles[1] => "green",
-            $roles[2] => "black",
-        ];
+    /**
+     * @Route("/users/sort/{column}", name="users.sort")
+     * 
+     * @param string $column
+     * 
+     * @return Response
+     */
+    public function sort(string $column): Response {
+        $users = $this->repository->findSorted($column);
 
-        return $this->render('users/list_users.html.twig', [
-            'title' => 'Liste des utilisateurs',
-            'users' => $users,
-            'roles' => $roles,
-            'colors' => $colors
-        ]);
+        return $this->renderList($users);
     }
 
     /**

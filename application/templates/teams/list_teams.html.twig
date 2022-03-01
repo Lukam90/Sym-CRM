@@ -22,13 +22,22 @@
     </button>
 </div>
 
+{% include "partials/search.html.twig" %}
+
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nom</th>
+                <th>
+                    <a href="{{ path('teams.sort', { column: 'id' }) }}">#</a>
+                </th>
+
+                <th>
+                    <a href="{{ path('teams.sort', { column: 'name' }) }}">Nom</a>
+                </th>
+                
                 <th>Membres</th>
+                
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
             </tr>

@@ -30,4 +30,16 @@ class TeamRepository extends ServiceEntityRepository
             ->getSingleScalarResult()
         ;
     }
+
+    /**
+     * @return Team[] Returns an array of Team objects
+     */
+    public function findSorted($column, $order = 'ASC')
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy("t.$column", $order)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

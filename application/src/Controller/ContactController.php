@@ -14,6 +14,22 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContactController extends AppController
 {
+    /* Constants */
+
+    const TYPES = [
+        ["id" => "particulier", "value" => "Particulier"],
+        ["id" => "entreprise", "value" => "Entreprise"],
+    ];
+
+    const ROLES = [
+        ["id" => "collaborateur", "value" => "Collaborateur"],
+        ["id" => "client", "value" => "Client"],
+        ["id" => "prestataire", "value" => "Prestataire"],
+        ["id" => "fournisseur", "value" => "Fournisseur"],
+    ];
+
+    /* Constructor */
+
     public function __construct(ContactRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
@@ -60,6 +76,23 @@ class ContactController extends AppController
         $contact->setWebsite($this->getRequest()->get("website"));
     }
 
+    /**
+     * Render the list of contacts
+     * 
+     * @param Contact[] $contacts
+     * 
+     * @return Response
+     */
+    public function renderList($contacts) : Response
+    {
+        return $this->render('contacts/list_contacts.html.twig', [
+            'title' => 'Liste des contacts',
+            "contacts" => $contacts,
+            "types" => self::TYPES,
+            "roles" => self::ROLES
+        ]);
+    }
+
     /* CRUD */
 
     /**
@@ -70,24 +103,20 @@ class ContactController extends AppController
     public function index(): Response {
         $contacts = $this->getAll();
 
-        $types = [
-            ["id" => "particulier", "value" => "Particulier"],
-            ["id" => "entreprise", "value" => "Entreprise"],
-        ];
+        return $this->renderList($contacts);
+    }
 
-        $roles = [
-            ["id" => "collaborateur", "value" => "Collaborateur"],
-            ["id" => "client", "value" => "Client"],
-            ["id" => "prestataire", "value" => "Prestataire"],
-            ["id" => "fournisseur", "value" => "Fournisseur"],
-        ];
+    /**
+     * @Route("/contacts/sort/{column}", name="contacts.sort")
+     * 
+     * @param string $column
+     * 
+     * @return Response
+     */
+    public function sort(string $column): Response {
+        $contacts = $this->repository->findSorted($column);
 
-        return $this->render('contacts/list_contacts.html.twig', [
-            'title' => 'Liste des contacts',
-            "contacts" => $contacts,
-            "types" => $types,
-            "roles" => $roles
-        ]);
+        return $this->renderList($contacts);
     }
 
     /**

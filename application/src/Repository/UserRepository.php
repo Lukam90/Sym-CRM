@@ -47,4 +47,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getSingleScalarResult()
         ;
     }
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function findSorted($column, $order = 'ASC')
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy("u.$column", $order)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

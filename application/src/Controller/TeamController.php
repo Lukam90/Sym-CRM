@@ -55,6 +55,21 @@ class TeamController extends AppController
         $team->setName($this->getRequest()->get("name"));
     }
 
+    /**
+     * Render the list of teams
+     * 
+     * @param Team[] $teams
+     * 
+     * @return Response
+     */
+    public function renderList($teams) : Response
+    {
+        return $this->render('teams/list_teams.html.twig', [
+            'title' => 'Liste des équipes',
+            'teams' => $teams,
+        ]);
+    }
+
     /* CRUD */
 
     /**
@@ -70,6 +85,19 @@ class TeamController extends AppController
             'title' => 'Liste des équipes',
             'teams' => $teams
         ]);
+    }
+
+    /**
+     * @Route("/teams/sort/{column}", name="teams.sort")
+     * 
+     * @param string $column
+     * 
+     * @return Response
+     */
+    public function sort(string $column): Response {
+        $teams = $this->repository->findSorted($column);
+
+        return $this->renderList($teams);
     }
 
     /**

@@ -11,14 +11,28 @@
 
 {% include "partials/messages.html.twig" %}
 
+{% include "partials/search.html.twig" %}
+
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nom</th>
-                <th>Rôle</th>
-                <th>Date d'inscription</th>
+                <th>
+                    <a href="{{ path('users.sort', { column: 'id' }) }}">#</a>
+                </th>
+
+                <th>
+                    <a href="{{ path('users.sort', { column: 'fullName' }) }}">Nom</a>
+                </th>
+
+                <th>
+                    <a href="{{ path('users.sort', { column: 'role' }) }}">Rôle</a>
+                </th>
+
+                <th>
+                    <a href="{{ path('users.sort', { column: 'created_at' }) }}">Date d'inscription</a>
+                </th>
+
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>
                 <th class="is-narrow"></th>

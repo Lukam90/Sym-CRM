@@ -48,6 +48,20 @@
     width: 100%;
 }
 
+/* Margins */
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
 /* Colors */
 
 .red {
