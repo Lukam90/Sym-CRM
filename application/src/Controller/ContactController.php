@@ -120,6 +120,21 @@ class ContactController extends AppController
     }
 
     /**
+     * @Route("/contacts/search", name="contacts.search")
+     * 
+     * @param string $name
+     * 
+     * @return Response
+     */
+    public function search(): Response {
+        $name = $this->getRequest()->get("filter");
+
+        $contacts = $this->repository->findByName($name);
+
+        return $this->renderList($contacts);
+    }
+
+    /**
      * @Route("/contacts/new", name="contacts.new")
      * 
      * @return Response

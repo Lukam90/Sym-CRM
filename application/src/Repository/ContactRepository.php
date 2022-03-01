@@ -56,4 +56,17 @@ class ContactRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Contact[] Returns an array of Contact objects
+     */
+    public function findByName($name)
+    {
+        return $this->createQueryBuilder('c')
+            ->where("c.fullName LIKE :name")
+            ->setParameter("name", "%$name%")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

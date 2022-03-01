@@ -22,7 +22,15 @@
     </button>
 </div>
 
-{% include "partials/search.html.twig" %}
+<div class="block">
+    <form action="{{ path('contacts.search') }}" id="searchForm">
+        <div class="field">
+            <input type="search" name="filter" class="input width-25" placeholder="Ex: Jean Dupont" />
+
+            <button type="submit" class="button is-link ml-10">Rechercher</button>
+        </div>
+    </form>
+</div>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
