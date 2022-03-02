@@ -15,7 +15,7 @@
         <footer class="modal-card-foot">
             <form action="#" method="post" id="deleteForm">
                 <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" name="_token" value="{{ csrf_token('delete') }}" />
+                <input type="hidden" name="_token" id="deleteToken" value="#" />
 
                 <button class="button is-danger">Oui</button>
                 <button class="button is-link" onclick="closeModal('#delete', event)">Non</button>

@@ -15,8 +15,6 @@
 <div class="block">
     <button
         class="button is-link"
-        data-modal-title="Ajout d'un contact"
-        data-form-action="/contacts/new"
         data-token="{{ csrf_token('new') }}"
         onclick="addModal(this);">
         <i class="fa fa-plus"></i> &nbsp; Nouvel contact
@@ -44,29 +42,29 @@
                 <th>
                     # &nbsp;
 
-                    <a href="{{ url('contacts.sort', { column: 'id', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ url('contacts.sort', { column: 'id', order: 'desc' }) }}">&#9650;</a>
+                    <a href="{{ path('contacts.sort', { column: 'id', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ path('contacts.sort', { column: 'id', order: 'desc' }) }}">&#9650;</a>
                 </th>
 
                 <th>
                     Nom &nbsp;
 
-                    <a href="{{ url('contacts.sort', { column: 'fullName', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ url('contacts.sort', { column: 'fullName', order: 'desc' }) }}">&#9650;</a>
+                    <a href="{{ path('contacts.sort', { column: 'fullName', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ path('contacts.sort', { column: 'fullName', order: 'desc' }) }}">&#9650;</a>
                 </th>
                 
                 <th>
                     Type &nbsp;
 
-                    <a href="{{ url('contacts.sort', { column: 'type', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ url('contacts.sort', { column: 'type', order: 'desc' }) }}">&#9650;</a>
+                    <a href="{{ path('contacts.sort', { column: 'type', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ path('contacts.sort', { column: 'type', order: 'desc' }) }}">&#9650;</a>
                 </th>
                 
                 <th>
                     Rôle &nbsp;
 
-                    <a href="{{ url('contacts.sort', { column: 'role', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ url('contacts.sort', { column: 'role', order: 'desc' }) }}">&#9650;</a>
+                    <a href="{{ path('contacts.sort', { column: 'role', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ path('contacts.sort', { column: 'role', order: 'desc' }) }}">&#9650;</a>
                 </th>
                 
                 <th>Coordonnées</th>
@@ -96,8 +94,6 @@
                 <td>
                     <button
                         class="button is-success"
-                        data-modal-title="Edition d'un contact"
-                        data-form-action="/contacts/edit/{{ contact.id }}"
                         data-name="{{ contact.fullName }}"
                         data-type="{{ contact.type }}"
                         data-role="{{ contact.role }}"
@@ -114,8 +110,6 @@
                 <td>
                     <button
                         class="button is-danger"
-                        data-modal-title="Suppression d'un contact"
-                        data-form-action="/contacts/delete/{{ contact.id }}"
                         data-name="{{ contact.fullName }}"
                         data-token="{{ csrf_token('delete') }}"
                         onclick="deleteModal(this)">
