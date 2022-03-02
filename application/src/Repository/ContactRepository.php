@@ -47,8 +47,11 @@ class ContactRepository extends ServiceEntityRepository
 
     /**
      * @return Contact[] Returns an array of Contact objects
+     * 
+     * @param string $column
+     * @param string $order
      */
-    public function findSorted($column, $order = 'ASC')
+    public function findSorted($column, $order)
     {
         return $this->createQueryBuilder('c')
             ->orderBy("c.$column", $order)

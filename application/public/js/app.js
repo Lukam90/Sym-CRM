@@ -8,3 +8,5 @@ const all = (id) => document.querySelectorAll(id);
 const deleteFlash = (event) => event.style.display = 'none';
 
 const formatDate = (datetime) => datetime.replace(" ", "T");
+
+const resetPage = () => window.location.reload(true);

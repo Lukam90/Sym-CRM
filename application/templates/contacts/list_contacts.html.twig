@@ -3,11 +3,12 @@
 {% block title "Liste des contacts" %}
 
 {% block scripts %}
+<script src="{{ asset('js/axios.min.js') }}"></script>
 <script src="{{ asset('js/forms/contacts.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-<h2 class="title">{{ title }}</h2>
+<h2 class="title is-2">Liste des contacts</h2>
 
 {% include "partials/messages.html.twig" %}
 
@@ -27,7 +28,11 @@
         <div class="field">
             <input type="search" name="filter" class="input width-25" placeholder="Ex: Jean Dupont" />
 
-            <button type="submit" class="button is-link ml-10">Rechercher</button>
+            <button type="submit" class="button is-link ml-10">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+
+            <button class="button is-success ml-10" onclick="resetPage();">&#8634;</button>
         </div>
     </form>
 </div>
@@ -37,21 +42,33 @@
         <thead>
             <tr>
                 <th>
-                    <a href="{{ path('contacts.sort', { column: 'id' }) }}">#</a>
+                    # &nbsp;
+
+                    <a href="{{ url('contacts.sort', { column: 'id', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ url('contacts.sort', { column: 'id', order: 'desc' }) }}">&#9650;</a>
                 </th>
 
                 <th>
-                    <a href="{{ path('contacts.sort', { column: 'fullName' }) }}">Nom</a>
-                </th>
+                    Nom &nbsp;
 
+                    <a href="{{ url('contacts.sort', { column: 'fullName', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ url('contacts.sort', { column: 'fullName', order: 'desc' }) }}">&#9650;</a>
+                </th>
+                
                 <th>
-                    <a href="{{ path('contacts.sort', { column: 'type' }) }}">Type</a>
-                </th>
+                    Type &nbsp;
 
+                    <a href="{{ url('contacts.sort', { column: 'type', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ url('contacts.sort', { column: 'type', order: 'desc' }) }}">&#9650;</a>
+                </th>
+                
                 <th>
-                    <a href="{{ path('contacts.sort', { column: 'role' }) }}">Rôle</a>
-                </th>
+                    Rôle &nbsp;
 
+                    <a href="{{ url('contacts.sort', { column: 'role', order: 'asc' }) }}">&#9660;</a>
+                    <a href="{{ url('contacts.sort', { column: 'role', order: 'desc' }) }}">&#9650;</a>
+                </th>
+                
                 <th>Coordonnées</th>
 
                 <th class="is-narrow"></th>

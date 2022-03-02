@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContactController extends AppController
@@ -86,7 +87,7 @@ class ContactController extends AppController
     public function renderList($contacts) : Response
     {
         return $this->render('contacts/list_contacts.html.twig', [
-            'title' => 'Liste des contacts',
+            "title" => "Liste des contacts",
             "contacts" => $contacts,
             "types" => self::TYPES,
             "roles" => self::ROLES
@@ -107,14 +108,15 @@ class ContactController extends AppController
     }
 
     /**
-     * @Route("/contacts/sort/{column}", name="contacts.sort")
+     * @Route("/contacts/sort/{column}/{order}", name="contacts.sort")
      * 
      * @param string $column
+     * @param string $order
      * 
      * @return Response
      */
-    public function sort(string $column): Response {
-        $contacts = $this->repository->findSorted($column);
+    public function sort(string $column, string $order): Response {
+        $contacts = $this->repository->findSorted($column, $order);
 
         return $this->renderList($contacts);
     }
