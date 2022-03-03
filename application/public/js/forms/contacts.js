@@ -5,8 +5,8 @@ const deleteModal = (button) => {
 
     let contact = button.dataset;
 
-    $(`#modalTitle`).textContent = "Suppression d'un contact";
-    $(`#modalForm`).action = `/contacts/delete/${contact.id}`;
+    $("#modalTitle").textContent = "Suppression d'un contact";
+    $("#modalForm").action = `/contacts/delete/${contact.id}`;
 
     $("#deleteName").textContent = contact.name;
 };
@@ -14,17 +14,17 @@ const deleteModal = (button) => {
 const addModal = (button) => {
     setToken(button, "modal");
 
-    $(`#modalTitle`).textContent = "Ajout d'un contact";
-    $(`#modalForm`).action = "/contacts/new";
+    $("#modalTitle").textContent = "Ajout d'un contact";
+    $("#modalForm").action = "/contacts/new";
 };
 
 const editModal = (button) => {
-    addModal(button);
+    setToken(button, "modal");
 
     let contact = button.dataset;
 
-    $(`#modalTitle`).textContent = "Edition d'un contact";
-    $(`#modalForm`).action = `/contacts/edit/${contact.id}`;
+    $("#modalTitle").textContent = "Edition d'un contact";
+    $("#modalForm").action = `/contacts/edit/${contact.id}`;
 
     $("#name").value = contact.name;
     $("#address").value = contact.address;

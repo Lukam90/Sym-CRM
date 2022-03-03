@@ -3,7 +3,6 @@
 {% block title "Liste des contacts" %}
 
 {% block scripts %}
-<script src="{{ asset('js/axios.min.js') }}"></script>
 <script src="{{ asset('js/forms/contacts.js') }}"></script>
 {% endblock %}
 
@@ -81,6 +80,7 @@
                 <td>{{ contact.fullName }}</td>
                 <td>{{ contact.type }}</td>
                 <td>{{ contact.role }}</td>
+
                 <td>
                     <i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
                     <i class="fa fa-at"></i> &nbsp; {{ contact.email }}<br />

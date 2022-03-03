@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Helpers\Constants;
 use App\Form\ContactFormType;
 use App\Controller\AppController;
 use App\Repository\ContactRepository;
@@ -15,20 +16,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContactController extends AppController
 {
-    /* Constants */
-
-    const TYPES = [
-        ["id" => "particulier", "value" => "Particulier"],
-        ["id" => "entreprise", "value" => "Entreprise"],
-    ];
-
-    const ROLES = [
-        ["id" => "collaborateur", "value" => "Collaborateur"],
-        ["id" => "client", "value" => "Client"],
-        ["id" => "prestataire", "value" => "Prestataire"],
-        ["id" => "fournisseur", "value" => "Fournisseur"],
-    ];
-
     /* Constructor */
 
     public function __construct(ContactRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
@@ -89,8 +76,8 @@ class ContactController extends AppController
         return $this->render('contacts/list_contacts.html.twig', [
             "title" => "Liste des contacts",
             "contacts" => $contacts,
-            "types" => self::TYPES,
-            "roles" => self::ROLES
+            "types" => Constants::TYPES,
+            "roles" => Constants::ROLES
         ]);
     }
 
