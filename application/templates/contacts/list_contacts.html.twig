@@ -56,23 +56,11 @@
                 </td>
                     
                 <td>
-                    <button
-                        class="button is-success"
-                        data-contact="{{ contact }}"
-                        data-token="{{ csrf_token('edit') }}"
-                        onclick="editModal(this)">
-                        <i class="fa fa-pencil"></i>
-                    </button>
+                    <edit-contact data="{{ contact }}" token="{{ csrf_token('edit') }}"></edit-contact>
                 </td>
                     
                 <td>
-                    <button
-                        class="button is-danger"
-                        data-contact="{{ contact }}"
-                        data-token="{{ csrf_token('delete') }}"
-                        onclick="deleteModal(this)">
-                        <i class="fa fa-times"></i>
-                    </button>
+                    <delete-contact data="{{ contact }}" token="{{ csrf_token('delete') }}"></delete-contact>
                 </td>
             </tr>
             {% else %}

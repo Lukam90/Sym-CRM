@@ -1,12 +1,12 @@
 const deleteModal = (button) => {
     setToken(button, "delete");
 
-    let contact = JSON.parse(button.dataset.contact);
+    let id = button.getAttribute("id");
+    let name = button.getAttribute("name");
 
     $("#deleteTitle").textContent = "Suppression d'un contact";
-    $("#deleteForm").action = `/contacts/delete/${contact.id}`;
-
-    $("#deleteName").textContent = contact.fullName;
+    $("#deleteForm").action = `/contacts/delete/${id}`;
+    $("#deleteName").textContent = name;
 };
 
 const addModal = (button) => {
@@ -19,17 +19,17 @@ const addModal = (button) => {
 const editModal = (button) => {
     setToken(button, "modal");
 
-    let contact = JSON.parse(button.dataset.contact);
+    let id = button.getAttribute("id");
 
     $("#modalTitle").textContent = "Edition d'un contact";
-    $("#modalForm").action = `/contacts/edit/${contact.id}`;
+    $("#modalForm").action = `/contacts/edit/${id}`;
 
-    $("#name").value = contact.fullName;
-    $("#address").value = contact.address;
-    $("#phone").value = contact.phone;
-    $("#email").value = contact.email;
-    $("#website").value = contact.website;
+    setValue(button, "name");
+    setValue(button, "address");
+    setValue(button, "phone");
+    setValue(button, "email");
+    setValue(button, "website");
 
-    setOptions(contact, "type");
-    setOptions(contact, "role");
+    setOptions(button, "type");
+    setOptions(button, "role");
 };

@@ -6,18 +6,22 @@ const closeModal = (id, event = null) => {
     if (event)  event.preventDefault();
 };
 
+const setValue = (button, name) => {
+    $(`#${name}`).value = button.getAttribute(name);
+}
+
 const setToken = (button, type) => {
-    let token = button.dataset.token;
+    let token = button.getAttribute("token");
 
     $(`#${type}Token`).value = token;
 
     openModal(`#${type}`);
 };
 
-const setOptions = (object, name) => {
+const setOptions = (button, name) => {
     let radios = all(`input[name='${name}']`);
 
-    let selectedRadio = object[name];
+    let selectedRadio = button.getAttribute(name);
 
     for (let radio of radios) {
         if (radio.value == selectedRadio) {
