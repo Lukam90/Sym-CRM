@@ -1,12 +1,12 @@
 const deleteModal = (button) => {
     setToken(button, "delete");
 
-    let contact = button.dataset;
+    let contact = JSON.parse(button.dataset.contact);
 
-    $("#modalTitle").textContent = "Suppression d'un contact";
-    $("#modalForm").action = `/contacts/delete/${contact.id}`;
+    $("#deleteTitle").textContent = "Suppression d'un contact";
+    $("#deleteForm").action = `/contacts/delete/${contact.id}`;
 
-    $("#deleteName").textContent = contact.name;
+    $("#deleteName").textContent = contact.fullName;
 };
 
 const addModal = (button) => {

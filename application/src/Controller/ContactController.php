@@ -139,6 +139,8 @@ class ContactController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("Le contact a bien été ajouté.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("contacts");
@@ -162,6 +164,8 @@ class ContactController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("Le contact a bien été édité.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("contacts");
@@ -185,6 +189,8 @@ class ContactController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("Le contact a bien été supprimé.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("contacts");

@@ -83,7 +83,7 @@ abstract class AppController extends AbstractController
      * 
      * @param string $message
      */
-    public function addError(string $message) {
+    public function addError(string $message = "Une erreur s'est produite...") {
         $this->addFlash("danger", $message);
     }
 }
