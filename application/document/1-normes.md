@@ -38,7 +38,7 @@ Dans le cas de cette application, les éléments suivants seront à prévoir :
 
 L'application veillera à respecter certains principes de sécurité en incluant :
 - des protections contre certaines failles (XSS, CSRF, DDoS, injections SQL...)
-- un système de rôles (utilisateur, modérateur, administrateur) permettant un accès à certaines pages et fonctionnalités
+- un système de rôles (utilisateur, modérateur, administrateur, super administrateur) permettant un accès à certaines pages et fonctionnalités
 - un système de hachage des mots de passe
 - un système de vérification d'identité, permettant à un seul utilisateur d'accéder à ses données (consultation de profil, modification et suppression des suggestions et identifiants)
 - une page de redirection en cas d'adresse invalide (erreur 404)

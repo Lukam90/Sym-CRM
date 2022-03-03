@@ -26,7 +26,7 @@
 
 <div class="page-break"></div>
 
-# Sym-CRM - Cahier des charges
+# Sym-CRM - Dossier d'analyse
 
 ## Les normes
 
@@ -68,7 +68,7 @@ Dans le cas de cette application, les éléments suivants seront à prévoir :
 
 L'application veillera à respecter certains principes de sécurité en incluant :
 - des protections contre certaines failles (XSS, CSRF, DDoS, injections SQL...)
-- un système de rôles (utilisateur, modérateur, administrateur) permettant un accès à certaines pages et fonctionnalités
+- un système de rôles (utilisateur, modérateur, administrateur, super administrateur) permettant un accès à certaines pages et fonctionnalités
 - un système de hachage des mots de passe
 - un système de vérification d'identité, permettant à un seul utilisateur d'accéder à ses données (consultation de profil, modification et suppression des suggestions et identifiants)
 - une page de redirection en cas d'adresse invalide (erreur 404)
@@ -89,11 +89,11 @@ Un menu de navigation du site est visible tout en haut de chaque page et contien
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
 - les liens des différentes pages à droite dans cet ordre :
     - Déconnexion (si connecté)
-    - le nom complet (prénom et nom) de l'utilisateur, avec un lien vers sa page de profil
+    - le nom complet (prénom et nom, société) de l'utilisateur, avec un lien vers sa page de profil
     - Utilisateurs (si administrateur)
     - Equipes (si manager)
-    - Contacts (si connecté)
-    - Evénements (si connecté)
+    - Contacts (liste des contacts, si connecté)
+    - Evénements (liste des événements, si connecté)
 
 ### Le pied de page
 
@@ -149,7 +149,7 @@ On y retrouve l'ensemble des statistiques avec :
 - le nombre de contacts
 
 On y retrouve aussi les listes des 5 derniers :
-- contacts (nom complet, date en JJ/MM/AAAA)
+- contacts (nom complet, type et rôle)
 - événements (titre, date et heure)
 
 ### Les utilisateurs
@@ -175,7 +175,7 @@ Cette page liste l'ensemble des utilisateurs sous forme de tableau avec :
 - la date d'inscription, au format JJ/MM/AAAA (ex : 11/02/2022)
 - des boutons d'édition et de suppression (administrateur)
 
-Le nom complet de l'utilisateur sera colorié :
+Le pseudo de l'utilisateur sera colorié :
 - en vert, si c'est un manager
 - en orange, si c'est un administrateur
 - en rouge, si c'est le super-admin
@@ -221,12 +221,10 @@ Le formulaire de connexion s'affiche dans une fenêtre modale.
 
 **Contrôleur** : UsersController (login)<br>
 **Modèle** : User<br>
-**Vue** : users/login.html.twig<br>
+**Vue** : home/index.html.twig<br>
 **Rôle** : visiteur
 
 Un utilisateur est invité à se connecter avec son e-mail et son mot de passe.
-
-(+) Le formulaire de connexion se trouve dans une fenêtre modale.
 
 #### Déconnexion d'un utilisateur
 
@@ -246,9 +244,9 @@ Il est ensuite redirigé vers la page d'accueil avec un message de confirmation.
 **Vue** : users/profile.html.twig<br>
 **Rôle** : utilisateur
 
-Un utilisateur a accès à sa page de profil en cliquant sur son nom dans la barre de navigation principale.
+Un utilisateur a accès à sa page de profil en cliquant sur son prénom et nom dans la barre de navigation principale.
 
-Il peut modifier ses informations (nom complet, e-mail, mot de passe) et sa photo de profil.
+Il peut modifier ses informations (prénom, nom, e-mail, téléphone) et sa photo de profil.
 
 L'e-mail doit rester unique.
 
@@ -279,7 +277,7 @@ Un administrateur est redirigé vers un formulaire d'édition d'un utilisateur a
 
 Un administrateur est redirigé vers la page de suppression de l'utilisateur concerné.
 
-La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses données (événements, équipes et contacts).
+La suppression d'un utilisateur entraîne également la suppression de l'ensemble de ses événements et contacts.
 
 Ce même utilisateur sera supprimé de son équipe.
 
@@ -329,27 +327,10 @@ Il est libre de l'accepter ou de la refuser.
 
 S'il l'accepte, il aura accès à son calendrier.
 
-### (+) Envoyer un message
+#### (+) Envoyer un message
 
 Un utilisateur peut contacter un autre avec son adresse e-mail et un formulaire de contact dédié.
 
-#### (+) Exportation des utilisateurs
-
-**Contrôleur** : UsersController (export)<br>
-**Modèle** : User<br>
-**Vue** : admin/export.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut exporter l'ensemble des utilisateurs au format CSV ou XLS.
-
-#### (+) Importation des utilisateurs
-
-**Contrôleur** : UsersController (import)<br>
-**Modèle** : User<br>
-**Vue** : admin/import.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS.
 
 ### Les équipes
 
@@ -360,7 +341,9 @@ Un administrateur peut importer l'ensemble des utilisateurs au format CSV ou XLS
 **Vue** : teams/list_teams.html.twig<br>
 **Rôle** : manager
 
-Un manager peut voir l'ensemble des équipes avec le nom et la liste des membres.
+Un manager peut voir l'ensemble des équipes avec :
+- le nom
+- la liste de ses membres (nom complet)
 
 #### Ajout d'une équipe
 
@@ -417,23 +400,6 @@ Il doit sélectionner cet utilisateur à partir d'une liste de choix.
 
 Un manager peut transférer un utilisateur d'une équipe dans une autre.
 
-#### (+) Exportation des équipes
-
-**Contrôleur** : TeamsController (export)<br>
-**Modèle** : Team<br>
-**Vue** : admin/export.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut exporter l'ensemble des équipes au format CSV ou XLS.
-
-#### (+) Importation des équipes
-
-**Contrôleur** : TeamsController (import)<br>
-**Modèle** : Team<br>
-**Vue** : admin/import.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut importer l'ensemble des équipes au format CSV ou XLS.
 
 ### Les événements</h3>
 
@@ -450,7 +416,7 @@ Un utilisateur peut consulter l'ensemble de ses événements avec un calendrier.
 
 **Contrôleur** : EventsController (show)<br>
 **Modèle** : Event<br>
-**Vue** : events/calendar.html.twig<br>
+**Vue** : events/show_event.html.twig<br>
 **Rôle** : utilisateur
 
 Un utilisateur peut consulter un événement sur une page dédiée à partir du calendrier.
@@ -465,7 +431,7 @@ Un utilisateur peut consulter un événement sur une page dédiée à partir du 
 Un utilisateur peut ajouter un événement à partir du calendrier avec :
 - le titre
 - le type (réunion, tâche) : bouton radio
-- la date (jour et heure)
+- la date et l'heure
 - la description (champ texte)
 
 (+) L'ajout se fait avec une fenêtre modale.
@@ -492,23 +458,6 @@ Un utilisateur peut supprimer un événement à partir du calendrier et sur une 
 
 (+) La suppression se fait avec une fenêtre modale.
 
-#### (+) Exportation des événements
-
-**Contrôleur** : EventsController (export)<br>
-**Modèle** : Event<br>
-**Vue** : admin/export.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut exporter l'ensemble des événements au format CSV ou XLS.
-
-#### (+) Importation des événements
-
-**Contrôleur** : EventsController (import)<br>
-**Modèle** : Event<br>
-**Vue** : admin/import.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut importer l'ensemble des événements au format CSV ou XLS.
 
 ### Les contacts
 
@@ -523,10 +472,7 @@ Chaque utilisateur pourra voir une liste complète des contacts sous forme de ta
 - le nom complet
 - le type (Particulier / Société)
 - le rôle (Collaborateur, Client, Prestataire, Fournisseur)
-- l'adresse
-- le numéro de téléphone
-- l'adresse e-mail
-- le site web
+- les coordonnées (adresse, numéro de téléphone, adresse e-mail, site web)
 
 (+)
 
@@ -547,10 +493,10 @@ Un utilisateur peut ajouter un contact sur une page dédiée avec un formulaire 
 - le type (bouton radio, Particulier / Société)
 - le rôle (bouton radio, Collaborateur, Client, Prestataire, Fournisseur)
 - le nom de la société (si particulier, optionnel, entre 3 et 80 caractères alphanumériques)
-- l'adresse (optionnel) : (societé), rue, ville, code postal (et pays) (en une ligne)
-- le numéro de téléphone (optionnel, format téléphone)
-- l'adresse e-mail (optionnel, format e-mail)
-- le site web (optionnel, format URL)
+- l'adresse : rue, ville et code postal (en une ligne)
+- le numéro de téléphone
+- l'adresse e-mail
+- le site web (optionnel)
 
 #### Edition d'un contact
 
@@ -572,23 +518,6 @@ Un utilisateur peut supprimer un contact sur une page dédiée.
 
 (+) La suppression du contact se fait avec une fenêtre modale.
 
-#### (+) Exportation des contacts
-
-**Contrôleur** : ContactsController (export)<br>
-**Modèle** : Contact<br>
-**Vue** : admin/export.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut exporter l'ensemble des contacts au format CSV ou XLS.
-
-#### (+) Importation des contacts
-
-**Contrôleur** : ContactsController (import)<br>
-**Modèle** : Contact<br>
-**Vue** : admin/import.html.twig<br>
-**Rôle** : admin
-
-Un administrateur peut importer l'ensemble des contacts au format CSV ou XLS.
 
 ## La conception
 

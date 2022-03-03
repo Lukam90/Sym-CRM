@@ -13,10 +13,9 @@ Il s'agit du modèle de base pour l'ensemble des pages et du design.
 Un menu de navigation du site est visible tout en haut de chaque page et contient :
 - le titre **Sym-CRM** tout à gauche, avec un lien vers la page d'accueil
 - les liens des différentes pages à droite dans cet ordre :
-    - Inscription (si non connecté)
-    - Connexion (si non connecté)
-    - le nom complet (prénom et nom) de l'utilisateur, avec un lien vers sa page de profil
     - Déconnexion (si connecté)
+    - le nom complet (prénom et nom, société) de l'utilisateur, avec un lien vers sa page de profil
+    - Utilisateurs (si administrateur)
     - Equipes (si manager)
     - Contacts (liste des contacts, si connecté)
     - Evénements (liste des événements, si connecté)
