@@ -14,10 +14,10 @@ const setToken = (button, type) => {
     openModal(`#${type}`);
 };
 
-const setOptions = (button, name) => {
+const setOptions = (object, name) => {
     let radios = all(`input[name='${name}']`);
 
-    let selectedRadio = button.dataset[name];
+    let selectedRadio = object[name];
 
     for (let radio of radios) {
         if (radio.value == selectedRadio) {

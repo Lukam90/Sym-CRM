@@ -174,4 +174,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function __toString() {
+        $data = [];
+
+        $data["id"] = $this->getId();
+        $data["email"] = $this->getEmail();
+        $data["full_name"] = $this->getFullName();
+        $data["created_at"] = $this->getCreatedAt();
+        $data["role"] = $this->getRole();
+
+        return json_encode($data);
+    }
 }

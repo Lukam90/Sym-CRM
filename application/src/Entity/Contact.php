@@ -140,4 +140,19 @@ class Contact
 
         return $this;
     }
+
+    public function __toString() {
+        $data = [];
+
+        $data["id"] = $this->getId();
+        $data["fullName"] = $this->getFullName();
+        $data["type"] = $this->getType();
+        $data["role"] = $this->getRole();
+        $data["address"] = $this->getAddress();
+        $data["phone"] = $this->getPhone();
+        $data["email"] = $this->getEmail();
+        $data["website"] = $this->getWebsite();
+
+        return json_encode($data);
+    }
 }

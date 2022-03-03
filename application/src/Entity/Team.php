@@ -38,4 +38,13 @@ class Team
 
         return $this;
     }
+
+    public function __toString() {
+        $data = [];
+
+        $data["id"] = $this->getId();
+        $data["name"] = $this->getName();
+
+        return json_encode($data);
+    }
 }

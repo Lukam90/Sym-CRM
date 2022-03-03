@@ -3,6 +3,7 @@
 {% block title "Liste des contacts" %}
 
 {% block scripts %}
+<script src="{{ asset('js/components/_contacts.js') }}" type="module"></script>
 <script src="{{ asset('js/forms/contacts.js') }}"></script>
 {% endblock %}
 
@@ -13,6 +14,7 @@
 
 <div class="block">
     <button
+        id="newContact"
         class="button is-link"
         data-token="{{ csrf_token('new') }}"
         onclick="addModal(this);">
@@ -39,31 +41,19 @@
         <thead>
             <tr>
                 <th>
-                    # &nbsp;
-
-                    <a href="{{ path('contacts.sort', { column: 'id', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ path('contacts.sort', { column: 'id', order: 'desc' }) }}">&#9650;</a>
+                    # &nbsp; <sort-content table="contacts" column="id"></sort-content>
                 </th>
 
                 <th>
-                    Nom &nbsp;
-
-                    <a href="{{ path('contacts.sort', { column: 'fullName', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ path('contacts.sort', { column: 'fullName', order: 'desc' }) }}">&#9650;</a>
+                    Nom &nbsp; <sort-content table="contacts" column="fullName"></sort-content>
                 </th>
                 
                 <th>
-                    Type &nbsp;
-
-                    <a href="{{ path('contacts.sort', { column: 'type', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ path('contacts.sort', { column: 'type', order: 'desc' }) }}">&#9650;</a>
+                    Type &nbsp; <sort-content table="contacts" column="type"></sort-content>
                 </th>
                 
                 <th>
-                    Rôle &nbsp;
-
-                    <a href="{{ path('contacts.sort', { column: 'role', order: 'asc' }) }}">&#9660;</a>
-                    <a href="{{ path('contacts.sort', { column: 'role', order: 'desc' }) }}">&#9650;</a>
+                    Rôle &nbsp; <sort-content table="contacts" column="role"></sort-content>
                 </th>
                 
                 <th>Coordonnées</th>
@@ -82,25 +72,21 @@
                 <td>{{ contact.role }}</td>
 
                 <td>
-                    <i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
+                    {#<i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
                     <i class="fa fa-at"></i> &nbsp; {{ contact.email }}<br />
                     <i class="fa fa-phone"></i> &nbsp; {{ contact.phone }}<br />
 
                     {% if contact.website %}
                     <i class="fa fa-globe"></i> &nbsp; {{ contact.website }}
-                    {% endif %}
+                    {% endif %}#}
+
+                    <contact-details contact="{{ contact }}"></contact-details>
                 </td>
                     
                 <td>
                     <button
                         class="button is-success"
-                        data-name="{{ contact.fullName }}"
-                        data-type="{{ contact.type }}"
-                        data-role="{{ contact.role }}"
-                        data-address="{{ contact.address }}"
-                        data-phone="{{ contact.phone }}"
-                        data-email="{{ contact.email }}"
-                        data-website="{{ contact.website }}"
+                        data-contact="{{ contact }}"
                         data-token="{{ csrf_token('edit') }}"
                         onclick="editModal(this)">
                         <i class="fa fa-pencil"></i>

@@ -21,17 +21,17 @@ const addModal = (button) => {
 const editModal = (button) => {
     setToken(button, "modal");
 
-    let contact = button.dataset;
+    let contact = JSON.parse(button.dataset.contact);
 
     $("#modalTitle").textContent = "Edition d'un contact";
     $("#modalForm").action = `/contacts/edit/${contact.id}`;
 
-    $("#name").value = contact.name;
+    $("#name").value = contact.fullName;
     $("#address").value = contact.address;
     $("#phone").value = contact.phone;
     $("#email").value = contact.email;
     $("#website").value = contact.website;
 
-    setOptions(button, "type");
-    setOptions(button, "role");
+    setOptions(contact, "type");
+    setOptions(contact, "role");
 };
