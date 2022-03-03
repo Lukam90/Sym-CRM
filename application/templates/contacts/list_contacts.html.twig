@@ -3,8 +3,8 @@
 {% block title "Liste des contacts" %}
 
 {% block scripts %}
-<script src="{{ asset('js/components/_contacts.js') }}" type="module"></script>
-<script src="{{ asset('js/forms/contacts.js') }}"></script>
+<script src="{{ asset('js/contacts.js') }}" type="module"></script>
+<script src="{{ asset('js/forms/contactForm.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -12,29 +12,9 @@
 
 {% include "partials/messages.html.twig" %}
 
-<div class="block">
-    <button
-        id="newContact"
-        class="button is-link"
-        data-token="{{ csrf_token('new') }}"
-        onclick="addModal(this);">
-        <i class="fa fa-plus"></i> &nbsp; Nouvel contact
-    </button>
-</div>
+<add-button label="Nouveau contact" token="{{ csrf_token('new') }}"></add-button>
 
-<div class="block">
-    <form action="{{ path('contacts.search') }}" id="searchForm">
-        <div class="field">
-            <input type="search" name="filter" class="input width-25" placeholder="Ex: Jean Dupont" />
-
-            <button type="submit" class="button is-link ml-10">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-
-            <button class="button is-success ml-10" onclick="resetPage();">&#8634;</button>
-        </div>
-    </form>
-</div>
+<search-form table="contacts" placeholder="Jean Dupont"></search-form>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
@@ -72,15 +52,7 @@
                 <td>{{ contact.role }}</td>
 
                 <td>
-                    {#<i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
-                    <i class="fa fa-at"></i> &nbsp; {{ contact.email }}<br />
-                    <i class="fa fa-phone"></i> &nbsp; {{ contact.phone }}<br />
-
-                    {% if contact.website %}
-                    <i class="fa fa-globe"></i> &nbsp; {{ contact.website }}
-                    {% endif %}#}
-
-                    <contact-details contact="{{ contact }}"></contact-details>
+                    <contact-details data="{{ contact }}"></contact-details>
                 </td>
                     
                 <td>

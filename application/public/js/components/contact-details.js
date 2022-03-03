@@ -1,6 +1,6 @@
 class ContactDetailsElement extends HTMLElement {
     connectedCallback() {
-        const contact = JSON.parse(this.getAttribute("contact"));
+        const contact = JSON.parse(this.getAttribute("data"));
 
         this.innerHTML = `
             <i class="fa fa-map-marker"></i> &nbsp; ${contact.address}<br />

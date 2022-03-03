@@ -1,5 +1,3 @@
-/* Functions */
-
 const deleteModal = (button) => {
     setToken(button, "delete");
 
