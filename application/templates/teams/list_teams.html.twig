@@ -12,20 +12,20 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-button type="Team" label="Nouveau équipe" token="{{ csrf_token('new') }}"></add-button>
+<add-team token="{{ csrf_token('new') }}"></add-team>
 
-<search-form table="teams" placeholder="Equipe de Jean Dupont"></search-form>
+<search-team></search-team>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    # &nbsp; <sort-content table="teams" column="id"></sort-content>
+                    # &nbsp; <sort-team column="id"></sort-team>
                 </th>
 
                 <th>
-                    Nom &nbsp; <sort-content table="teams" column="name"></sort-content>
+                    Nom &nbsp; <sort-team column="name"></sort-team>
                 </th>
                 
                 <th>Membres</th>

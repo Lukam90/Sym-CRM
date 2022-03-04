@@ -12,28 +12,28 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-button type="Contact" label="Nouveau contact" token="{{ csrf_token('new') }}"></add-button>
+<add-contact token="{{ csrf_token('new') }}"></add-contact>
 
-<search-form table="contacts" placeholder="Jean Dupont"></search-form>
+<search-contact></search-contact>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    # &nbsp; <sort-content table="contacts" column="id"></sort-content>
+                    # &nbsp; <sort-contact column="id"></sort-contact>
                 </th>
 
                 <th>
-                    Nom &nbsp; <sort-content table="contacts" column="fullName"></sort-content>
+                    Nom &nbsp; <sort-contact column="fullName"></sort-contact>
                 </th>
                 
                 <th>
-                    Type &nbsp; <sort-content table="contacts" column="type"></sort-content>
+                    Type &nbsp; <sort-contact column="type"></sort-contact>
                 </th>
                 
                 <th>
-                    Rôle &nbsp; <sort-content table="contacts" column="role"></sort-content>
+                    Rôle &nbsp; <sort-contact column="role"></sort-contact>
                 </th>
                 
                 <th>Coordonnées</th>
