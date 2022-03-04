@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% import "macros/ui.html.twig" as ui %}
+
 {% block title "Liste des événements" %}
 
 {% block scripts %}
@@ -11,7 +13,7 @@
 
 {% include "partials/messages.html.twig" %}
 
-{{ ui.add("Event", "Nouvel événement") }}
+{{ ui.add("Nouvel événement") }}
 
 {{ ui.search("events", "RDV avec Jean Dupont") }}
 
@@ -58,33 +60,8 @@
                     </a>
                 </td>
 
-                <td>
-                    <button
-                        class="button is-success"
-                        data-modal-title="Edition d'un événement"
-                        data-form-action="/events/edit/{{ event.id }}"
-                        data-title="{{ event.title }}"
-                        data-type="{{ event.type }}"
-                        data-date="{{ event.date | date("Y-m-d H:m") }}"
-                        data-description="{{ event.description }}"
-                        data-token="{{ csrf_token('edit') }}"
-                        onclick="editModal(this)">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </td>
-
-                <td>
-                    <delete-event data="{{ event }}" token="{{ csrf_token('delete') }}"></delete-event>
-                    <button
-                        class="button is-danger"
-                        data-modal-title="Suppression d'un événement"
-                        data-form-action="/events/delete/{{ event.id }}"
-                        data-title="{{ event.title }}"
-                        data-token="{{ csrf_token('delete') }}"
-                        onclick="deleteModal(this)">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </td>
+                <td>{{ ui.edit(event) }}</td>
+                <td>{{ ui.delete(event) }}</td>
             </tr>
         {% else %}
             <tr>

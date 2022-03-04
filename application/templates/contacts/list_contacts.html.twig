@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% import "macros/ui.html.twig" as ui %}
+{% import "macros/ui_contacts.html.twig" as uic %}
+
 {% block title "Liste des contacts" %}
 
 {% block scripts %}
-<script src="{{ asset('js/contacts.js') }}" type="module"></script>
-<script src="{{ asset('js/forms/contactForm.js') }}"></script>
+<script src="{{ asset('js/data/contacts.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -12,7 +14,7 @@
 
 {% include "partials/messages.html.twig" %}
 
-{{ ui.add("Contact", "Nouveau contact") }}
+{{ ui.add("Nouveau contact") }}
 
 {{ ui.search("contacts", "Jean Dupont") }}
 
@@ -50,18 +52,10 @@
                 <td>{{ contact.fullName }}</td>
                 <td>{{ contact.type }}</td>
                 <td>{{ contact.role }}</td>
+                <td>{{ uic.details(contact) }}</td>
 
-                <td>
-                    <contact-details data="{{ contact }}"></contact-details>
-                </td>
-                    
-                <td>
-                    <edit-contact data="{{ contact }}" token="{{ csrf_token('edit') }}"></edit-contact>
-                </td>
-                    
-                <td>
-                    <delete-contact data="{{ contact }}" token="{{ csrf_token('delete') }}"></delete-contact>
-                </td>
+                <td>{{ ui.edit(contact) }}</td>
+                <td>{{ ui.delete(contact) }}</td>
             </tr>
             {% else %}
             <tr>

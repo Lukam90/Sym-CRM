@@ -34,12 +34,12 @@
 
 {# Add Button #}
 
-{% macro add(type, label, token) %}
+{% macro add(label) %}
 <div class="block">
     <button
         class="button is-link"
         token="{{ csrf_token('new') }}"
-        onclick="add{{ type }}(this);">
+        onclick="_add(this);">
         <i class="fa fa-plus"></i> &nbsp; {{ label }}
     </button>
 </div>
@@ -47,24 +47,24 @@
 
 {# Edit Button #}
 
-{% macro edit(type, data) %}
+{% macro edit(data) %}
 <button
     class="button is-success"
     data="{{ data }}"
     token="{{ csrf_token('edit') }}"
-    onclick="edit{{ type }}(this)">
+    onclick="_edit(this)">
     <i class="fa fa-pencil"></i>
 </button>
 {% endmacro %}
 
 {# Delete Button #}
 
-{% macro delete(type, data) %}
+{% macro delete(data) %}
 <button
     class="button is-danger"
     data="{{ data }}"
     token="{{ csrf_token('delete') }}"
-    onclick="delete{{ type }}(this)">
+    onclick="_delete(this)">
     <i class="fa fa-times"></i>
 </button>
 {% endmacro %}

@@ -9,7 +9,7 @@ const deleteUser = (button) => {
     $("#deleteName").textContent = name;
 };
 
-const addContact = (button) => {
+const addUser = (button) => {
     setToken(button, "modal");
 
     $("#modalTitle").textContent = "Ajout d'un utilisateur";

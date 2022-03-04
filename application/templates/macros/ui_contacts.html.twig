@@ -1,0 +1,9 @@
+{% macro details(contact) %}
+    <i class="fa fa-map-marker"></i> &nbsp; {{ contact.address }}<br />
+    <i class="fa fa-at"></i> &nbsp; {{ contact.email }}<br />
+    <i class="fa fa-phone"></i> &nbsp; {{ contact.phone }}<br />
+
+    {% if contact.website %}
+    <i class="fa fa-globe"></i> &nbsp; {{ contact.website }}
+    {% endif %}
+{% endmacro %}

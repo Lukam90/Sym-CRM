@@ -1,4 +1,4 @@
-function deleteTeam(button) {
+function _delete(button) {
     setToken(button, "delete");
 
     let id = button.getAttribute("id");
@@ -9,14 +9,14 @@ function deleteTeam(button) {
     $("#deleteName").textContent = name;
 }
 
-function addTeam(button) {
+function _add(button) {
     setToken(button, "modal");
 
     $("#modalTitle").textContent = "Ajout d'une équipe";
     $("#modalForm").action = "/teams/new";
 }
 
-function editTeam(button) {
+function _edit(button) {
     setToken(button, "modal");
 
     let id = button.getAttribute("id");

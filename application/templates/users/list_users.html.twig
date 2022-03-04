@@ -2,14 +2,18 @@
 
 {% block title "Liste des utilisateurs" %}
 
+{% import "macros/ui.html.twig" as ui %}
+
 {% block scripts %}
-<script src="{{ asset('js/forms/users.js') }}"></script>
+<script src="{{ asset('js/data/users.js') }}"></script>
 {% endblock %}
 
 {% block body %}
 <h2 class="title">Liste des utilisateurs</h2>
 
 {% include "partials/messages.html.twig" %}
+
+{{ ui.search("users", "Jean Dupont") }}
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
@@ -48,29 +52,8 @@
                 <td class="{{ color }}">{{ role }}</td>
                 <td>{{ user.createdAt | date("d/m/Y") }}</td>
                     
-                <td>
-                    <button
-                        class="button is-success"
-                        data-modal-title="Edition d'un utilisateur"
-                        data-form-action="/users/edit/{{ user.id }}"
-                        data-role="{{ role }}"
-                        data-token="{{ csrf_token('edit') }}"
-                        onclick="editModal(this)">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </td>
-                    
-                <td>
-                    <button
-                        class="button is-danger"
-                        data-modal-title="Suppression d'un utilisateur"
-                        data-form-action="/users/delete/{{ user.id }}"
-                        data-name="{{ user.fullName }}"
-                        data-token="{{ csrf_token('delete') }}"
-                        onclick="deleteModal(this)">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </td>
+                <td>{{ ui.edit(user) }}</td>
+                <td>{{ ui.delete(user) }}</td>
             </tr>
         {% endfor %}
         </tbody>

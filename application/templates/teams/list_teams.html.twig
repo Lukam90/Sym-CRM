@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% import "macros/ui.html.twig" as ui %}
-{% import "macros/_teams.html.twig" as _teams %}
 
 {% block title "Liste des équipes" %}
 
 {% block scripts %}
-<script src="{{ asset('js/components/teams.js') }}"></script>
+<script src="{{ asset('js/data/teams.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -14,7 +13,7 @@
 
 {% include "partials/messages.html.twig" %}
 
-{{ ui.add("Team", "Nouvelle équipe") }}
+{{ ui.add("Nouvelle équipe") }}
 
 {{ ui.search("teams", "Equipe de Jean Dupont") }}
 

@@ -1,4 +1,4 @@
-const deleteEvent = (button) => {
+function _delete(button) {
     setToken(button, "delete");
 
     let id = button.getAttribute("id");
@@ -9,14 +9,14 @@ const deleteEvent = (button) => {
     $("#deleteName").textContent = name;
 };
 
-const addEvent = (button) => {
+function _add(button) {
     setToken(button, "modal");
 
     $("#modalTitle").textContent = "Ajout d'un événement";
     $("#modalForm").action = "/events/new";
 };
 
-const editEvent = (button) => {
+function _edit(button) {
     setToken(button, "modal");
 
     let id = button.getAttribute("id");
