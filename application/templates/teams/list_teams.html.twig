@@ -12,7 +12,7 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-button label="Nouveau équipe" token="{{ csrf_token('new') }}"></add-button>
+<add-button type="Team" label="Nouveau équipe" token="{{ csrf_token('new') }}"></add-button>
 
 <search-form table="teams" placeholder="Equipe de Jean Dupont"></search-form>
 
@@ -43,27 +43,11 @@
                 <td>?</td>
 
                 <td>
-                    <button
-                        class="button is-success"
-                        data-modal-title="Edition d'une équipe"
-                        data-form-action="/teams/edit/{{ team.id }}"
-                        data-name="{{ team.name }}"
-                        data-token="{{ csrf_token('edit') }}"
-                        onclick="editModal(this)">
-                        <i class="fa fa-pencil"></i>
-                    </button>
+                    <edit-team data="{{ team }}" token="{{ csrf_token('edit') }}"></edit-team>
                 </td>
 
                 <td>
-                    <button
-                        class="button is-danger"
-                        data-modal-title="Suppression d'une équipe"
-                        data-form-action="/teams/delete/{{ team.id }}"
-                        data-name="{{ team.name }}"
-                        data-token="{{ csrf_token('delete') }}"
-                        onclick="deleteModal(this)">
-                        <i class="fa fa-times"></i>
-                    </button>
+                    <delete-team data="{{ team }}" token="{{ csrf_token('delete') }}"></delete-team>
                 </td>
             </tr>
             {% else %}

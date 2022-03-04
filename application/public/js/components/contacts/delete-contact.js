@@ -9,7 +9,7 @@ class DeleteContactElement extends HTMLElement {
                 id="${contact.id}"
                 name="${contact.fullName}"
                 token="${token}"
-                onclick="deleteModal(this)">
+                onclick="deleteContact(this)">
                 <i class="fa fa-times"></i>
             </button>
         `;

@@ -15,7 +15,7 @@ class EditContactElement extends HTMLElement {
                 email="${contact.email}"
                 website="${contact.website}"
                 token="${token}"
-                onclick="editModal(this)">
+                onclick="editContact(this)">
                 <i class="fa fa-pencil"></i>
             </button>
         `;

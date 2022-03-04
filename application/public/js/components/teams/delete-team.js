@@ -4,7 +4,14 @@ class DeleteTeamElement extends HTMLElement {
         const token = this.getAttribute("token");
 
         this.innerHTML = `
-            
+            <button
+                class="button is-danger"
+                id="${team.id}"
+                name="${team.name}"
+                token="${token}"
+                onclick="deleteTeam(this)">
+                <i class="fa fa-times"></i>
+            </button>
         `;
     }
 }

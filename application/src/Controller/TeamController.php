@@ -88,14 +88,15 @@ class TeamController extends AppController
     }
 
     /**
-     * @Route("/teams/sort/{column}", name="teams.sort")
+     * @Route("/teams/sort/{column}/{order}", name="teams.sort")
      * 
      * @param string $column
+     * @param string $order
      * 
      * @return Response
      */
-    public function sort(string $column): Response {
-        $teams = $this->repository->findSorted($column);
+    public function sort(string $column, string $order): Response {
+        $teams = $this->repository->findSorted($column, $order);
 
         return $this->renderList($teams);
     }
