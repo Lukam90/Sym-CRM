@@ -3,7 +3,8 @@
 {% block title "Liste des équipes" %}
 
 {% block scripts %}
-<script src="{{ asset('js/forms/teams.js') }}"></script>
+<script src="{{ asset('js/teams.js') }}" type="module"></script>
+<script src="{{ asset('js/forms/teamForm.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -11,29 +12,20 @@
 
 {% include "partials/messages.html.twig" %}
 
-<div class="block">
-    <button
-        class="button is-link"
-        data-modal-title="Ajout d'une équipe"
-        data-form-action="/teams/new"
-        data-token="{{ csrf_token('new') }}"
-        onclick="addModal(this);">
-        <i class="fa fa-plus"></i> &nbsp; Nouvelle équipe
-    </button>
-</div>
+<add-button label="Nouveau équipe" token="{{ csrf_token('new') }}"></add-button>
 
-{% include "partials/search.html.twig" %}
+<search-form table="teams" placeholder="Equipe de Jean Dupont"></search-form>
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    <a href="{{ path('teams.sort', { column: 'id' }) }}">#</a>
+                    # &nbsp; <sort-content table="teams" column="id"></sort-content>
                 </th>
 
                 <th>
-                    <a href="{{ path('teams.sort', { column: 'name' }) }}">Nom</a>
+                    Nom &nbsp; <sort-content table="teams" column="name"></sort-content>
                 </th>
                 
                 <th>Membres</th>

@@ -7,7 +7,7 @@ class AddButtonElement extends HTMLElement {
             <div class="block">
                 <button
                     class="button is-link"
-                    data-token="${token}"
+                    token="${token}"
                     onclick="addModal(this);">
                     <i class="fa fa-plus"></i> &nbsp; ${label}
                 </button>

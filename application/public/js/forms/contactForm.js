@@ -1,4 +1,4 @@
-const deleteModal = (button) => {
+const deleteContact = (button) => {
     setToken(button, "delete");
 
     let id = button.getAttribute("id");
@@ -9,14 +9,14 @@ const deleteModal = (button) => {
     $("#deleteName").textContent = name;
 };
 
-const addModal = (button) => {
+const addContact = (button) => {
     setToken(button, "modal");
 
     $("#modalTitle").textContent = "Ajout d'un contact";
     $("#modalForm").action = "/contacts/new";
 };
 
-const editModal = (button) => {
+const editContact = (button) => {
     setToken(button, "modal");
 
     let id = button.getAttribute("id");

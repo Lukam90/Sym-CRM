@@ -1,11 +1,35 @@
-const deleteModal = (button) => {
-    setModalData(button, "delete");
+const deleteUser = (button) => {
+    setToken(button, "delete");
 
-    $("#deleteName").textContent = button.dataset.name;
+    let id = button.getAttribute("id");
+    let name = button.getAttribute("name");
+
+    $("#deleteTitle").textContent = "Suppression d'un utilisateur";
+    $("#deleteForm").action = `/users/delete/${id}`;
+    $("#deleteName").textContent = name;
 };
 
-const editModal = (button) => {
-    addModal(button);
+const addContact = (button) => {
+    setToken(button, "modal");
 
-    $("#role").value = button.dataset.role;
+    $("#modalTitle").textContent = "Ajout d'un utilisateur";
+    $("#modalForm").action = "/users/new";
+};
+
+const editUser = (button) => {
+    setToken(button, "modal");
+
+    let id = button.getAttribute("id");
+
+    $("#modalTitle").textContent = "Edition d'un utilisateur";
+    $("#modalForm").action = `/users/edit/${id}`;
+
+    setValue(button, "name");
+    setValue(button, "address");
+    setValue(button, "phone");
+    setValue(button, "email");
+    setValue(button, "website");
+
+    setOptions(button, "type");
+    setOptions(button, "role");
 };

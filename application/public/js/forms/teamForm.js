@@ -1,11 +1,28 @@
-const deleteModal = (button) => {
-    setModalData(button, "delete");
+const deleteTeam = (button) => {
+    setToken(button, "delete");
 
-    $("#deleteName").textContent = button.dataset.name;
+    let id = button.getAttribute("id");
+    let name = button.getAttribute("name");
+
+    $("#deleteTitle").textContent = "Suppression d'une équipe";
+    $("#deleteForm").action = `/teams/delete/${id}`;
+    $("#deleteName").textContent = name;
 };
 
-const editModal = (button) => {
-    addModal(button);
+const addTeam = (button) => {
+    setToken(button, "modal");
 
-    $("#name").value = button.dataset.name;
+    $("#modalTitle").textContent = "Ajout d'une équipe";
+    $("#modalForm").action = "/teams/new";
+};
+
+const editTeam = (button) => {
+    setToken(button, "modal");
+
+    let id = button.getAttribute("id");
+
+    $("#modalTitle").textContent = "Edition d'une équipe";
+    $("#modalForm").action = `/teams/edit/${id}`;
+
+    setValue(button, "name");
 };
