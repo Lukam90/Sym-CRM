@@ -1,0 +1,46 @@
+{# Search Bar #}
+
+{% macro search(table, placeholder) %}
+<div class="block" id="searchBlock">
+    <form action="/{{ table }}/search" id="searchForm">
+        <div class="field">
+            <input type="search" name="filter" class="input width-25" placeholder="Ex: {{ placeholder }}" />
+
+            <button type="submit" class="button is-link ml-10">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+
+            <button class="button is-success ml-10" onclick="resetPage();">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+</div>
+{% endmacro %}
+
+{# Sort Column #}
+
+{% macro sort(table, column) %}
+<a href="/{{ table }}/sort/{{ column }}/asc">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</a>
+
+&nbsp;
+
+<a href="/{{ table }}/sort/{{ column }}/desc">
+    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+</a>
+{% endmacro %}
+
+{# Add Button #}
+
+{% macro add(type, label, token) %}
+<div class="block">
+    <button
+        class="button is-link"
+        token="{{ csrf_token('new') }}"
+        onclick="add{{ type }}(this);">
+        <i class="fa fa-plus"></i> &nbsp; {{ label }}
+    </button>
+</div>
+{% endmacro %}

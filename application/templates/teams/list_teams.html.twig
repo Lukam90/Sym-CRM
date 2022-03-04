@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% import "macros/ui.html.twig" as ui %}
+
 {% block title "Liste des équipes" %}
 
 {% block scripts %}
-<script src="{{ asset('js/components/teams.js') }}" type="module"></script>
+<script src="{{ asset('js/components/teams.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -11,20 +13,20 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-team token="{{ csrf_token('new') }}"></add-team>
+{{ ui.add("Team", "Nouvelle équipe") }}
 
-<search-team></search-team>
+{{ ui.search("teams", "Equipe de Jean Dupont") }}
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    # &nbsp; <sort-team column="id"></sort-team>
+                    # &nbsp; {{ ui.sort("teams", "id") }}
                 </th>
 
                 <th>
-                    Nom &nbsp; <sort-team column="name"></sort-team>
+                    Nom &nbsp; {{ ui.sort("teams", "name") }}
                 </th>
                 
                 <th>Membres</th>

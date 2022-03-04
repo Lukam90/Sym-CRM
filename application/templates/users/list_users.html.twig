@@ -16,19 +16,19 @@
         <thead>
             <tr>
                 <th>
-                    <a href="{{ path('users.sort', { column: 'id' }) }}">#</a>
+                    # &nbsp; {{ ui.sort("users", "id") }}
                 </th>
 
                 <th>
-                    <a href="{{ path('users.sort', { column: 'fullName' }) }}">Nom</a>
+                    Nom &nbsp; {{ ui.sort("users", "fullName") }}
                 </th>
 
                 <th>
-                    <a href="{{ path('users.sort', { column: 'role' }) }}">Rôle</a>
+                    Rôle &nbsp; {{ ui.sort("users", "role") }}
                 </th>
 
                 <th>
-                    <a href="{{ path('users.sort', { column: 'created_at' }) }}">Date d'inscription</a>
+                    Date d'inscription &nbsp; {{ ui.sort("users", "date") }}
                 </th>
 
                 <th class="is-narrow"></th>

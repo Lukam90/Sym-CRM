@@ -15,6 +15,7 @@ footer {
     margin: auto;
 }
 
-.sortable {
-    cursor: pointer;
+#searchBlock {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

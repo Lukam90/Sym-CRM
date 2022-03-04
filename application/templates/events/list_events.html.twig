@@ -11,28 +11,28 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-event token="{{ csrf_token('new') }}"></add-event>
+{{ ui.add("Event", "Nouvel événement") }}
 
-<search-event></search-event>
+{{ ui.search("events", "RDV avec Jean Dupont") }}
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    # &nbsp; <sort-event column="id"></sort-event>
+                    # &nbsp; {{ ui.sort("events", "id") }}
                 </th>
 
                 <th>
-                    Titre &nbsp; <sort-event column="title"></sort-event>
+                    Titre &nbsp; {{ ui.sort("events", "title") }}
                 </th>
                 
                 <th>
-                    Type &nbsp; <sort-event column="type"></sort-event>
+                    Type &nbsp; {{ ui.sort("events", "type") }}
                 </th>
 
                 <th>
-                    Date &amp; Heure &nbsp; <sort-event column="date"></sort-event>
+                    Date &amp; Heure &nbsp; {{ ui.sort("events", "date") }}
                 </th>
 
                 <th>Description</th>

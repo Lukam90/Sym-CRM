@@ -12,28 +12,28 @@
 
 {% include "partials/messages.html.twig" %}
 
-<add-contact token="{{ csrf_token('new') }}"></add-contact>
+{{ ui.add("Contact", "Nouveau contact") }}
 
-<search-contact></search-contact>
+{{ ui.search("contacts", "Jean Dupont") }}
 
 <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    # &nbsp; <sort-contact column="id"></sort-contact>
+                    # &nbsp; {{ ui.sort("contacts", "id") }}
                 </th>
 
                 <th>
-                    Nom &nbsp; <sort-contact column="fullName"></sort-contact>
+                    Nom &nbsp; {{ ui.sort("contacts", "fullName") }}
                 </th>
                 
                 <th>
-                    Type &nbsp; <sort-contact column="type"></sort-contact>
+                    Type &nbsp; {{ ui.sort("contacts", "type") }}
                 </th>
                 
                 <th>
-                    Rôle &nbsp; <sort-contact column="role"></sort-contact>
+                    Rôle &nbsp; {{ ui.sort("contacts", "role") }}
                 </th>
                 
                 <th>Coordonnées</th>

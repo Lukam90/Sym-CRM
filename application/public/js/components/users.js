@@ -1,7 +1,35 @@
-import "./components/crud.js";
+const deleteUser = (button) => {
+    setToken(button, "delete");
 
-import "./users/search-user.js";
-import "./users/sort-user.js";
-import "./users/add-user.js";
-import "./users/edit-user.js";
-import "./users/delete-user.js";
+    let id = button.getAttribute("id");
+    let name = button.getAttribute("name");
+
+    $("#deleteTitle").textContent = "Suppression d'un utilisateur";
+    $("#deleteForm").action = `/users/delete/${id}`;
+    $("#deleteName").textContent = name;
+};
+
+const addContact = (button) => {
+    setToken(button, "modal");
+
+    $("#modalTitle").textContent = "Ajout d'un utilisateur";
+    $("#modalForm").action = "/users/new";
+};
+
+const editUser = (button) => {
+    setToken(button, "modal");
+
+    let id = button.getAttribute("id");
+
+    $("#modalTitle").textContent = "Edition d'un utilisateur";
+    $("#modalForm").action = `/users/edit/${id}`;
+
+    setValue(button, "name");
+    setValue(button, "address");
+    setValue(button, "phone");
+    setValue(button, "email");
+    setValue(button, "website");
+
+    setOptions(button, "type");
+    setOptions(button, "role");
+};
