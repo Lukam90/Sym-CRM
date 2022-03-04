@@ -1,11 +1,9 @@
-class Modal {
-    static open(id) {
-        $(id).classList.add("is-active");
-    }
+function openModal(id) {
+    $(id).classList.add("is-active");
+}
 
-    static close(id, event = null) {
-        $(id).classList.remove("is-active");
-    
-        if (event)  event.preventDefault();
-    }
+function closeModal(id, event = null) {
+    $(id).classList.remove("is-active");
+
+    if (event)  event.preventDefault();
 }
