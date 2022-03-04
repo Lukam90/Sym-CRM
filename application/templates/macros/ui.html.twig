@@ -44,3 +44,27 @@
     </button>
 </div>
 {% endmacro %}
+
+{# Edit Button #}
+
+{% macro edit(type, data) %}
+<button
+    class="button is-success"
+    data="{{ data }}"
+    token="{{ csrf_token('edit') }}"
+    onclick="edit{{ type }}(this)">
+    <i class="fa fa-pencil"></i>
+</button>
+{% endmacro %}
+
+{# Delete Button #}
+
+{% macro delete(type, data) %}
+<button
+    class="button is-danger"
+    data="{{ data }}"
+    token="{{ csrf_token('delete') }}"
+    onclick="delete{{ type }}(this)">
+    <i class="fa fa-times"></i>
+</button>
+{% endmacro %}

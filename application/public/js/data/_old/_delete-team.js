@@ -6,9 +6,9 @@ class DeleteTeamElement extends HTMLElement {
         this.innerHTML = `
             <button
                 class="button is-danger"
-                id="${team.id}"
-                name="${team.name}"
-                token="${token}"
+                id="{{ team.id }}"
+                name="{{ team.name }}"
+                token="{{ token }}"
                 onclick="deleteTeam(this)">
                 <i class="fa fa-times"></i>
             </button>

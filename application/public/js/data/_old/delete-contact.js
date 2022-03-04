@@ -6,9 +6,9 @@ class DeleteContactElement extends HTMLElement {
         this.innerHTML = `
             <button
                 class="button is-danger"
-                id="${contact.id}"
-                name="${contact.fullName}"
-                token="${token}"
+                id="{{ contact.id }}"
+                name="{{ contact.fullName }}"
+                token="{{ token }}"
                 onclick="deleteContact(this)">
                 <i class="fa fa-times"></i>
             </button>

@@ -6,15 +6,15 @@ class EditContactElement extends HTMLElement {
         this.innerHTML = `
             <button
                 class="button is-success"
-                id="${contact.id}"
-                name="${contact.fullName}"
-                type="${contact.type}"
-                role="${contact.role}"
-                address="${contact.address}"
-                phone="${contact.phone}"
-                email="${contact.email}"
-                website="${contact.website}"
-                token="${token}"
+                id="{{ contact.id }}"
+                name="{{ contact.fullName }}"
+                type="{{ contact.type }}"
+                role="{{ contact.role }}"
+                address="{{ contact.address }}"
+                phone="{{ contact.phone }}"
+                email="{{ contact.email }}"
+                website="{{ contact.website }}"
+                token="{{ token }}"
                 onclick="editContact(this)">
                 <i class="fa fa-pencil"></i>
             </button>

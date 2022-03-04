@@ -6,9 +6,9 @@ class EditTeamElement extends HTMLElement {
         this.innerHTML = `
             <button
                 class="button is-success"
-                id="${team.id}"
-                name="${team.name}"
-                token="${token}"
+                id="{{ team.id }}"
+                name="{{ team.name }}"
+                token="{{ token }}"
                 onclick="editTeam(this)">
                 <i class="fa fa-pencil"></i>
             </button>

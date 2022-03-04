@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% import "macros/ui.html.twig" as ui %}
+{% import "macros/_teams.html.twig" as _teams %}
 
 {% block title "Liste des équipes" %}
 
@@ -43,13 +44,8 @@
                 <td>{{ team.name }}</td>
                 <td>?</td>
 
-                <td>
-                    <edit-team data="{{ team }}" token="{{ csrf_token('edit') }}"></edit-team>
-                </td>
-
-                <td>
-                    <delete-team data="{{ team }}" token="{{ csrf_token('delete') }}"></delete-team>
-                </td>
+                <td>{{ ui.edit("Team", team) }}</td>
+                <td>{{ ui.delete("Team", team) }}</td>
             </tr>
             {% else %}
             <tr>
