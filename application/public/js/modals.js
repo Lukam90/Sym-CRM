@@ -8,8 +8,12 @@ function closeModal(id, event = null) {
     if (event)  event.preventDefault();
 }
 
-function setValue(button, name) {
-    $(`#${name}`).value = button.getAttribute(name);
+function getData(button) {
+    return JSON.parse(button.getAttribute("data"));
+}
+
+function setValue(name, newValue) {
+    $(`#${name}`).value = newValue;
 }
 
 function setToken(button, type) {
@@ -20,10 +24,12 @@ function setToken(button, type) {
     openModal(`#${type}`);
 }
 
-function setOptions(button, name) {
+function setOptions(name, value) {
     let radios = all(`input[name='${name}']`);
 
-    let selectedRadio = button.getAttribute(name);
+    let selectedRadio = value;
+
+    console.log(selectedRadio);
 
     for (let radio of radios) {
         if (radio.value == selectedRadio) {

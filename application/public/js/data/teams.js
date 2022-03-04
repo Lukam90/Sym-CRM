@@ -1,12 +1,11 @@
 function _delete(button) {
     setToken(button, "delete");
 
-    let id = button.getAttribute("id");
-    let name = button.getAttribute("name");
+    let team = getData(button);
 
     $("#deleteTitle").textContent = "Suppression d'une équipe";
-    $("#deleteForm").action = `/teams/delete/${id}`;
-    $("#deleteName").textContent = name;
+    $("#deleteForm").action = `/teams/delete/${team.id}`;
+    $("#deleteName").textContent = team.name;
 }
 
 function _add(button) {
@@ -19,10 +18,10 @@ function _add(button) {
 function _edit(button) {
     setToken(button, "modal");
 
-    let id = button.getAttribute("id");
+    let team = getData(button);
 
     $("#modalTitle").textContent = "Edition d'une équipe";
-    $("#modalForm").action = `/teams/edit/${id}`;
+    $("#modalForm").action = `/teams/edit/${team.id}`;
 
-    setValue(button, "name");
+    setValue("name", team.name);
 }

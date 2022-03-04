@@ -1,12 +1,11 @@
 function _delete(button) {
     setToken(button, "delete");
 
-    let id = button.getAttribute("id");
-    let name = button.getAttribute("name");
+    let contact = getData(button);
 
     $("#deleteTitle").textContent = "Suppression d'un contact";
-    $("#deleteForm").action = `/contacts/delete/${id}`;
-    $("#deleteName").textContent = name;
+    $("#deleteForm").action = `/contacts/delete/${contact.id}`;
+    $("#deleteName").textContent = contact.fullName;
 }
 
 function _add(button) {
@@ -19,17 +18,17 @@ function _add(button) {
 function _edit(button) {
     setToken(button, "modal");
 
-    let id = button.getAttribute("id");
+    let contact = getData(button);
 
     $("#modalTitle").textContent = "Edition d'un contact";
-    $("#modalForm").action = `/contacts/edit/${id}`;
+    $("#modalForm").action = `/contacts/edit/${contact.id}`;
 
-    setValue(button, "name");
-    setValue(button, "address");
-    setValue(button, "phone");
-    setValue(button, "email");
-    setValue(button, "website");
+    setValue("name", contact.fullName);
+    setValue("address", contact.address);
+    setValue("phone", contact.phone);
+    setValue("email", contact.email);
+    setValue("website", contact.website);
 
-    setOptions(button, "type");
-    setOptions(button, "role");
+    setOptions("type", contact.type);
+    setOptions("role", contact.role);
 }

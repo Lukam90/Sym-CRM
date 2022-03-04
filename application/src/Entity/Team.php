@@ -40,10 +40,10 @@ class Team
     }
 
     public function __toString() {
-        $data = [];
-
-        $data["id"] = $this->getId();
-        $data["name"] = $this->getName();
+        $data = [
+            "id" => $this->getId(),
+            "name" => $this->getName()
+        ];
 
         return json_encode($data);
     }
