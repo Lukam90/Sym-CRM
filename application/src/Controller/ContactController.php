@@ -111,8 +111,6 @@ class ContactController extends AppController
     /**
      * @Route("/contacts/search", name="contacts.search")
      * 
-     * @param string $name
-     * 
      * @return Response
      */
     public function search(): Response {

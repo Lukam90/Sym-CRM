@@ -101,6 +101,19 @@ class TeamController extends AppController
     }
 
     /**
+     * @Route("/teams/search", name="teams.search")
+     * 
+     * @return Response
+     */
+    public function search(): Response {
+        $name = $this->getRequest()->get("filter");
+
+        $teams = $this->repository->findByName($name);
+
+        return $this->renderList($teams);
+    }
+
+    /**
      * @Route("/teams/new", name="teams.new")
      * 
      * @return Response
@@ -116,6 +129,8 @@ class TeamController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'équipe a bien été ajoutée.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("teams");
@@ -139,6 +154,8 @@ class TeamController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'équipe a bien été éditée.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("teams");
@@ -161,6 +178,8 @@ class TeamController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'équipe a bien été supprimée.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("teams");

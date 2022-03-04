@@ -42,4 +42,19 @@ class TeamRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Team[] Returns an array of Team objects
+     * 
+     * @param string $name
+     */
+    public function findByName($name)
+    {
+        return $this->createQueryBuilder('t')
+            ->where("t.name LIKE :name")
+            ->setParameter("name", "%$name%")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

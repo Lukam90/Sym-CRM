@@ -56,4 +56,19 @@ class EventRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Event[] Returns an array of Event objects
+     * 
+     * @param string $title
+     */
+    public function findByTitle($title)
+    {
+        return $this->createQueryBuilder('e')
+            ->where("e.title LIKE :title")
+            ->setParameter("title", "%$title%")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

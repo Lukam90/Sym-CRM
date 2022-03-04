@@ -112,6 +112,19 @@ class UserController extends AppController
     }
 
     /**
+     * @Route("/users/search", name="users.search")
+     * 
+     * @return Response
+     */
+    public function search(): Response {
+        $name = $this->getRequest()->get("filter");
+
+        $users = $this->repository->findByName($name);
+
+        return $this->renderList($users);
+    }
+
+    /**
      * @Route("/register", name="register")
      * 
      * @return Response
@@ -157,6 +170,8 @@ class UserController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'utilisateur a bien été édité.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("users");
@@ -180,6 +195,8 @@ class UserController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'utilisateur a bien été supprimé.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("users");

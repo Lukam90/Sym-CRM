@@ -110,6 +110,19 @@ class EventController extends AppController
     }
 
     /**
+     * @Route("/events/search", name="events.search")
+     * 
+     * @return Response
+     */
+    public function search(): Response {
+        $title = $this->getRequest()->get("filter");
+
+        $events = $this->repository->findByTitle($title);
+
+        return $this->renderList($events);
+    }
+
+    /**
      * @Route("/events/show/{id}", name="events.show")
      * 
      * @param $id
@@ -144,6 +157,8 @@ class EventController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'événement a bien été ajouté.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("events");
@@ -168,6 +183,8 @@ class EventController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'événement a bien été édité.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("events");
@@ -191,6 +208,8 @@ class EventController extends AppController
             $this->entityManager->flush();
 
             $this->addSuccess("L'événement a bien été supprimé.");
+        } else {
+            $this->addError();
         }
 
         return $this->redirectToRoute("events");

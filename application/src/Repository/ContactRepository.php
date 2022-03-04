@@ -62,6 +62,8 @@ class ContactRepository extends ServiceEntityRepository
 
     /**
      * @return Contact[] Returns an array of Contact objects
+     * 
+     * @param string $name
      */
     public function findByName($name)
     {
