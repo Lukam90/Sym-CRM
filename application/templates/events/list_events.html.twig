@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% import "macros/ui.html.twig" as ui %}
+{% import "macros/ui_events.html.twig" as uie %}
 
 {% block title "Liste des événements" %}
 
@@ -54,12 +55,7 @@
                 <td>{{ event.date | date("d/m/Y H:i") }}</td>
                 <td>{{ event.description }}</td>
 
-                <td>
-                    <a href="{{ path('events.show', {'id': event.id}) }}" class="button is-info">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                </td>
-
+                <td>{{ uie.show(event) }}</td>
                 <td>{{ ui.edit(event) }}</td>
                 <td>{{ ui.delete(event) }}</td>
             </tr>

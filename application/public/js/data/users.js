@@ -1,35 +1,20 @@
-function _deleteUser(button) {
+function _delete(button) {
     setToken(button, "delete");
 
-    let id = button.getAttribute("id");
-    let name = button.getAttribute("name");
+    let user = getData(button);
 
     $("#deleteTitle").textContent = "Suppression d'un utilisateur";
-    $("#deleteForm").action = `/users/delete/${id}`;
-    $("#deleteName").textContent = name;
-};
+    $("#deleteForm").action = `/users/delete/${user.id}`;
+    $("#deleteName").textContent = user.fullName;
+}
 
-function _addUser(button) {
+function _edit(button) {
     setToken(button, "modal");
 
-    $("#modalTitle").textContent = "Ajout d'un utilisateur";
-    $("#modalForm").action = "/users/new";
-};
-
-function _editUser(button) {
-    setToken(button, "modal");
-
-    let id = button.getAttribute("id");
+    let user = getData(button);
 
     $("#modalTitle").textContent = "Edition d'un utilisateur";
-    $("#modalForm").action = `/users/edit/${id}`;
+    $("#modalForm").action = `/users/edit/${user.id}`;
 
-    setValue(button, "name");
-    setValue(button, "address");
-    setValue(button, "phone");
-    setValue(button, "email");
-    setValue(button, "website");
-
-    setOptions(button, "type");
-    setOptions(button, "role");
-};
+    setOptions("role", user.role);
+}

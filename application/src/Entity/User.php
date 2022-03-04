@@ -176,13 +176,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function __toString() {
-        $data = [];
-
-        $data["id"] = $this->getId();
-        $data["email"] = $this->getEmail();
-        $data["full_name"] = $this->getFullName();
-        $data["created_at"] = $this->getCreatedAt();
-        $data["role"] = $this->getRole();
+        $data = [
+            "id" => $this->getId(),
+            "email" => $this->getEmail(),
+            "fullName" => $this->getFullName(),
+            "createdAt" => $this->getCreatedAt(),
+            "role" => $this->getRole()
+        ];
 
         return json_encode($data);
     }

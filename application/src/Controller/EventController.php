@@ -97,14 +97,15 @@ class EventController extends AppController
     }
 
     /**
-     * @Route("/events/sort/{column}", name="events.sort")
+     * @Route("/events/sort/{column}/{order}", name="events.sort")
      * 
      * @param string $column
+     * @param string $order
      * 
      * @return Response
      */
-    public function sort(string $column): Response {
-        $events = $this->repository->findSorted($column);
+    public function sort(string $column, string $order): Response {
+        $events = $this->repository->findSorted($column, $order);
 
         return $this->renderList($events);
     }

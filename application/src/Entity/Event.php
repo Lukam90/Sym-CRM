@@ -91,13 +91,13 @@ class Event
     }
 
     public function __toString() {
-        $data = [];
-
-        $data["id"] = $this->getId();
-        $data["title"] = $this->getTitle();
-        $data["type"] = $this->getType();
-        $data["date"] = $this->getDate();
-        $data["description"] = $this->getDescription();
+        $data = [
+            "id" => $this->getId(),
+            "title" => $this->getTitle(),
+            "type" => $this->getType(),
+            "date" => $this->getDate(),
+            "description" => $this->getDescription()
+        ];
 
         return json_encode($data);
     }

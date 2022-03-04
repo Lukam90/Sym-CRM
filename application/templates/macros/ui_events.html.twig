@@ -1,0 +1,7 @@
+{# Show event on calendar #}
+
+{% macro show(event) %}
+<a href="/events/show/{{ event.id }}" class="button is-info">
+    <i class="fa fa-eye"></i>
+</a>
+{% endmacro %}

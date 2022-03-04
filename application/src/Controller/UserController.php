@@ -99,14 +99,15 @@ class UserController extends AppController
     }
 
     /**
-     * @Route("/users/sort/{column}", name="users.sort")
+     * @Route("/users/sort/{column}/{order}", name="users.sort")
      * 
      * @param string $column
+     * @param string $order
      * 
      * @return Response
      */
-    public function sort(string $column): Response {
-        $users = $this->repository->findSorted($column);
+    public function sort(string $column, string $order): Response {
+        $users = $this->repository->findSorted($column, $order);
 
         return $this->renderList($users);
     }

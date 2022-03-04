@@ -1,35 +1,34 @@
 function _delete(button) {
     setToken(button, "delete");
 
-    let id = button.getAttribute("id");
-    let name = button.getAttribute("name");
+    let event = getData(button);
 
     $("#deleteTitle").textContent = "Suppression d'un événement";
-    $("#deleteForm").action = `/events/delete/${id}`;
-    $("#deleteName").textContent = name;
-};
+    $("#deleteForm").action = `/events/delete/${event.id}`;
+    $("#deleteName").textContent = event.name;
+}
 
 function _add(button) {
     setToken(button, "modal");
 
     $("#modalTitle").textContent = "Ajout d'un événement";
     $("#modalForm").action = "/events/new";
-};
+}
 
 function _edit(button) {
     setToken(button, "modal");
 
-    let id = button.getAttribute("id");
+    let event = getData(button);
 
     $("#modalTitle").textContent = "Edition d'un événement";
-    $("#modalForm").action = `/events/edit/${id}`;
+    $("#modalForm").action = `/events/edit/${event.id}`;
 
-    setValue(button, "name");
-    setValue(button, "address");
-    setValue(button, "phone");
-    setValue(button, "email");
-    setValue(button, "website");
+    setValue("name", event.name);
+    setValue("address", event.address);
+    setValue("phone", event.phone);
+    setValue("email", event.email);
+    setValue("website", event.website);
 
-    setOptions(button, "type");
-    setOptions(button, "role");
-};
+    setOptions("type", event.type);
+    setOptions("role", event.role);
+}
