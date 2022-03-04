@@ -15,6 +15,7 @@ function _edit(button) {
 
     $("#modalTitle").textContent = "Edition d'un utilisateur";
     $("#modalForm").action = `/users/edit/${user.id}`;
+    $("#modalName").textContent = user.fullName;
 
     setOptions("role", user.role);
 }

@@ -29,8 +29,6 @@ function setOptions(name, value) {
 
     let selectedRadio = value;
 
-    console.log(selectedRadio);
-
     for (let radio of radios) {
         if (radio.value == selectedRadio) {
             radio.checked = true;

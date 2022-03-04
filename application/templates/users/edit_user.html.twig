@@ -1,9 +1,11 @@
 {% extends "modals/form_modal.html.twig" %}
 
 {% block modal %}
-<div class="field">
-    <label for="role" class="label">Rôle (*)</label>
+<div class="block">
+    <p>Vous êtes sûr(e) de changer le rôle de l'utilisateur <strong id="modalName"></strong> ?</p>
+</div>
 
+<div class="field">
     <div class="select">
         <select name="role" id="role">
             {% for role in roles %}

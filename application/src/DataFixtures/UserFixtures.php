@@ -39,6 +39,7 @@ class UserFixtures extends Fixture
             $user->setPassword($password);
 
             $user->setRole($cols[3]);
+            $user->setCreatedAt(new DateTime($cols[4]));
 
             $manager->persist($user);
             $manager->flush();

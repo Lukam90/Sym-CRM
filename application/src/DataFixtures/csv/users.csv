@@ -1,19 +1,19 @@
-fullName;email;password;role
-Alexandre Legrand;super@admin.com;Super$007;Super Admin
-Jules César;jules@admin.com;Admin$007;Administrateur
-Matthieu Cicéron;matt@manager.com;Matt$007;Manager
-Lucas Desparte;lucas@manager.com;Lucas$007;Manager
-Aurélie Ducas;aurelie@user.com;Aurel$007;Membre
-Françoise Boulanger;francoise@user.com;Francoise$123;Membre
-Marc Forgeron;marc@user.com;Marc$222;Membre
-Regis Robert;regis@user.com;Regis$234;Membre
-Achille Parmentier;achille@user.com;Ash$456;Membre
-James Bond;james@user.com;Agent$007;Membre
-Bruce Wayne;bruce@user.com;Batman$789;Membre
-Jamel Jibril;jamel@user.com;Jamel$123;Membre
-Lao Tseu;mao@user.com;Lao$456;Membre
-Paulo Coelho;paulo@user.com;Paulo$789;Membre
-Pablo Sanchez;pedro@user.com;Pedro$123;Membre
-Luigi Benitto;luigi@user.com;Luigi$456;Membre
-Anja Fritz;anja@user.com;Anja$123;Membre
-Julia Grimaux;julia@user.com;Julia$456;Membre
+fullName;email;password;role;created_at
+Alexandre Legrand;super@admin.com;Super$007;Super Admin;2022-03-01
+Jules César;jules@admin.com;Admin$007;Administrateur;2022-03-02
+Matthieu Cicéron;matt@manager.com;Matt$007;Manager;2022-03-03
+Lucas Desparte;lucas@manager.com;Lucas$007;Manager;2022-03-04
+Aurélie Ducas;aurelie@user.com;Aurel$007;Membre;2022-03-05
+Françoise Boulanger;francoise@user.com;Francoise$123;Membre;2022-03-01
+Marc Forgeron;marc@user.com;Marc$222;Membre;2022-03-02
+Regis Robert;regis@user.com;Regis$234;Membre;2022-03-03
+Achille Parmentier;achille@user.com;Ash$456;Membre;2022-03-04
+James Bond;james@user.com;Agent$007;Membre;2022-03-05
+Bruce Wayne;bruce@user.com;Batman$789;Membre;2022-03-01
+Jamel Jibril;jamel@user.com;Jamel$123;Membre;2022-03-02
+Lao Tseu;mao@user.com;Lao$456;Membre;2022-03-03
+Paulo Coelho;paulo@user.com;Paulo$789;Membre;2022-03-04
+Pablo Sanchez;pedro@user.com;Pedro$123;Membre;2022-03-05
+Luigi Benitto;luigi@user.com;Luigi$456;Membre;2022-03-01
+Anja Fritz;anja@user.com;Anja$123;Membre;2022-03-02
+Julia Grimaux;julia@user.com;Julia$456;Membre;2022-03-03
