@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserFormType;
+use App\Helpers\Constants;
 use App\Controller\AppController;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,17 +15,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class UserController extends AppController
 {
-    /* Constants */
-
-    const ROLES = ["Administrateur", "Manager", "Membre"];
-
-    const COLORS = [
-        "Super Admin" => "red",
-        self::ROLES[0] => "orange",
-        self::ROLES[1] => "green",
-        self::ROLES[2] => "black",
-    ];
-
     /* Constructor */
 
     public function __construct(UserRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
@@ -79,8 +69,8 @@ class UserController extends AppController
         return $this->render('users/list_users.html.twig', [
             'title' => 'Liste des utilisateurs',
             'users' => $users,
-            'roles' => self::ROLES,
-            'colors' => self::COLORS
+            'roles' => Constants::ROLES,
+            'colors' => Constants::COLORS
         ]);
     }
 
@@ -132,9 +122,7 @@ class UserController extends AppController
      */
     public function register(): Response
     {
-        return $this->render('users/register.html.twig', [
-            'title' => 'Inscription',
-        ]);
+        return $this->redirectToRoute('home');
     }
 
     /**

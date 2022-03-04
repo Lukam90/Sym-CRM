@@ -8,15 +8,15 @@
             <button class="delete" aria-label="close" onclick="closeModal('#modal')"></button>
         </header>
 
-        <form action="#" method="post" id="modalForm">
-            <input type="hidden" name="_token" id="modalToken" value="#" />
+        <form action="#" method="post" id="{{ modalId ?? 'modalForm' }}">
+            <input type="hidden" name="_token" id="{{ tokenId ?? 'modalToken' }}" value="#" />
 
             <section class="modal-card-body">
                 {% block modal %}{% endblock %}
             </section>
 
             <footer class="modal-card-foot">
-                <input type="submit" name="submit" value="Valider" class="button is-link" />
+                <input type="submit" name="submit" id="{{ submitId ?? 'modalSubmit' }}" value="Valider" class="button is-link" />
             </footer>
         </form>
     </div>

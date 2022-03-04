@@ -1,62 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'modals/form_modal.html.twig' %}
 
-{% block title "Inscription" %}
-
-{% block body %}
-<h2 class="title is-2">{{ title }}</h2>
-
-<form action="{{ path('register') }}" method="POST">
-    <div class="field">
-        <label for="fullName" class="label">Nom complet</label>
-        
-        <div class="control">
-            <input type="text" name="fullName" class="input width-25" placeholder="Ex: Jean Dupont" />
-        </div>
-
-        <p class="help">Entre 2 et 100 caractères</p>
+{% block modal %}
+<div class="field">
+    <label for="fullName" class="label">Nom complet</label>
+    
+    <div class="control">
+        <input type="text" name="fullName" id="fullName" class="input" placeholder="Ex: Jean Dupont" required minlength="2" maxlength="100" />
     </div>
 
-    <div class="field">
-        <label for="email" class="label">Adresse e-mail</label>
-        
-        <div class="control">
-            <input type="email" name="email" class="input width-25" placeholder="Ex: jean.dupont@site.com" />
-        </div>
+    <p class="help">Entre 2 et 100 caractères</p>
+</div>
+
+<div class="field">
+    <label for="email" class="label">Adresse e-mail</label>
+    
+    <div class="control">
+        <input type="email" name="email" id="email" class="input" placeholder="Ex: jean.dupont@site.com" required />
+    </div>
+</div>
+
+<div class="field">
+    <label for="password" class="label">Mot de passe</label>
+    
+    <div class="control">
+        <input type="password" name="password" id="password" class="input" placeholder="*******" required minlength="8" maxlength="32" />
     </div>
 
-    <div class="field">
-        <label for="password" class="label">Mot de passe</label>
-        
-        <div class="control">
-            <input type="password" name="password" class="input width-25" placeholder="*******" />
-        </div>
+    <p class="help">8 à 32 caractères alphanumériques, avec au moins une minuscule, une majuscule et un chiffre</p>
 
-        <p class="help">8 à 32 caractères alphanumériques, avec au moins<br /> une minuscule, une majuscule et un chiffre</p>
+    <p class="help is-danger" id="password_error"></p>
+</div>
 
-        <ul></ul>
+<div class="field">
+    <label for="confirm_password" class="label">Confirmation du mot de passe</label>
+    
+    <div class="control">
+        <input type="password" name="confirm_password" id="confirm_password" class="input" placeholder="*******" required />
     </div>
 
-    <div class="field">
-        <label for="confirm_password" class="label">Confirmation du mot de passe</label>
-        
-        <div class="control">
-            <input type="password" name="confirm_password" class="input width-25" placeholder="*******" />
-        </div>
-    </div>
-
-    {#}
-    <div class="field">
-        <label for="price" class="label">Prix</label>
-
-        <div class="control">
-            <input type="number" name="price" class="input width-20" value="{{ item.price ?? 0.0 }}" min="0.0" step="0.10" />
-        </div>
-    </div>
-
-    #}
-
-    <div class="field">
-        <input type="submit" name="submit" value="Envoyer" class="button is-link" />
-    </div>
-</form>
+    <p class="help is-danger" id="confirm_error"></p>
+</div>
 {% endblock %}

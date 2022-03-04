@@ -1,55 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'forms/login.html.twig' %}
 
-{% block title "Accueil" %}
+{% block login %}
+<form action="{{ path('login') }}" class="box">
+    <div class="field">
+        <label for="email" class="label">Adresse e-mail</label>
 
-{% block body %}
-<section class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop">
-                    <form action="{{ path('login') }}" class="box">
-                        <div class="field">
-                            <label for="email" class="label">Adresse e-mail</label>
+        <div class="control has-icons-left">
+            <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
 
-                            <div class="control has-icons-left">
-                                <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
-
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-envelope"></i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="password" class="label">Mot de passe</label>
-
-                            <div class="control has-icons-left">
-                                <input type="password" class="input" placeholder="*******" required />
-
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-lock"></i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-success">Se connecter</button>
-                        </div>
-
-                        <hr />
-
-                        <div class="block">
-                            <a href="{{ path('register') }}">S'inscrire</a>
-                        </div>
-
-                        <div class="block">
-                            <a href="{{ path('reset_password') }}">Mot de passe oublié ?</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+            </span>
         </div>
     </div>
-</section>
+
+    <div class="field">
+        <label for="password" class="label">Mot de passe</label>
+
+        <div class="control has-icons-left">
+            <input type="password" class="input" placeholder="*******" required />
+
+            <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <button class="button is-success">Se connecter</button>
+    </div>
+</form>
+
+<hr />
+
+<div class="block">
+    <a href="#" onclick="register(this)">S'inscrire</a>
+</div>
+
+<div class="block">
+    <a href="{{ path('reset_password') }}">Mot de passe oublié ?</a>
+</div>
+
+{# Modals #}
+
+{% include "users/register.html.twig" %}
+
 {% endblock %}
