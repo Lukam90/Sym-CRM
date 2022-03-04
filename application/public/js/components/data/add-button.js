@@ -9,7 +9,7 @@ class AddButtonElement extends HTMLElement {
                 <button
                     class="button is-link"
                     token="${token}"
-                    onclick="add${type}(this);">
+                    onclick="{type}.add(this);">
                     <i class="fa fa-plus"></i> &nbsp; ${label}
                 </button>
             </div>

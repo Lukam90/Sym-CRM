@@ -1,4 +1,4 @@
-class ContactDetailsElement extends HTMLElement {
+class DetailsContactElement extends HTMLElement {
     connectedCallback() {
         const contact = JSON.parse(this.getAttribute("data"));
 
@@ -12,4 +12,4 @@ class ContactDetailsElement extends HTMLElement {
     }
 }
 
-customElements.define("contact-details", ContactDetailsElement);
+customElements.define("details-contact", DetailsContactElement);

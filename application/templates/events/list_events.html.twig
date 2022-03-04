@@ -11,37 +11,28 @@
 
 {% include "partials/messages.html.twig" %}
 
-<div class="block">
-    <button
-        class="button is-link"
-        data-modal-title="Ajout d'un événement"
-        data-form-action="/events/new"
-        data-token="{{ csrf_token('new') }}"
-        onclick="addModal(this);">
-        <i class="fa fa-plus"></i> &nbsp; Nouvel événement
-    </button>
-</div>
+<add-event token="{{ csrf_token('new') }}"></add-event>
 
-{% include "partials/search.html.twig" %}
+<search-event></search-event>
 
-<div class="table-container mt-20">
+<div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>
-                    <a href="{{ path('events.sort', { column: 'id' }) }}">#</a>
+                    # &nbsp; <sort-event column="id"></sort-event>
                 </th>
 
                 <th>
-                    <a href="{{ path('events.sort', { column: 'title' }) }}">Titre</a>
+                    Titre &nbsp; <sort-event column="title"></sort-event>
                 </th>
                 
                 <th>
-                    <a href="{{ path('events.sort', { column: 'type' }) }}">Type</a>
+                    Type &nbsp; <sort-event column="type"></sort-event>
                 </th>
 
                 <th>
-                    <a href="{{ path('events.sort', { column: 'date' }) }}">Date &amp; Heure</a>
+                    Date &amp; Heure &nbsp; <sort-event column="date"></sort-event>
                 </th>
 
                 <th>Description</th>
@@ -83,6 +74,7 @@
                 </td>
 
                 <td>
+                    <delete-event data="{{ event }}" token="{{ csrf_token('delete') }}"></delete-event>
                     <button
                         class="button is-danger"
                         data-modal-title="Suppression d'un événement"
