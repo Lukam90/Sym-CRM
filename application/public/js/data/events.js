@@ -3,16 +3,16 @@ function _delete(button) {
 
     let event = getData(button);
 
-    $("#deleteTitle").textContent = "Suppression d'un événement";
-    $("#deleteForm").action = `/events/delete/${event.id}`;
+    $("#delete-title").textContent = "Suppression d'un événement";
+    $("#delete-form").action = `/events/delete/${event.id}`;
     $("#deleteName").textContent = event.name;
 }
 
 function _add(button) {
     setToken(button, "modal");
 
-    $("#modalTitle").textContent = "Ajout d'un événement";
-    $("#modalForm").action = "/events/new";
+    $("#modal-title").textContent = "Ajout d'un événement";
+    $("#modal-form").action = "/events/new";
 }
 
 function _edit(button) {
@@ -20,8 +20,8 @@ function _edit(button) {
 
     let event = getData(button);
 
-    $("#modalTitle").textContent = "Edition d'un événement";
-    $("#modalForm").action = `/events/edit/${event.id}`;
+    $("#modal-title").textContent = "Edition d'un événement";
+    $("#modal-form").action = `/events/edit/${event.id}`;
 
     setValue("name", event.name);
     setValue("address", event.address);

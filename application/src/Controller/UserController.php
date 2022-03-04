@@ -69,7 +69,7 @@ class UserController extends AppController
         return $this->render('users/list_users.html.twig', [
             'title' => 'Liste des utilisateurs',
             'users' => $users,
-            'roles' => Constants::ROLES,
+            'roles' => Constants::USER_ROLES,
             'colors' => Constants::COLORS
         ]);
     }
@@ -196,9 +196,7 @@ class UserController extends AppController
      */
     public function reset(): Response
     {
-        return $this->render('users/reset.html.twig', [
-            'title' => 'Réinitialisation du mot de passe',
-        ]);
+        return $this->redirectToRoute('home');
     }
 
     /**

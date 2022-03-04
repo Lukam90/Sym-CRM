@@ -3,16 +3,16 @@ function _delete(button) {
 
     let contact = getData(button);
 
-    $("#deleteTitle").textContent = "Suppression d'un contact";
-    $("#deleteForm").action = `/contacts/delete/${contact.id}`;
+    $("#delete-title").textContent = "Suppression d'un contact";
+    $("#delete-form").action = `/contacts/delete/${contact.id}`;
     $("#deleteName").textContent = contact.fullName;
 }
 
 function _add(button) {
     setToken(button, "modal");
 
-    $("#modalTitle").textContent = "Ajout d'un contact";
-    $("#modalForm").action = "/contacts/new";
+    $("#modal-title").textContent = "Ajout d'un contact";
+    $("#modal-form").action = "/contacts/new";
 }
 
 function _edit(button) {
@@ -20,8 +20,8 @@ function _edit(button) {
 
     let contact = getData(button);
 
-    $("#modalTitle").textContent = "Edition d'un contact";
-    $("#modalForm").action = `/contacts/edit/${contact.id}`;
+    $("#modal-title").textContent = "Edition d'un contact";
+    $("#modal-form").action = `/contacts/edit/${contact.id}`;
 
     setValue("name", contact.fullName);
     setValue("address", contact.address);

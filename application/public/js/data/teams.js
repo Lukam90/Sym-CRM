@@ -3,16 +3,16 @@ function _delete(button) {
 
     let team = getData(button);
 
-    $("#deleteTitle").textContent = "Suppression d'une équipe";
-    $("#deleteForm").action = `/teams/delete/${team.id}`;
+    $("#delete-title").textContent = "Suppression d'une équipe";
+    $("#delete-form").action = `/teams/delete/${team.id}`;
     $("#deleteName").textContent = team.name;
 }
 
 function _add(button) {
     setToken(button, "modal");
 
-    $("#modalTitle").textContent = "Ajout d'une équipe";
-    $("#modalForm").action = "/teams/new";
+    $("#modal-title").textContent = "Ajout d'une équipe";
+    $("#modal-form").action = "/teams/new";
 }
 
 function _edit(button) {
@@ -20,8 +20,8 @@ function _edit(button) {
 
     let team = getData(button);
 
-    $("#modalTitle").textContent = "Edition d'une équipe";
-    $("#modalForm").action = `/teams/edit/${team.id}`;
+    $("#modal-title").textContent = "Edition d'une équipe";
+    $("#modal-form").action = `/teams/edit/${team.id}`;
 
     setValue("name", team.name);
 }

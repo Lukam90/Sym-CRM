@@ -14,4 +14,13 @@ class Constants {
         ["id" => "prestataire", "value" => "Prestataire"],
         ["id" => "fournisseur", "value" => "Fournisseur"],
     ];
+
+    CONST USER_ROLES = ["Administrateur", "Manager", "Membre"];
+
+    const COLORS = [
+        "Super Admin" => "red",
+        self::USER_ROLES[0] => "orange",
+        self::USER_ROLES[1] => "green",
+        self::USER_ROLES[2] => "black",
+    ];
 }

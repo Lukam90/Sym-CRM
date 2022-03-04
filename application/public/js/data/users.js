@@ -3,8 +3,8 @@ function _delete(button) {
 
     let user = getData(button);
 
-    $("#deleteTitle").textContent = "Suppression d'un utilisateur";
-    $("#deleteForm").action = `/users/delete/${user.id}`;
+    $("#delete-title").textContent = "Suppression d'un utilisateur";
+    $("#delete-form").action = `/users/delete/${user.id}`;
     $("#deleteName").textContent = user.fullName;
 }
 
@@ -13,8 +13,8 @@ function _edit(button) {
 
     let user = getData(button);
 
-    $("#modalTitle").textContent = "Edition d'un utilisateur";
-    $("#modalForm").action = `/users/edit/${user.id}`;
+    $("#modal-title").textContent = "Edition d'un utilisateur";
+    $("#modal-form").action = `/users/edit/${user.id}`;
     $("#modalName").textContent = user.fullName;
 
     setOptions("role", user.role);
@@ -63,14 +63,7 @@ function validate(button) {
 function register(link) {
     setToken(link, "modal");
 
-    $("#modalTitle").textContent = "Inscription";
-    $("#modalForm").action = "/register";
+    $("#modal-title").textContent = "Inscription";
+    $("#modal-form").action = "/register";
     $("#modalSubmit").addEventListener("click", validate);
-}
-
-function askNewPassword(link) {
-    setToken(link, "modal");
-
-    $("#modalTitle").textContent = "Réinitialisation du mot de passe";
-    $("#modalForm").action = "/new_password";
 }

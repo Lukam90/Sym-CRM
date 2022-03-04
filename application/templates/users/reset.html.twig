@@ -1,35 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'modals/form_modal.html.twig' %}
 
-{% block title "Réinitialisation du mot de passe" %}
+{% set modalId = "reset" %}
+{% set modalTitle = "resetTitle" %}
+{% set modalForm = "resetForm" %}
 
-{% block body %}
-<h2 class="title is-title has-text-centered">{{ title }}</h2>
+{% set tokenId = "resetToken" %}
+{% set submitId = "resetSubmit" %}
 
-<section class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                    <form action="" class="box">
-                        <div class="field">
-                            <label for="email" class="label">Adresse e-mail</label>
+{% block modal %}
+<div class="field">
+    <label for="email" class="label">Adresse e-mail (*)</label>
 
-                            <div class="control has-icons-left">
-                                <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
+    <div class="control has-icons-left">
+        <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
 
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-envelope"></i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <button class="button is-success">Envoyer</button>
-                        </div>
-                    </form>
-                </div> <!-- /column -->
-            </div> <!-- /columns -->
-        </div> <!-- /container -->
-    </div> <!-- /hero-body -->
-</section>
+        <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+        </span>
+    </div>
+</div>
 {% endblock %}

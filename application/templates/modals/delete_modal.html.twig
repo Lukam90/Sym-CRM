@@ -3,9 +3,9 @@
 
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title" id="deleteTitle"></p>
+            <p class="modal-card-title" id="delete-title"></p>
 
-            <button class="delete" aria-label="close" onclick="closeModal('#delete')"></button>
+            <button class="delete" aria-label="close" onclick="close('#delete')"></button>
         </header>
 
         <section class="modal-card-body">
@@ -13,12 +13,12 @@
         </section>
 
         <footer class="modal-card-foot">
-            <form action="#" method="post" id="deleteForm">
+            <form action="#" method="post" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" name="_token" id="deleteToken" value="#" />
+                <input type="hidden" name="_token" id="delete-token" value="#" />
 
                 <button class="button is-danger">Oui</button>
-                <button class="button is-link" onclick="closeModal('#delete', event)">Non</button>
+                <button class="button is-link" onclick="close('#delete', this)">Non</button>
             </form>
         </footer>
     </div>
