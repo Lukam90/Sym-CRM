@@ -1,18 +1,11 @@
-{% extends 'modals/form_modal.html.twig' %}
-
-{% set modalId = "reset" %}
-{% set modalTitle = "resetTitle" %}
-{% set modalForm = "resetForm" %}
-
-{% set tokenId = "resetToken" %}
-{% set submitId = "resetSubmit" %}
+{% extends 'modals/reset_modal.html.twig' %}
 
 {% block modal %}
 <div class="field">
-    <label for="email" class="label">Adresse e-mail (*)</label>
+    <label for="reset-email" class="label">Adresse e-mail (*)</label>
 
     <div class="control has-icons-left">
-        <input type="email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
+        <input type="email" name="reset-email" id="reset-email" class="input" placeholder="e.g. rene.dupont@gmail.com" required />
 
         <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>

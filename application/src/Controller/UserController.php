@@ -202,6 +202,12 @@ class UserController extends AppController
      */
     public function reset(): Response
     {
+        if ($this->isFormValid("reset")) {
+            $this->addSuccess("Votre lien de réinitialisation du mot de passe a été envoyé à votre adresse e-mail.");
+        } else {
+            $this->addError();
+        }
+
         return $this->redirectToRoute('home');
     }
 

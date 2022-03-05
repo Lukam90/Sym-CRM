@@ -40,11 +40,13 @@
 </div>
 
 <div class="block">
-    <a href="#reset">Mot de passe oublié ?</a>
+    <a href="#reset" token="{{ csrf_token('reset') }}" onclick="reset(this)">Mot de passe oublié ?</a>
 </div>
 
 {# Modals #}
 
 {% include path ~ "register.html.twig" %}
+
+{% include path ~ "reset.html.twig" %}
 
 {% endblock %}

@@ -87,10 +87,24 @@ const testRegister = () => {
     setValue("confirm-password", "James006");
 }
 
+/**
+ * Opens the registration form's modal
+ * 
+ * @param {HTMLLinkElement} link 
+ */
 const register = (link) => {
     setToken(link, "register");
 
     testRegister();
 
     $("#register-button").addEventListener("click", validate);
+}
+
+/**
+ * Opens the password reset form's modal
+ * 
+ * @param {HTMLLinkElement} link 
+ */
+ const reset = (link) => {
+    setToken(link, "reset");
 }
