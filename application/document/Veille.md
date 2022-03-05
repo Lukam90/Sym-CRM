@@ -87,3 +87,9 @@ https://www.youtube.com/watch?v=4kFkaihdeS4&t=467s
 **Créer un raccourcisseur ou réducteur d'URLs avec Symfony**
 
 https://www.youtube.com/watch?v=g1L-FdgsGMs&t=7411s
+
+## CodeTime
+
+**Scrapping Data with PHP**
+
+https://www.youtube.com/playlist?list=PLylMDDjFIp1ChQyScG_Hk3bDEW501zum-

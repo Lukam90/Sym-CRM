@@ -2,15 +2,16 @@
 
 namespace App\Tests\Controller;
 
-use Symfony\Component\Panther\PantherTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ContactControllerTest extends PantherTestCase
+class ContactControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    /** @test */
+    public function contacts_list_should_display(): void
     {
-        $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/');
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/contacts');
 
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $this->assertResponseStatusCodeSame(200);
     }
 }

@@ -49,7 +49,7 @@
 
 {% macro edit(data) %}
 <button
-    class="button is-success"
+    class="button is-success edit"
     data="{{ data }}"
     token="{{ csrf_token('edit') }}"
     onclick="_edit(this)">

@@ -2,15 +2,16 @@
 
 namespace App\Tests\Controller;
 
-use Symfony\Component\Panther\PantherTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class EventControllerTest extends PantherTestCase
+class EventControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    /** @test */
+    public function events_list_should_display(): void
     {
-        $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/');
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/events');
 
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $this->assertResponseStatusCodeSame(200);
     }
 }
