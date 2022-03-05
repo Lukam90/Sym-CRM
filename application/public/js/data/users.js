@@ -1,4 +1,9 @@
-function _delete(button) {
+/**
+ * Opens the modal window to delete a user
+ * 
+ * @param {HTMLButtonElement} button 
+ */
+const _delete = (button) => {
     setToken(button, "delete");
 
     let user = getData(button);
@@ -8,7 +13,12 @@ function _delete(button) {
     $("#delete-name").textContent = user.fullName;
 }
 
-function _edit(button) {
+/**
+ * Opens the modal window to edit a user
+ * 
+ * @param {HTMLButtonElement} button 
+ */
+const _edit = (button) => {
     setToken(button, "modal");
 
     let user = getData(button);
@@ -20,7 +30,7 @@ function _edit(button) {
     setOptions("role", user.role);
 }
 
-function validate(button) {
+const validate = (button) => {
     const minMessage = "Le mot de passe doit contenir au moins ";
 
     const password = $("#password").value;
@@ -60,11 +70,11 @@ function validate(button) {
     }
 }
 
-function testRegister() {
-    setValue();
+const testRegister = () => {
+    //setValue();
 }
 
-function register(link) {
+const register = (link) => {
     setToken(link, "register");
 
     $("#register-form input[type=submit]").addEventListener("click", validate);

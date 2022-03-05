@@ -1,22 +1,46 @@
-function openModal(id) {
-    $(id).classList.add("is-active");
-}
+/**
+ * Opens a modal window
+ * 
+ * @param {string} id The modal's ID
+ */
+const openModal = (id) => $(id).classList.add("is-active");
 
-function closeModal(id, event = null) {
+/**
+ * Closes a modal window
+ * 
+ * @param {string} id
+ * @param {HTMLButtonElement?} button
+ */
+const closeModal = (id, button = null) => {
     $(id).classList.remove("is-active");
 
-    if (event)  event.preventDefault();
+    if (button)  button.preventDefault();
 }
 
-function getData(button) {
-    return JSON.parse(button.getAttribute("data"));
-}
+/**
+ * Gets JSON data from a line
+ * 
+ * @param {HTMLButtonElement} button
+ * 
+ * @returns JSON 
+ */
+const getData = (button) => JSON.parse(button.getAttribute("data"));
 
-function setValue(name, newValue) {
-    $(`#${name}`).value = newValue;
-}
+/**
+ * Sets a field value
+ * 
+ * @param {string} id
+ * @param {string} newValue
+ */
+const setValue = (id, newValue) => $(`#${id}`).value = newValue;
 
-function setToken(button, type) {
+/**
+ * Sets a CRSF token
+ * 
+ * @param {HTMLButtonElement} button
+ * @param {string} type
+ */
+const setToken = (button, type) => {
     let token = button.getAttribute("token");
 
     $(`#${type}-token`).value = token;
@@ -24,7 +48,13 @@ function setToken(button, type) {
     openModal(`#${type}`);
 }
 
-function setOptions(name, value) {
+/**
+ * Sets options in a select or radio buttons range
+ * 
+ * @param {string} name
+ * @param {string} value
+ */
+const setOptions = (name, value) => {
     let radios = all(`input[name='${name}']`);
 
     let selectedRadio = value;

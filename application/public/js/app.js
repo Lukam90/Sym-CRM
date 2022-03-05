@@ -1,12 +1,38 @@
-// jQuery-like Selectors
+/**
+ * jQuery-like simple selector
+ * 
+ * @param {string} value
+ * 
+ * @returns HTMLElement
+ */
+const $ = (value) => document.querySelector(value);
 
-const $ = (id) => document.querySelector(id);
-const all = (id) => document.querySelectorAll(id);
+/**
+ * jQuery-like "all" selector
+ * 
+ * @param {string} value
+ * 
+ * @returns {HTMLElement[]}
+ */
+const all = (value) => document.querySelectorAll(value);
 
-// Utilities
+/**
+ * Deletes a flash message
+ * 
+ * @param {HTMLElement} message
+ */
+const deleteFlash = (message) => message.style.display = 'none';
 
-const deleteFlash = (event) => event.style.display = 'none';
-
+/**
+ * Formats an event date
+ * 
+ * @param {string} datetime
+ * 
+ * @returns {string}
+ */
 const formatDate = (datetime) => datetime.replace(" ", "T");
 
+/**
+ * Reloads the page (search filter)
+ */
 const resetPage = () => window.location.reload(true);
