@@ -1,8 +1,8 @@
 {# Search Bar #}
 
 {% macro search(table, placeholder) %}
-<div class="block" id="searchBlock">
-    <form action="/{{ table }}/search" id="searchForm">
+<div class="block" id="search-block">
+    <form action="/{{ table }}/search" id="search-form">
         <div class="field">
             <input type="search" name="filter" class="input width-25" placeholder="Ex: {{ placeholder }}" />
 

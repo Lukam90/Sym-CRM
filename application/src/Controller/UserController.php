@@ -122,6 +122,12 @@ class UserController extends AppController
      */
     public function register(): Response
     {
+        if ($this->isFormValid("register")) {
+            $this->addSuccess("Votre inscription s'est déroulée avec succès.");
+        } else {
+            $this->addError();
+        }
+
         return $this->redirectToRoute('home');
     }
 

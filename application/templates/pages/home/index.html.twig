@@ -1,4 +1,6 @@
-{% extends 'forms/login.html.twig' %}
+{% set path = "pages/users/" %}
+
+{% extends 'forms/login_form.html.twig' %}
 
 {% block login %}
 <form action="{{ path('login') }}" class="box">
@@ -34,15 +36,15 @@
 <hr />
 
 <div class="block">
-    <a href="#" onclick="register(this)">S'inscrire</a>
+    <a href="#register" onclick="register(this)">S'inscrire</a>
 </div>
 
 <div class="block">
-    <a href="#">Mot de passe oublié ?</a>
+    <a href="#reset">Mot de passe oublié ?</a>
 </div>
 
 {# Modals #}
 
-{% include "users/register.html.twig" %}
+{% include path ~ "register.html.twig" %}
 
 {% endblock %}

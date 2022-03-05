@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $fullName;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $created_at;
 

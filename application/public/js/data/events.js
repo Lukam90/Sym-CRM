@@ -24,7 +24,7 @@ function _edit(button) {
     $("#modal-form").action = `/events/edit/${event.id}`;
 
     setValue("title", event.title);
-    setValue("date", formatDate(new Date(event.date)));
+    setValue("date", formatDate(event.date));
     setValue("description", event.description);
 
     setOptions("type", event.type);

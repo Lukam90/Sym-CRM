@@ -60,10 +60,12 @@ function validate(button) {
     }
 }
 
-function register(link) {
-    setToken(link, "modal");
+function testRegister() {
+    setValue();
+}
 
-    $("#modal-title").textContent = "Inscription";
-    $("#modal-form").action = "/register";
-    $("#modal-submit").addEventListener("click", validate);
+function register(link) {
+    setToken(link, "register");
+
+    $("#register-form input[type=submit]").addEventListener("click", validate);
 }

@@ -15,7 +15,11 @@ footer {
     margin: auto;
 }
 
-#searchBlock {
+#search-block {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#register-card {
+    overflow: scroll;
 }

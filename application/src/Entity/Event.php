@@ -95,7 +95,7 @@ class Event
             "id" => $this->getId(),
             "title" => $this->getTitle(),
             "type" => $this->getType(),
-            "date" => $this->getDate(),
+            "date" => $this->getDate()->format("Y-m-d H:i"),
             "description" => $this->getDescription()
         ];
 
