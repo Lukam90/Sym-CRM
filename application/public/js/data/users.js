@@ -30,6 +30,11 @@ const _edit = (button) => {
     setOptions("role", user.role);
 }
 
+/**
+ * Validates the registration form
+ * 
+ * @param {HTMLButtonElement} button 
+ */
 const validate = (button) => {
     const minMessage = "Le mot de passe doit contenir au moins ";
 
@@ -70,12 +75,22 @@ const validate = (button) => {
     }
 }
 
+/**
+ * Fill the registration form for a testing purpose
+ * 
+ * @param {HTMLButtonElement} button 
+ */
 const testRegister = () => {
-    //setValue();
+    setValue("fullName", "James Bond");
+    setValue("email", "james.bond@test.com");
+    setValue("password", "James007");
+    setValue("confirm-password", "James006");
 }
 
 const register = (link) => {
     setToken(link, "register");
 
-    $("#register-form input[type=submit]").addEventListener("click", validate);
+    testRegister();
+
+    $("#register-button").addEventListener("click", validate);
 }

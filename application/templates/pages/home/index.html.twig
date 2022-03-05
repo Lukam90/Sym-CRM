@@ -36,7 +36,7 @@
 <hr />
 
 <div class="block">
-    <a href="#register" onclick="register(this)">S'inscrire</a>
+    <a href="#register" token="{{ csrf_token('register') }}" onclick="register(this)">S'inscrire</a>
 </div>
 
 <div class="block">
