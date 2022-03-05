@@ -75,7 +75,7 @@ class EventController extends AppController
      */
     public function renderList($events) : Response
     {
-        return $this->render('events/list_events.html.twig', [
+        return $this->render('pages/events/list_events.html.twig', [
             'title' => 'Liste des événements',
             'events' => $events,
             'types' => self::TYPES,

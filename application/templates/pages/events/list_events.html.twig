@@ -1,3 +1,5 @@
+{% set path = "pages/events/" %}
+
 {% extends 'base.html.twig' %}
 
 {% import "macros/ui.html.twig" as ui %}
@@ -70,8 +72,8 @@
 
 {# Events #}
 
-{% include "events/delete_event.html.twig" %}
+{% include path ~ "delete_event.html.twig" %}
 
-{% include "events/form_event.html.twig" %}
+{% include path ~ "form_event.html.twig" %}
 
 {% endblock %}

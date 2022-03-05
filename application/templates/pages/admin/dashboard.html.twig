@@ -1,0 +1,19 @@
+{% set path = "partials/admin/" %}
+
+{% extends 'base.html.twig' %}
+
+{% block title "Tableau de bord" %}
+
+{% block body %}
+<h2 class="title is-2">{{ title }}</h2>
+
+<div class="columns">
+    {% include path ~ "stats.html.twig" %}
+</div>
+
+<div class="columns">
+    {% include path ~ "last_contacts.html.twig" %}
+
+    {% include path ~ "last_events.html.twig" %}
+</div>
+{% endblock %}

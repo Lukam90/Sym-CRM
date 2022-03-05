@@ -1,3 +1,5 @@
+{% set path = "pages/users/" %}
+
 {% extends 'base.html.twig' %}
 
 {% block title "Liste des utilisateurs" %}
@@ -62,8 +64,8 @@
 
 {# Modals #}
 
-{% include "users/delete_user.html.twig" %}
+{% include path ~ "delete_user.html.twig" %}
 
-{% include "users/edit_user.html.twig" %}
+{% include path ~ "edit_user.html.twig" %}
 
 {% endblock %}

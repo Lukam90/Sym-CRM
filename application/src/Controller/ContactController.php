@@ -73,7 +73,7 @@ class ContactController extends AppController
      */
     public function renderList($contacts) : Response
     {
-        return $this->render('contacts/list_contacts.html.twig', [
+        return $this->render('pages/contacts/list_contacts.html.twig', [
             "title" => "Liste des contacts",
             "contacts" => $contacts,
             "types" => Constants::TYPES,

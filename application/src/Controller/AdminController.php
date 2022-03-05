@@ -104,7 +104,7 @@ class AdminController extends AbstractController
 
         $lastEvents = $this->eventRepository->findLast();
 
-        return $this->render('admin/dashboard.html.twig', [
+        return $this->render('pages/admin/dashboard.html.twig', [
             'title' => 'Tableau de bord',
             "stats" => $stats,
             "contacts" => $lastContacts,

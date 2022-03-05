@@ -1,4 +1,4 @@
-{% extends 'modals/form_modal.html.twig' %}
+{% extends 'modals/form-modal.html.twig' %}
 
 {% block modal %}
 <div class="field">
@@ -28,16 +28,16 @@
 
     <p class="help">8 à 32 caractères alphanumériques, avec au moins une minuscule, une majuscule et un chiffre</p>
 
-    <p class="help is-danger" id="password_error"></p>
+    <p class="help is-danger" id="password-error"></p>
 </div>
 
 <div class="field">
-    <label for="confirm_password" class="label">Confirmation du mot de passe</label>
+    <label for="confirm-password" class="label">Confirmation du mot de passe</label>
     
     <div class="control">
-        <input type="password" name="confirm_password" id="confirm_password" class="input" placeholder="*******" required />
+        <input type="password" name="confirm-password" id="confirm-password" class="input" placeholder="*******" required />
     </div>
 
-    <p class="help is-danger" id="confirm_error"></p>
+    <p class="help is-danger" id="confirm-error"></p>
 </div>
 {% endblock %}

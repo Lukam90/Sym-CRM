@@ -5,7 +5,7 @@ function _delete(button) {
 
     $("#delete-title").textContent = "Suppression d'une équipe";
     $("#delete-form").action = `/teams/delete/${team.id}`;
-    $("#deleteName").textContent = team.name;
+    $("#delete-name").textContent = team.name;
 }
 
 function _add(button) {

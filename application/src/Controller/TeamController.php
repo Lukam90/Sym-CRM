@@ -64,7 +64,7 @@ class TeamController extends AppController
      */
     public function renderList($teams) : Response
     {
-        return $this->render('teams/list_teams.html.twig', [
+        return $this->render('pages/teams/list_teams.html.twig', [
             'title' => 'Liste des équipes',
             'teams' => $teams,
         ]);
@@ -81,10 +81,7 @@ class TeamController extends AppController
     {
         $teams = $this->getAll();
 
-        return $this->render('teams/list_teams.html.twig', [
-            'title' => 'Liste des équipes',
-            'teams' => $teams
-        ]);
+        return $this->renderList($teams);
     }
 
     /**

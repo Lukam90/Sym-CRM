@@ -5,7 +5,7 @@ function _delete(button) {
 
     $("#delete-title").textContent = "Suppression d'un événement";
     $("#delete-form").action = `/events/delete/${event.id}`;
-    $("#deleteName").textContent = event.name;
+    $("#delete-name").textContent = event.title;
 }
 
 function _add(button) {
@@ -23,12 +23,9 @@ function _edit(button) {
     $("#modal-title").textContent = "Edition d'un événement";
     $("#modal-form").action = `/events/edit/${event.id}`;
 
-    setValue("name", event.name);
-    setValue("address", event.address);
-    setValue("phone", event.phone);
-    setValue("email", event.email);
-    setValue("website", event.website);
+    setValue("title", event.title);
+    setValue("date", formatDate(new Date(event.date)));
+    setValue("description", event.description);
 
     setOptions("type", event.type);
-    setOptions("role", event.role);
 }

@@ -66,7 +66,7 @@ class UserController extends AppController
      */
     public function renderList($users) : Response
     {
-        return $this->render('users/list_users.html.twig', [
+        return $this->render('pages/users/list_users.html.twig', [
             'title' => 'Liste des utilisateurs',
             'users' => $users,
             'roles' => Constants::USER_ROLES,

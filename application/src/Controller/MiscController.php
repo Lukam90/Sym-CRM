@@ -13,7 +13,7 @@ class MiscController extends AbstractController
      */
     public function renderKanban(): Response
     {
-        return $this->render('misc/kanban.html.twig');
+        return $this->render('pages/misc/kanban.html.twig');
     }
 
     /**
@@ -21,6 +21,6 @@ class MiscController extends AbstractController
      */
     public function renderGantt(): Response
     {
-        return $this->render('misc/gantt.html.twig');
+        return $this->render('pages/misc/gantt.html.twig');
     }
 }

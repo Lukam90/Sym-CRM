@@ -1,3 +1,5 @@
+{% set path = "pages/teams/" %}
+
 {% extends 'base.html.twig' %}
 
 {% import "macros/ui.html.twig" as ui %}
@@ -57,7 +59,8 @@
 
 {# Modals #}
 
-{% include "teams/delete_team.html.twig" %}
-{% include "teams/form_team.html.twig" %}
+{% include path ~ "delete_team.html.twig" %}
+
+{% include path ~ "form_team.html.twig" %}
 
 {% endblock %}

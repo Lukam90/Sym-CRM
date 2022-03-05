@@ -5,7 +5,7 @@ function _delete(button) {
 
     $("#delete-title").textContent = "Suppression d'un utilisateur";
     $("#delete-form").action = `/users/delete/${user.id}`;
-    $("#deleteName").textContent = user.fullName;
+    $("#delete-name").textContent = user.fullName;
 }
 
 function _edit(button) {
@@ -15,7 +15,7 @@ function _edit(button) {
 
     $("#modal-title").textContent = "Edition d'un utilisateur";
     $("#modal-form").action = `/users/edit/${user.id}`;
-    $("#modalName").textContent = user.fullName;
+    $("#modal-name").textContent = user.fullName;
 
     setOptions("role", user.role);
 }
@@ -29,32 +29,32 @@ function validate(button) {
 
     const hasLowerAlpha = /[a-z]+/.test(password);
 
-    $("#password_error").innerHTML = "";
+    $("#password-error").innerHTML = "";
 
     if (! hasLowerAlpha) {
-        $("#password_error").innerHTML += `${minMessage} une minuscule.<br />`;
+        $("#password-error").innerHTML += `${minMessage} une minuscule.<br />`;
     }
 
     const hasUpperAlpha = /[A-Z]+/.test(password);
 
     if (! hasUpperAlpha) {
-        $("#password_error").innerHTML += `${minMessage} une majuscule.<br />`;
+        $("#password-error").innerHTML += `${minMessage} une majuscule.<br />`;
     }
 
     const hasDigit = /[0-9]+/.test(password);
 
     if (! hasDigit) {
-        $("#password_error").innerHTML += `${minMessage} un chiffre.<br />`;
+        $("#password-error").innerHTML += `${minMessage} un chiffre.<br />`;
     }
 
     // Password confirmation
 
-    const confirm = $("#confirm_password").value;
+    const confirm = $("#confirm-password").value;
 
     if (password === confirm) {
-        $("#confirm_error").textContent = "";
+        $("#confirm-error").textContent = "";
     } else {
-        $("#confirm_error").textContent = "Les mots de passe doivent correspondre.";
+        $("#confirm-error").textContent = "Les mots de passe doivent correspondre.";
 
         button.preventDefault();
     }
@@ -65,5 +65,5 @@ function register(link) {
 
     $("#modal-title").textContent = "Inscription";
     $("#modal-form").action = "/register";
-    $("#modalSubmit").addEventListener("click", validate);
+    $("#modal-submit").addEventListener("click", validate);
 }

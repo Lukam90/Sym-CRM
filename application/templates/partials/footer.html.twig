@@ -1,3 +1,5 @@
+{% set path = "modals/legals/" %}
+
 <footer class="footer">
     <div class="content has-text-centered">
         <p>
@@ -8,5 +10,5 @@
     </div>
 </footer>
 
-{% include "legals/mentions.html.twig" %}
-{% include "legals/policy.html.twig" %}
+{% include path ~ "mentions.html.twig" %}
+{% include path ~ "policy.html.twig" %}

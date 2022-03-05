@@ -5,7 +5,7 @@ function _delete(button) {
 
     $("#delete-title").textContent = "Suppression d'un contact";
     $("#delete-form").action = `/contacts/delete/${contact.id}`;
-    $("#deleteName").textContent = contact.fullName;
+    $("#delete-name").textContent = contact.fullName;
 }
 
 function _add(button) {

@@ -19,7 +19,7 @@ function setValue(name, newValue) {
 function setToken(button, type) {
     let token = button.getAttribute("token");
 
-    $(`#${type}Token`).value = token;
+    $(`#${type}-token`).value = token;
 
     openModal(`#${type}`);
 }
