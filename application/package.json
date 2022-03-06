@@ -1,0 +1,18 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests/front"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "puppeteer": "^13.4.1"
+  }
+}

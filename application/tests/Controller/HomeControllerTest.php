@@ -10,6 +10,7 @@ class HomeControllerTest extends WebTestCase
     public function home_login_page_should_display(): void
     {
         $client = static::createClient();
+
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseStatusCodeSame(200);
