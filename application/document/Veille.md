@@ -93,3 +93,15 @@ https://www.youtube.com/watch?v=g1L-FdgsGMs&t=7411s
 **Scrapping Data with PHP**
 
 https://www.youtube.com/playlist?list=PLylMDDjFIp1ChQyScG_Hk3bDEW501zum-
+
+## Academind
+
+**JavaScript Testing Introduction Tutorial - Unit Tests, Integration Tests & e2e Tests**
+
+https://www.youtube.com/watch?v=r9HdJ8P6GQI&t=477s
+
+## Captain Dev
+
+**Comment scrapper le Web avec Puppeteer ?**
+
+https://www.youtube.com/watch?v=tLIqYdKhwSc
