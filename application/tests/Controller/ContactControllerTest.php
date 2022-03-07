@@ -2,16 +2,32 @@
 
 namespace App\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class ContactControllerTest extends WebTestCase
+class ContactControllerTest extends ControllerTest
 {
+    public function sortColumn($column)
+    {
+        $this->sort("contacts", $column, "asc");
+        $this->sort("contacts", $column, "desc");
+    }
+
     /** @test */
     public function contacts_list_should_display(): void
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/contacts');
+        $this->client = static::createClient();
+
+        $crawler = $this->client->request('GET', '/contacts');
 
         $this->assertResponseStatusCodeSame(200);
+    }
+
+    /** @test */
+    public function contacts_sort_should_work(): void
+    {
+        $this->client = static::createClient();
+
+        $this->sortColumn("id");
+        $this->sortColumn("fullName");
+        $this->sortColumn("type");
+        $this->sortColumn("role");
     }
 }

@@ -26,29 +26,9 @@ window.onload = () => {
             center: "title",
             end: "dayGridMonth, timeGridWeek"
         },
-        events: {{ data | raw }},
+        events: {{ event | raw }},
         editable: true,
         eventResizableFromStart: true
-    });
-
-    calendar.on("eventChange", (e) => {
-        let url = `/api/${e.event.id}/edit`;
-
-        let data = {
-            "title" : e.event.title,
-            "description" : e.event.extendedProps.description,
-            "start" : e.event.start,
-            "end" : e.event.end,
-            "backgroundColor" : e.event.backgroundColor,
-            "borderColor" : e.event.borderColor,
-            "textColor" : e.event.textColor,
-            "allDay" : e.event.allDay
-        }
-
-        let xhr = new XMLHttpRequest;
-        
-        xhr.open("PUT", url);
-        xhr.send(JSON.stringify(data));
     });
 
     calendar.render();

@@ -136,7 +136,7 @@ class EventController extends AppController
 
         $this->isNotFound($event);
 
-        return $this->render('events/calendar.html.twig', [
+        return $this->render('pages/events/calendar.html.twig', [
             'title' => 'Calendrier',
             'event' => $event
         ]);
