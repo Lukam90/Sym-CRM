@@ -4,7 +4,7 @@ namespace App\Tests\Controller;
 
 class TeamControllerTest extends ControllerTest
 {
-    public function sortColumn($column)
+    public function isSortOK($column)
     {
         $this->sort("teams", $column, "asc");
         $this->sort("teams", $column, "desc");
@@ -13,10 +13,7 @@ class TeamControllerTest extends ControllerTest
     /** @test */
     public function teams_list_should_display(): void
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/teams');
-
-        $this->assertResponseStatusCodeSame(200);
+        $this->isRouteOK('/teams');
     }
 
     /** @test */
@@ -24,7 +21,13 @@ class TeamControllerTest extends ControllerTest
     {
         $this->client = static::createClient();
 
-        $this->sortColumn("id");
-        $this->sortColumn("name");
+        $this->isSortOK("id");
+        $this->isSortOK("name");
+    }
+
+    /** @test */
+    public function teams_search_should_work(): void
+    {
+        $this->isSearchOK("teams");
     }
 }

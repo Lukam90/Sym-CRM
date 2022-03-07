@@ -4,7 +4,7 @@ namespace App\Tests\Controller;
 
 class EventControllerTest extends ControllerTest
 {
-    public function sortColumn($column)
+    public function isSortOK($column)
     {
         $this->sort("events", $column, "asc");
         $this->sort("events", $column, "desc");
@@ -13,10 +13,7 @@ class EventControllerTest extends ControllerTest
     /** @test */
     public function events_list_should_display(): void
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/events');
-
-        $this->assertResponseStatusCodeSame(200);
+        $this->isRouteOK('/events');
     }
 
     /** @test */
@@ -24,9 +21,15 @@ class EventControllerTest extends ControllerTest
     {
         $this->client = static::createClient();
 
-        $this->sortColumn("id");
-        $this->sortColumn("title");
-        $this->sortColumn("type");
-        $this->sortColumn("date");
+        $this->isSortOK("id");
+        $this->isSortOK("title");
+        $this->isSortOK("type");
+        $this->isSortOK("date");
+    }
+
+    /** @test */
+    public function events_search_should_work(): void
+    {
+        $this->isSearchOK("events");
     }
 }
