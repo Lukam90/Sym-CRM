@@ -76,26 +76,12 @@ const validate = (button) => {
 }
 
 /**
- * Fill the registration form for a testing purpose
- * 
- * @param {HTMLButtonElement} button 
- */
-const testRegister = () => {
-    setValue("fullName", "James Bond");
-    setValue("email", "james.bond@test.com");
-    setValue("password", "James007");
-    setValue("confirm-password", "James007");
-}
-
-/**
  * Opens the registration form's modal
  * 
  * @param {HTMLLinkElement} link 
  */
 const register = (link) => {
     setToken(link, "register");
-
-    testRegister();
 
     $("#register-button").addEventListener("click", validate);
 }

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AppController
@@ -271,11 +272,31 @@ class UserController extends AppController
     /**
      * @Route("/login", name="login")
      */
-    public function login(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        if ($this->isFormValid("login")) {
+            if ($this->getUser()) {
+                $this->addFlash("success", "Connexion réussie !");
+
+                // Get the login error if there is one
+
+                $error = $authenticationUtils->getLastAuthenticationError();
+
+                if ($error) {
+                    $this->addError("Une erreur de connexion s'est produite.");
+
+                    return $this->redirectToRoute('home');
+                }
+
+                // Last username / email entered by the user
+
+                $lastUsername = $authenticationUtils->getLastUsername();
+
+                return $this->redirectToRoute('dashboard');
+            }
+        }
+
+        return $this->render('pages/home/index.html.twig');
     }
 
     /**
@@ -283,6 +304,8 @@ class UserController extends AppController
      */
     public function logout(): Response
     {
+        $this->addSuccess("La déconnexion s'est bien déroulée.");
+
         return $this->redirectToRoute('home');
     }
 }
