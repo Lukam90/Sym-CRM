@@ -105,3 +105,9 @@ https://www.youtube.com/watch?v=r9HdJ8P6GQI&t=477s
 **Comment scrapper le Web avec Puppeteer ?**
 
 https://www.youtube.com/watch?v=tLIqYdKhwSc
+
+## Coding with Dom
+
+**End-to-end testing with NightwatchJS**
+
+https://www.youtube.com/playlist?list=PLHe-juD38yt4t38EsggDx2viWXz9Dc0OS

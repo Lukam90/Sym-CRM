@@ -9,12 +9,12 @@ const openModal = (id) => $(id).classList.add("is-active");
  * Closes a modal window
  * 
  * @param {string} id
- * @param {HTMLButtonElement?} button
+ * @param {HTMLButtonElement} button
  */
 const closeModal = (id, button = null) => {
     $(id).classList.remove("is-active");
 
-    if (button)  button.preventDefault();
+    if (button) button.preventDefault();
 }
 
 /**
@@ -65,3 +65,5 @@ const setOptions = (name, value) => {
         }
     }
 }
+
+export { openModal, closeModal };
