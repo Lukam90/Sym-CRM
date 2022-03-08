@@ -65,5 +65,3 @@ const setOptions = (name, value) => {
         }
     }
 }
-
-export { openModal, closeModal };

@@ -1,21 +1,21 @@
-Maquette (Bootstrap);Conception;inprogress
-MCD (base de données);Conception;testing
-Layout;Composants;inprogress
-Menu de navigation;Composants;inprogress
-Pied de page;Composants;inprogress
-Messages d’alerte;Composants;todo
-La page d’accueil;Pages;inprogress
-Les Mentions Légales;Pages;inprogress
-La Politique de Confidentialité;Pages;inprogress
-Le tableau de bord;Pages;todo
+Maquette (Bootstrap);Conception;done
+MCD (base de données);Conception;done
+Layout;Composants;done
+Menu de navigation;Composants;done
+Pied de page;Composants;done
+Messages d’alerte;Composants;done
+La page d’accueil;Pages;done
+Les Mentions Légales;Pages;done
+La Politique de Confidentialité;Pages;done
+Le tableau de bord;Pages;done
 Les rôles des utilisateurs;Utilisateurs;todo
-Liste des utilisateurs;Utilisateurs;todo
-Inscription d’un utilisateur;Utilisateurs;todo
+Liste des utilisateurs;Utilisateurs;done
+Inscription d’un utilisateur;Utilisateurs;testing
 Connexion d’un utilisateur;Utilisateurs;todo
 Déconnexion d’un utilisateur;Utilisateurs;todo
 Profil d’un utilisateur;Utilisateurs;todo
-Edition d’un utilisateur;Utilisateurs;todo
-Suppression d’un utilisateur;Utilisateurs;todo
+Edition d’un utilisateur;Utilisateurs;done
+Suppression d’un utilisateur;Utilisateurs;done
 Mot de passé oublié;Utilisateurs;todo
 Nouveau mot de passe;Utilisateurs;todo
 Envoyer une invitation;Utilisateurs;todo
@@ -23,24 +23,24 @@ Refuser une invitation;Utilisateurs;todo
 Envoyer un message;Utilisateurs;todo
 Exportation des utilisateurs;Utilisateurs;todo
 Importation des utilisateurs;Utilisateurs;todo
-Liste des équipes;Equipes;todo
-Ajout d’une équipe;Equipes;todo
-Edition d’une équipe;Equipes;todo
-Suppression d’une équipe;Equipes;todo
+Liste des équipes;Equipes;done
+Ajout d’une équipe;Equipes;done
+Edition d’une équipe;Equipes;done
+Suppression d’une équipe;Equipes;done
 Ajout d'un utilisateur dans une équipe;Equipes;todo
 Transfert d’une équipe;Equipes;todo
 Exportation des équipes;Equipes;todo
 Importation des équipes;Equipes;todo
-Liste des événements;Evénements;todo
+Liste des événements;Evénements;done
 Consultation d’un événement;Evénements;todo
-Ajout d’un événement;Evénements;todo
-Edition d’un événement;Evénements;todo
-Suppression d’un événement;Evénements;todo
+Ajout d’un événement;Evénements;done
+Edition d’un événement;Evénements;done
+Suppression d’un événement;Evénements;done
 Exportation des événements;Evénements;todo
 Importation des événements;Evénements;todo
-Liste des contacts;Contacts;todo
-Ajout d’un contact;Contacts;todo
-Edition d’un contact;Contacts;todo
-Suppression d’un contact;Contacts;todo
+Liste des contacts;Contacts;done
+Ajout d’un contact;Contacts;done
+Edition d’un contact;Contacts;done
+Suppression d’un contact;Contacts;done
 Exportation des événements;Contacts;todo
 Importation des événements;Contacts;todo

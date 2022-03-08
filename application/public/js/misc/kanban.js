@@ -1,6 +1,6 @@
-getData();
+getTasks();
 
-async function getData() {
+async function getTasks() {
     const response = await fetch("/data/kanban.csv");
     const data = await response.text();
 
@@ -13,7 +13,7 @@ async function getData() {
         const type = columns[1];
         const status = columns[2];
 
-        document.querySelector(`#${status}`).innerHTML += `
+        $(`#${status}`).innerHTML += `
             <div class="task">
                 <p>${name}</p>
 
