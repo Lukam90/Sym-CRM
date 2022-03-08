@@ -12,15 +12,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AppController
 {
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    private $encoder;
+
     /* Constructor */
 
-    public function __construct(UserRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
+    public function __construct(UserRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack, UserPasswordHasherInterface $encoder) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->requestStack = $requestStack;
+        $this->encoder = $encoder;
     }
 
     /* Utilities */
@@ -35,6 +42,16 @@ class UserController extends AppController
         if (! $user) {
             $this->addError("L'utilisateur #$id n'a pas été trouvé.");
         }
+    }
+
+    /**
+     * Checkes if a user already exists
+     * 
+     * @param string $email
+     * 
+     */
+    public function alreadyExists($email) {
+        return $this->repository->findByEmail($email);
     }
 
     /**
@@ -55,6 +72,21 @@ class UserController extends AppController
      */
     public function setRole(User $user) {
         $user->setRole($this->getRequest()->get("role"));
+    }
+
+    /**
+     * Set user's register values
+     * 
+     * @param User $user
+     */
+    public function setRegisterValues(User $user) {
+        $user->setFullName($this->getRequest()->get("fullName"));
+        $user->setEmail($this->getRequest()->get("email"));
+
+        $password = $this->getRequest()->get("password");
+        $password = $this->encoder->hashPassword($user, $password);
+
+        $user->setPassword($password);
     }
 
     /**
@@ -123,7 +155,22 @@ class UserController extends AppController
     public function register(): Response
     {
         if ($this->isFormValid("register")) {
-            $this->addSuccess("Votre inscription s'est déroulée avec succès.");
+            $email = $this->getRequest()->get("email");
+
+            if ($this->alreadyExists($email)) {
+                $this->addError("Un utilisateur existe déjà avec cette adresse e-mail.");
+
+                return $this->redirectToRoute('home');
+            }
+
+            $user = new User;
+
+            $this->setRegisterValues($user);
+
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            $this->addSuccess("L'inscription s'est bien déroulée.");
         } else {
             $this->addError();
         }

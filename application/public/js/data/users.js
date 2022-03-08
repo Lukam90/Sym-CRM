@@ -84,7 +84,7 @@ const testRegister = () => {
     setValue("fullName", "James Bond");
     setValue("email", "james.bond@test.com");
     setValue("password", "James007");
-    setValue("confirm-password", "James006");
+    setValue("confirm-password", "James007");
 }
 
 /**

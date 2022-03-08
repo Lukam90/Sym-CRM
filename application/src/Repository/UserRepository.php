@@ -37,7 +37,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-      * @return int Returns the number of users
+     * Returns the number of users
+     * 
+      * @return int
       */
     public function countAll()
     {
@@ -49,7 +51,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @return User[] Returns an array of User objects
+     * Returns an array of User objects
+     * 
+     * @return User[]
      */
     public function findSorted($column, $order = 'ASC')
     {
@@ -61,7 +65,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @return User[] Returns an array of User objects
+     * Returns an array of User objects 
+     * 
+     * @return User[]
      * 
      * @param string $name
      */
@@ -72,6 +78,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter("name", "%$name%")
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    /**
+     * Returns a user with an email address
+     * 
+     * @param string $email
+     * 
+     * @return User
+     */
+    public function findByEmail($email)
+    {
+        return $this->createQueryBuilder('u')
+            ->where("u.email LIKE :email")
+            ->setParameter("email", "%$email%")
+            ->getQuery()
+            ->getOneOrNullResult();
         ;
     }
 }
