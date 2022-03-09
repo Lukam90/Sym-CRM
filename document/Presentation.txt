@@ -1,16 +1,12 @@
 # Présentation
 
-## INTRO
+INTRO
 
 Bonjour à tous.
 
 Je vais vous présenter aujourd'hui mon projet Sym CRM.
 
-## N2
-
 SOMMAIRE
-
-## N3
 
 POURQUOI SYM CRM
 
