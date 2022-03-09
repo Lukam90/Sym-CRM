@@ -122,6 +122,10 @@ heroku git:remote -a symcrm-lh
 
 heroku buildpacks:set heroku/php
 
+### Environment variables
+
+heroku config:set APP_ENV=prod
+
 ### Update
 
 git push heroku main
