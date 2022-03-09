@@ -1,37 +1,64 @@
 # Sites
 
-|||
-|-|-|
-|**W3Schools**|https://www.w3schools.com/|
-|**Documentation officielle de PHP**|https://www.php.net/|
-|**Documentation officielle de Symfony**|https://symfony.com/doc/current/index.html|
-|**Documentation officielle de Bulma CSS**|https://bulma.io/documentation/components/|
-|**Documentation officielle de Twig**|https://twig.symfony.com/doc/3.x/|
+**W3Schools**
+
+https://www.w3schools.com/
+
+**Documentation officielle de PHP**
+
+https://www.php.net/
+
+**Documentation officielle de Symfony**
+
+https://symfony.com/doc/current/index.html
+
+**Documentation officielle de Bulma CSS**
+
+https://bulma.io/documentation/components/
+
+**Documentation officielle de Twig**
+
+https://twig.symfony.com/doc/3.x/
 
 # Vidéos
 
 ## Grafikart
 
-|||
-|-|-|
-|**Symfony 4 par l'exemple**|https://www.youtube.com/playlist?list=PLjwdMgw5TTLX7wmorGgfrqI9TcA8nMb29|
-|**Créer un filtre produit sur Symfony**|https://www.youtube.com/watch?v=4uYpFjfUUbc&t=78s|
-|**Tutoriel JavaScript : Filtre produit Ajax**|https://www.youtube.com/watch?v=oG6VWCDK-Ns&t=2802s|
+**Symfony 4 par l'exemple**
+
+https://www.youtube.com/playlist?list=PLjwdMgw5TTLX7wmorGgfrqI9TcA8nMb29
+
+**Créer un filtre produit sur Symfony**
+
+https://www.youtube.com/watch?v=4uYpFjfUUbc&t=78s
+
+**Tutoriel JavaScript : Filtre produit Ajax**
+
+https://www.youtube.com/watch?v=oG6VWCDK-Ns&t=2802s
 
 ## Nouvelle Techno
 
-|||
-|-|-|
-|**Utiliser les DataFixtures avec Symfony 5.1**|https://www.youtube.com/watch?v=3EXjOy_1HyU&list=PLBq3aRiVuwyyqbgym6fZcPSptUSmg9pkL&index=15&t=2547s|
-|**Intégrer FullCalendar dans un projet Symfony 4 ou 5**|https://www.youtube.com/watch?v=HaTN0_S-rew&t=1148s|
+**Utiliser les DataFixtures avec Symfony 5.1**
+
+https://www.youtube.com/watch?v=3EXjOy_1HyU&list=PLBq3aRiVuwyyqbgym6fZcPSptUSmg9pkL&index=15&t=2547s
+
+**Intégrer FullCalendar dans un projet Symfony 4 ou 5**
+
+https://www.youtube.com/watch?v=HaTN0_S-rew&t=1148s
 
 ## Lior Chamla
 
-|||
-|-|-|
-|**AJAX & SYMFONY : INITIATION**|https://www.youtube.com/watch?v=lygMPwUj9yU&t=2718s|
-|**WebComponents - Créer ses propres balises**|https://www.youtube.com/playlist?list=PLpUhHhXoxrjf-CGm82kXtbrAtoMsO5xsL|
-|**[TUTO] DATA-ATTRIBUTES : STOCKEZ DES DONNÉES DANS VOTRE HTML**|https://www.youtube.com/watch?v=YnUA5Srm_gw|
+**AJAX & SYMFONY : INITIATION**
+
+https://www.youtube.com/watch?v=lygMPwUj9yU&t=2718s
+
+**WebComponents - Créer ses propres balises**
+
+https://www.youtube.com/playlist?list=PLpUhHhXoxrjf-CGm82kXtbrAtoMsO5xsL
+
+**[TUTO] DATA-ATTRIBUTES : STOCKEZ DES DONNÉES DANS VOTRE HTML**
+
+https://www.youtube.com/watch?v=YnUA5Srm_gw
 
 ## Namaste Programming
 
@@ -59,10 +86,13 @@ https://www.youtube.com/watch?v=6LyagkoRWYA
 
 ## dcode
 
-|||
-|-|-|
-|**Sending JSON data with the Fetch API - JavaScript Tutorial**|https://www.youtube.com/watch?v=ycmci-hiPfQ|
-|**How to use JSDoc - Basics & Introduction**|https://www.youtube.com/watch?v=Nqv6UkTROak|
+**Sending JSON data with the Fetch API - JavaScript Tutorial**
+
+https://www.youtube.com/watch?v=ycmci-hiPfQ
+
+**How to use JSDoc - Basics & Introduction**
+
+https://www.youtube.com/watch?v=Nqv6UkTROak
 
 ## GTCoding
 
@@ -87,6 +117,10 @@ https://www.youtube.com/watch?v=4kFkaihdeS4&t=467s
 **Créer un raccourcisseur ou réducteur d'URLs avec Symfony**
 
 https://www.youtube.com/watch?v=g1L-FdgsGMs&t=7411s
+
+**Déployer une application Symfony avec base de données sur Heroku**
+
+https://www.youtube.com/watch?v=s7DbfpybMVE
 
 ## CodeTime
 
