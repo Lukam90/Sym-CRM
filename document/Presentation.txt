@@ -1,0 +1,142 @@
+# Présentation
+
+## INTRO
+
+Bonjour à tous.
+
+Je vais vous présenter aujourd'hui mon projet Sym CRM.
+
+## N2
+
+SOMMAIRE
+
+## N3
+
+POURQUOI SYM CRM
+
+CRM (Customer Relationship Management) = application pour la gestion de la relation client
+
+Plusieurs utilisateurs :
+- membres > contacts, événements
+- managers > contacts, événéments, équipes de membres
+- administrateurs > gérer les contacts, les événements et les utilisateurs
+- super-admin qui peut tout faire
+
+tableau de bord = stats
+
+## OUTILS DEV
+
+HTML/CSS : front, pages visibles
+HTML = structure, CSS = style, design
+Bulma CSS = framework pour le design, + vite
+VS Code = éditeur de texte
+PHP = langage back-end
+MySQL = gestionnaire de base de données
+Symfony = framework back-end en PHP, demandé
+Heroku = déploiement
+
+GESTION PROJET
+
+kanban = fait en CSS et JS avec un tuto
+Gantt = avec ChartJS
+cahier des charges = besoins, fonctionnalités, grande aide
+MCD = base de données, vision globale
+veille techno = autoformation, solutions, outils (ex : Vue et web components)
+optimisation de code = évolutivité de l'application
+tests automatisés (unitaires avec PHPUnit, end-to-end en JS avec Jest ou PHP avec Panther)
+
+MCD
+
+Cardinalités
+
+0,n = peut avoir
+
+DEMO
+
+1) Accueil
+
+Inscription
+
+- James Bond
+- james@bond.com
+- Agent007
+- Agent006
+
+Mot de passe oublié (modale)
+
+Mentions Légales + Confidentialité (référence au 1er projet)
+
+Connexion à faire
+
+Simulation en tant que super admin
+
+2) Tableau de bord
+
+- Stats > nombre
+
+3) Lien profil utilisateur
+
+- Nom complet de l'utilisateur connecté (fenêtre modale ?)
+
+4) Liste des utilisateurs
+
+- Filtre (ex : Alex) + Remise à zéro
+- Tri (nom a/z, role)
+- Editer le rôle (Bruce Wayne)
+- Supprimer Marc Forgeron (Non, et Oui)
+
+5) Liste des équipes
+
+- Ajout des membres reste à faire
+- Ajout de "Fort Boyard"
+- Editer "Equipe Verte" en "Violette"
+- Supprimer "Equipe Bleue"
+
+6) Liste des contacts
+
+- Ajout d'un contact :
+* René Durand
+* Particulier
+* Client
+* 15 rue des roses
+* même format
+* rene@contact.com
+
+- Edition du contact :
+* René Durand & Co
+* Entreprise
+* Prestataire
+* 15 rue de l'industrie
+* rene.com
+
+- Supprimer le contact "The Mask & Co"
+
+7) Liste des événements
+
+Ajout :
+- Nouvelle réunion
+- Réunion
+- 12/03/2022 à 15:40
+- Une réunion client
+
+Editer "Rapport des dernières ventes" > Réunion
+- Reporté au 1er mars à 13 h
+
+Supprimer l'appel avec René Durand
+
+DIFFICULTES
+
+- La maîtrise des outils : Bulma CSS pour le design, Symfony pour le framework back et PHPUnit pour les tests
+- Formulaires : essai avec les FormType de Symfony suivi d'un système de fenêtres modales, beaucoup de temps passé
+- Requêtes asynchrones : Ajax, Fetch, Axios (ex : tri, recherche, ajout de membres à une équipe, en temps réel)
+- Structure du code
+- Tests : manuels, unitaires (PHPUnit, Jest en essais JS) et end-to-end (sans succès)
+- Mise en ligne : avec Heroku mais sans succès, erreurs avec Composer
+
+AMELIORATION
+
+Refonte envisagée avec Laravel et Vue
+
+FIN
+
+Si vous avez des questions, n'hésitez pas !
