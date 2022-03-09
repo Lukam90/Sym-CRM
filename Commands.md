@@ -93,3 +93,35 @@ composer require --dev orm-fixtures
 composer require --dev dama/doctrine-test-bundle
 
 composer require symfony/twig-pack
+
+# Heroku (Deployment)
+
+## Version (installed)
+
+heroku -v
+
+## Login
+
+heroku login -i
+
+## Creation
+
+heroku create symcrm-lh
+
+## Git
+
+### Remote (check)
+
+git remote -v
+
+### Add repository
+
+heroku git:remote -a symcrm-lh
+
+### Buildpack
+
+heroku buildpacks:set heroku/php
+
+### Update
+
+git push heroku main
