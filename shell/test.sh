@@ -1,1 +1,1 @@
-bin/phpunit --filter Controller
+bin/phpunit --filter TeamController

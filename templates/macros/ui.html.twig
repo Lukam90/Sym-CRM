@@ -36,12 +36,13 @@
 
 {% macro add(label) %}
 <div class="block">
-    <button
+    <a
+        href="#"
+        id="new-button"
         class="button is-link"
-        token="{{ csrf_token('new') }}"
-        onclick="_add(this);">
+        onclick="_add(event);">
         <i class="fa fa-plus"></i> &nbsp; {{ label }}
-    </button>
+    </a>
 </div>
 {% endmacro %}
 
@@ -51,7 +52,6 @@
 <button
     class="button is-success edit"
     data="{{ data }}"
-    token="{{ csrf_token('edit') }}"
     onclick="_edit(this)">
     <i class="fa fa-pencil"></i>
 </button>
@@ -63,7 +63,6 @@
 <button
     class="button is-danger"
     data="{{ data }}"
-    token="{{ csrf_token('delete') }}"
     onclick="_delete(this)">
     <i class="fa fa-times"></i>
 </button>

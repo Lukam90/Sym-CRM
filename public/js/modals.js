@@ -35,20 +35,6 @@ const getData = (button) => JSON.parse(button.getAttribute("data"));
 const setValue = (id, newValue) => $(`#${id}`).value = newValue;
 
 /**
- * Sets a CRSF token
- * 
- * @param {HTMLButtonElement} button
- * @param {string} type
- */
-const setToken = (button, type) => {
-    let token = button.getAttribute("token");
-
-    $(`#${type}-token`).value = token;
-
-    openModal(`#${type}`);
-}
-
-/**
  * Sets options in a select or radio buttons range
  * 
  * @param {string} name

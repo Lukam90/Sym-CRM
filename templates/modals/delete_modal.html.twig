@@ -3,7 +3,7 @@
 
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title" id="delete-title"></p>
+            <p class="modal-card-title" id="delete-title">{{ delete_title }}</p>
 
             <button class="delete" aria-label="close" onclick="closeModal('#delete')"></button>
         </header>
@@ -13,9 +13,9 @@
         </section>
 
         <footer class="modal-card-foot">
-            <form action="#" method="post" id="delete-form">
+            <form action="{{ delete_action }}" method="post" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" name="_token" id="delete-token" value="#" />
+                <input type="hidden" name="_token" id="delete-token" value="{{ csrf_token('delete') }}" />
 
                 <button class="button is-danger">Oui</button>
                 <button class="button is-link" onclick="closeModal('#delete', event)">Non</button>

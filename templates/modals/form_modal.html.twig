@@ -8,8 +8,8 @@
             <button class="delete" aria-label="close" onclick="closeModal('#modal')"></button>
         </header>
 
-        <form action="#" method="post" id="modal-form">
-            <input type="hidden" name="_token" id="modal-token" value="#" />
+        <form action="#" method="post" id="modal-form" name="modal-form">
+            <input type="hidden" name="_token" id="modal-token" value="{{ csrf_token('modal') }}" />
 
             <section class="modal-card-body">
                 {% block modal %}{% endblock %}

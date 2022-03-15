@@ -1,5 +1,9 @@
 {% extends "modals/delete_modal.html.twig" %}
 
+{% set delete_title = "Suppression d'une équipe" %}
+
+{% set delete_action = "/teams/delete" %}
+
 {% block modal %}
 <p>Vous êtes sûr(e) de supprimer l'équipe <strong id="delete-name"></strong> ?</p>
 {% endblock %}

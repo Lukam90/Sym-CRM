@@ -4,11 +4,10 @@
  * @param {HTMLButtonElement} button 
  */
 const _delete = (button) => {
-    setToken(button, "delete");
+    openModal(button, "delete");
 
     let team = getData(button);
 
-    $("#delete-title").textContent = "Suppression d'une équipe";
     $("#delete-form").action = `/teams/delete/${team.id}`;
     $("#delete-name").textContent = team.name;
 }
@@ -19,7 +18,7 @@ const _delete = (button) => {
  * @param {HTMLButtonElement} button 
  */
 const _add = (button) => {
-    setToken(button, "modal");
+    openModal(button, "modal");
 
     $("#modal-title").textContent = "Ajout d'une équipe";
     $("#modal-form").action = "/teams/new";
@@ -31,7 +30,7 @@ const _add = (button) => {
  * @param {HTMLButtonElement} button 
  */
 const _edit = (button) => {
-    setToken(button, "modal");
+    openModal(button, "modal");
 
     let team = getData(button);
 

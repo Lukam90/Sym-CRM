@@ -1,12 +1,22 @@
-command="doctrine:query:sql"
+sql="doctrine:query:sql"
+load="doctrine:fixtures:load"
+
 truncate="SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE"
 
-php bin/console $command "$truncate team"
-php bin/console $command "$truncate contact"
-php bin/console $command "$truncate event"
-php bin/console $command "$truncate user"
+# Normal
 
-command="doctrine:fixtures:load"
+php bin/console $sql "$truncate symcrm.team"
+php bin/console $sql "$truncate symcrm.contact"
+php bin/console $sql "$truncate symcrm.event"
+php bin/console $sql "$truncate symcrm.user"
 
-php bin/console $command
-php bin/console $command --env=test
+php bin/console $load
+
+# Test
+
+php bin/console $sql "$truncate symcrm_test.team"
+php bin/console $sql "$truncate symcrm_test.contact"
+php bin/console $sql "$truncate symcrm_test.event"
+php bin/console $sql "$truncate symcrm_test.user"
+
+php bin/console $load --env=test
