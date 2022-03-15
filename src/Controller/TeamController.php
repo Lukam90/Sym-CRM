@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Team;
+use App\Traits\TeamTrait;
 use App\Controller\AppController;
 use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +16,8 @@ class TeamController extends AppController
 {
     /* Constructor */
 
-    public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
+    public function __construct(TeamRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) 
+    {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->requestStack = $requestStack;
@@ -23,52 +25,7 @@ class TeamController extends AppController
 
     /* Utilities */
 
-    /**
-     * Displays an error if an team is not found
-     * 
-     * @param Team $team
-     * 
-     */
-    public function isNotFound(Team $team) {
-        if (! $team) {
-            $this->addError("L'événement #$id n'a pas été trouvé.");
-        }
-    }
-
-    /**
-     * Get an team with an ID
-     * 
-     * @param $id
-     * 
-     * @return Team
-     */
-    public function getTeam($id) {
-        return $this->repository->find((int) $id);
-    }
-
-    /**
-     * Set form value
-     * 
-     * @param Team $team
-     */
-    public function setFormValue(Team $team) {
-        $team->setName($this->getRequest()->get("name"));
-    }
-
-    /**
-     * Render the list of teams
-     * 
-     * @param Team[] $teams
-     * 
-     * @return Response
-     */
-    public function renderList($teams) : Response
-    {
-        return $this->render('pages/teams/list_teams.html.twig', [
-            'title' => 'Liste des équipes',
-            'teams' => $teams,
-        ]);
-    }
+    use TeamTrait;
 
     /* CRUD */
 
@@ -92,7 +49,8 @@ class TeamController extends AppController
      * 
      * @return Response
      */
-    public function sort(string $column, string $order): Response {
+    public function sort(string $column, string $order): Response 
+    {
         $teams = $this->repository->findSorted($column, $order);
 
         return $this->renderList($teams);
@@ -103,7 +61,8 @@ class TeamController extends AppController
      * 
      * @return Response
      */
-    public function search(): Response {
+    public function search(): Response
+    {
         $name = $this->getRequest()->get("filter");
 
         $teams = $this->repository->findByName($name);
@@ -141,7 +100,8 @@ class TeamController extends AppController
      * 
      * @return Response
      */
-    public function edit($id): Response {
+    public function edit($id): Response 
+    {
         $team = $this->getTeam($id);
 
         $this->isNotFound($team);
@@ -166,7 +126,8 @@ class TeamController extends AppController
      * 
      * @return Response
      */
-    public function delete($id): Response {
+    public function delete($id): Response 
+    {
         $team = $this->getTeam($id);
 
         $this->isNotFound($team);

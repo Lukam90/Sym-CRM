@@ -6,8 +6,8 @@ class UserControllerTest extends ControllerTest
 {
     public function isSortOK($column)
     {
-        $this->sort("users", $column, "asc");
-        $this->sort("users", $column, "desc");
+        $this->isOrderOK("users", $column, "asc");
+        $this->isOrderOK("users", $column, "desc");
     }
     
     /** @test */

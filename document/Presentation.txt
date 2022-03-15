@@ -53,10 +53,7 @@ DEMO
 
 Inscription
 
-- James Bond
-- james@bond.com
-- Agent007
-- Agent006
+- système de validation avec les champs
 
 Mot de passe oublié (modale)
 
@@ -83,10 +80,9 @@ Simulation en tant que super admin
 
 5) Liste des équipes
 
-- Ajout des membres reste à faire
+- Ajout des membres : reste à faire
 - Ajout de "Fort Boyard"
 - Editer "Equipe Verte" en "Violette"
-- Supprimer "Equipe Bleue"
 
 6) Liste des contacts
 
@@ -101,24 +97,12 @@ Simulation en tant que super admin
 - Edition du contact :
 * René Durand & Co
 * Entreprise
-* Prestataire
-* 15 rue de l'industrie
 * rene.com
-
-- Supprimer le contact "The Mask & Co"
 
 7) Liste des événements
 
-Ajout :
-- Nouvelle réunion
-- Réunion
-- 12/03/2022 à 15:40
-- Une réunion client
-
-Editer "Rapport des dernières ventes" > Réunion
-- Reporté au 1er mars à 13 h
-
-Supprimer l'appel avec René Durand
+- Liste
+- Calendrier
 
 DIFFICULTES
 

@@ -22,15 +22,43 @@ class ControllerTest extends WebTestCase
     }
 
     /**
-     * Checkes if a route is OK
+     * Gets a route with the POST method and a URL
+     * 
+     * @param string $url
      */
-    public function isRouteOK($url)
+    public function post($url)
+    {
+        return $this->client->request('POST', $url);
+    }
+
+    /**
+     * Checkes if a route is OK
+     * 
+     * @param string $url
+     * @param string $method = "GET"
+     */
+    public function isRouteOK($url, $method = "get")
     {
         $this->client = static::createClient();
 
-        $crawler = $this->get($url);
+        $crawler = $this->$method($url);
 
         $this->assertResponseStatusCodeSame(200);
+    }
+
+    /**
+     * Checkes if a redirection is OK
+     * 
+     * @param string $url
+     * @param string $method = "GET"
+     */
+    public function isRedirectionOK($url, $method = "get")
+    {
+        $this->client = static::createClient();
+
+        $crawler = $this->$method($url);
+
+        $this->assertResponseRedirects();
     }
 
     /**
@@ -40,7 +68,7 @@ class ControllerTest extends WebTestCase
      * @param string $column
      * @param string $order
      */
-    public function sort($table, $column, $order)
+    public function isOrderOK($table, $column, $order)
     {
         $crawler = $this->get("/$table/sort/$column/$order");
 
@@ -57,9 +85,10 @@ class ControllerTest extends WebTestCase
         $this->isRouteOK("/$table/search");
     }
 
-    /** @test */
-    public function basic_class_should_work()
-    {
+    /**
+     * Simple test
+     */
+    public function testSimple() {
         $this->assertTrue(true);
     }
 }

@@ -27,14 +27,16 @@ abstract class AppController extends AbstractController
     /**
      * Get current request
      */
-    public function getRequest() {
+    public function getRequest() 
+    {
         return $this->requestStack->getCurrentRequest();
     }
 
     /**
      * Get all entries from a repository
      */
-    public function getAll() {
+    public function getAll() 
+    {
         return $this->repository->findAll();
     }
 
@@ -43,7 +45,8 @@ abstract class AppController extends AbstractController
      * 
      * @return bool
      */
-    public function isFormSubmitted() {
+    public function isFormSubmitted() 
+    {
         return $this->getRequest()->get("submit");
     }
 
@@ -54,7 +57,8 @@ abstract class AppController extends AbstractController
      * 
      * @return bool
      */
-    function isTokenValid(string $tokenName) {
+    function isTokenValid(string $tokenName) 
+    {
         return $this->isCsrfTokenValid($tokenName, $this->getRequest()->get("_token"));
     }
 
@@ -65,7 +69,8 @@ abstract class AppController extends AbstractController
      * 
      * @return bool
      */
-    public function isFormValid(string $tokenName) {
+    public function isFormValid(string $tokenName) 
+    {
         return $this->isFormSubmitted() && $this->isTokenValid($tokenName);
     }
 
@@ -74,7 +79,8 @@ abstract class AppController extends AbstractController
      * 
      * @param string $message
      */
-    public function addSuccess(string $message) {
+    public function addSuccess(string $message) 
+    {
         $this->addFlash("success", $message);
     }
 
@@ -83,7 +89,8 @@ abstract class AppController extends AbstractController
      * 
      * @param string $message
      */
-    public function addError(string $message = "Une erreur s'est produite...") {
+    public function addError(string $message = "Une erreur s'est produite...") 
+    {
         $this->addFlash("danger", $message);
     }
 }

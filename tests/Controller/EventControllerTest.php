@@ -6,8 +6,8 @@ class EventControllerTest extends ControllerTest
 {
     public function isSortOK($column)
     {
-        $this->sort("events", $column, "asc");
-        $this->sort("events", $column, "desc");
+        $this->isOrderOK("events", $column, "asc");
+        $this->isOrderOK("events", $column, "desc");
     }
 
     /** @test */

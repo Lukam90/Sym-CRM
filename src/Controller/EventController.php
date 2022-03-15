@@ -4,25 +4,17 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Event;
-use App\Form\EventFormType;
+use App\Traits\EventTrait;
 use App\Controller\AppController;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class EventController extends AppController
 {
-    /* Constants */
-
-    const TYPES = [
-        ["id" => "reunion", "value" => "Réunion"],
-        ["id" => "tache", "value" => "Tâche"],
-    ];
-
     /* Constructor */
 
     public function __construct(EventRepository $repository, EntityManagerInterface $entityManager, RequestStack $requestStack) {
@@ -31,56 +23,9 @@ class EventController extends AppController
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * Displays an error if an event is not found
-     * 
-     * @param Event $event
-     * 
-     */
-    public function isNotFound(Event $event) {
-        if (! $event) {
-            $this->addError("L'événement #$id n'a pas été trouvé.");
-        }
-    }
+    /* Utilities */
 
-    /**
-     * Get an event with an ID
-     * 
-     * @param $id
-     * 
-     * @return Event
-     */
-    public function getEvent($id) {
-        return $this->repository->find((int) $id);
-    }
-
-    /**
-     * Set form values
-     * 
-     * @param Event $event
-     */
-    public function setFormValues(Event $event) {
-        $event->setTitle($this->getRequest()->get("title"));
-        $event->setType($this->getRequest()->get("type"));
-        $event->setDate(new DateTime($this->getRequest()->get("date")));
-        $event->setDescription($this->getRequest()->get("description"));
-    }
-
-    /**
-     * Render the list of events
-     * 
-     * @param Event[] $events
-     * 
-     * @return Response
-     */
-    public function renderList($events) : Response
-    {
-        return $this->render('pages/events/list_events.html.twig', [
-            'title' => 'Liste des événements',
-            'events' => $events,
-            'types' => self::TYPES,
-        ]);
-    }
+    use EventTrait;
 
     /* CRUD */
     

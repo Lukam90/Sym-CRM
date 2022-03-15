@@ -6,8 +6,8 @@ class TeamControllerTest extends ControllerTest
 {
     public function isSortOK($column)
     {
-        $this->sort("teams", $column, "asc");
-        $this->sort("teams", $column, "desc");
+        $this->isOrderOK("teams", $column, "asc");
+        $this->isOrderOK("teams", $column, "desc");
     }
 
     /** @test */

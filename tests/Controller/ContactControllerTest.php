@@ -6,8 +6,8 @@ class ContactControllerTest extends ControllerTest
 {
     public function isSortOK($column)
     {
-        $this->sort("contacts", $column, "asc");
-        $this->sort("contacts", $column, "desc");
+        $this->isOrderOK("contacts", $column, "asc");
+        $this->isOrderOK("contacts", $column, "desc");
     }
 
     /** @test */
@@ -17,7 +17,7 @@ class ContactControllerTest extends ControllerTest
     }
 
     /** @test */
-    public function contacts_sort_should_work(): void
+    public function contacts_isOrderOK_should_work(): void
     {
         $this->client = static::createClient();
 
@@ -31,5 +31,17 @@ class ContactControllerTest extends ControllerTest
     public function contacts_search_should_work(): void
     {
         $this->isSearchOK("contacts");
+    }
+
+    /** @test */
+    public function new_contact_route_should_work(): void
+    {
+        $this->isRedirectionOK("/contacts/new", "post");
+    }
+
+    /** @test */
+    public function edit_contact_route_should_work(): void
+    {
+        $this->isRedirectionOK("/contacts/edit/1", "post");
     }
 }
